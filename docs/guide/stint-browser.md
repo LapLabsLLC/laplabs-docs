@@ -33,7 +33,7 @@ Below the stint browser, the workflow panel controls how the selected data is pr
 
 ### Denoise
 
-A one-click toggle that applies automatic noise reduction to all channels. Enabled by default — disable it if you need raw unfiltered signals.
+A one-click toggle that cleans up timing errors in IBT files. iRacing's telemetry can contain small timestamp irregularities that cause jitter in plots and derived calculations — Denoise corrects these automatically. Enabled by default — disable it if you need the raw unprocessed data.
 
 ### Extract Template
 

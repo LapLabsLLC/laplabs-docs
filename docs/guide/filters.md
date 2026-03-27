@@ -58,4 +58,4 @@ In the workflow panel:
 - **Parameters** — adjust filter-specific settings
 
 !!! tip
-    The **Denoise** toggle in the workflow panel is separate from the filter node. Denoise applies automatic noise reduction before any other processing.
+    The **Denoise** toggle in the workflow panel is separate from the filter node. Denoise corrects timing errors in IBT files before any other processing — it is not a signal smoother.

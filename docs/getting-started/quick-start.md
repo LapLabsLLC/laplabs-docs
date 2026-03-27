@@ -14,7 +14,7 @@ In the **Stint Browser** on the left:
 
 Below the stint browser, the workflow panel lets you configure how data is processed:
 
-- **Denoise** — toggle automatic noise reduction (on by default)
+- **Denoise** — toggle automatic IBT timing error correction (on by default)
 - **Extract Template** — choose which telemetry channels to include (e.g., base, tires, chassis)
 - **Aux Math** — add custom derived channels
 - **Filter** — apply signal processing filters
