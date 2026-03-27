@@ -1,41 +1,47 @@
 # Dashboards
 
-Dashboards provide customizable instrument panels for visualizing telemetry data — both for offline analysis and live iRacing sessions.
+Dashboards provide customizable instrument panels for visualizing telemetry data during playback.
 
 ## Dash Library
 
-Access the dash library from the bottom panel. Pre-built layouts include:
+The dash library is in the bottom panel. Pre-built layouts include:
 
-- **Base** — essential gauges (speed, throttle, brake, gear)
-- **Tire Temps** — four-corner tire temperature displays
-- **Vehicle** — body slip angle visualization
-- **GG** — lateral vs. longitudinal acceleration plot
-- **Gauges** — analog-style instrument gauges
-- **MiniMap** — track position overview
+| Layout | Description |
+|--------|-------------|
+| **Base** | Essential gauges — speed, throttle, brake, gear |
+| **Tire Temps** | Four-corner tire temperature displays |
+| **Vehicle** | Body slip angle visualization |
+| **GG** | Lateral vs. longitudinal acceleration plot |
+| **Gauges** | Analog-style instrument gauges |
+| **MiniMap** | Track position overview |
+| **Slip** | Tire slip visualization |
 
-## Dash Elements
+## Loading a Dashboard
 
-| Element | Description |
-|---------|-------------|
-| **Numeric** | Digital readout of a channel value |
-| **VBar / HBar** | Vertical or horizontal bar meter |
-| **Gauge** | Analog dial gauge |
-| **LED** | Status indicator light |
-| **XY Plot** | 2D scatter/trace plot (e.g., G-G diagram) |
-| **MiniMap** | Track position with driven path |
-| **Steering Wheel** | Visual steering input display |
+Click any layout in the dash library to load it onto the canvas. The dash populates with data from your most recent run.
 
-## Using Dashboards
+## Playback
 
-1. Click a dash layout in the library to load it onto the canvas
-2. Run the graph — dash elements populate with data
-3. Use playback controls to scrub through the session
-4. Right-click a dash for options (pop out, remove)
-
-## Pop Out
-
-Right-click any dash and select **Pop Out** to detach it into a floating window. This is useful for multi-monitor setups. The "Always on Top" option keeps it visible over other applications.
+Dashboard elements animate in sync with the 3D track view playback. Use the transport controls to scrub through the session and watch the instruments respond.
 
 ## Refresh Rate
 
-Use the **Rate** dropdown to set the dashboard update frequency (15/30/60/120 Hz). Higher rates are smoother but use more CPU.
+Use the **Rate** dropdown to set the dashboard update frequency:
+
+- **15 Hz** — lowest CPU usage
+- **30 Hz** — balanced
+- **60 Hz** — smooth (default)
+- **120 Hz** — smoothest, higher CPU usage
+
+## Pop Out
+
+Right-click any dash and select **Pop Out** to detach it into a floating window. Options in the pop-out window:
+
+- **Always on Top** — keeps the dash visible over other applications
+- **Dock back to canvas** — returns it to the main panel
+
+This is useful for multi-monitor setups — pop out a tire temp display onto a second screen while keeping the main app on your primary monitor.
+
+## Removing a Dashboard
+
+Right-click a dash on the canvas and select **Remove from canvas** to clear it. You can load a different layout from the library at any time.

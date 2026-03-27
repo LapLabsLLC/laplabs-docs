@@ -1,34 +1,26 @@
 # Keyboard Shortcuts
 
-## General
-
-| Shortcut | Action |
-|----------|--------|
-| `Ctrl+A` | Select all (in console) |
-| `Ctrl+C` | Copy (in console) |
-
 ## 3D Track View
 
-| Shortcut | Action |
-|----------|--------|
-| Left-click + drag | Draw with track pen |
-| Right-click + drag | Rotate camera |
-| Scroll wheel | Zoom in/out |
-| Middle-click + drag | Pan camera |
+| Action | Control |
+|--------|---------|
+| Rotate camera | Right-click + drag |
+| Zoom | Scroll wheel |
+| Pan | Middle-click + drag |
+| Draw with pen | Left-click + drag |
 
 ## 2D Plot
 
+| Action | Control |
+|--------|---------|
+| Pan | Left-click + drag |
+| Zoom region | Right-click + drag |
+| Zoom | Scroll wheel |
+| Cursor values | Hover |
+
+## Console
+
 | Shortcut | Action |
 |----------|--------|
-| Left-click + drag | Pan |
-| Right-click + drag | Zoom region |
-| Scroll wheel | Zoom in/out |
-| Hover | Show cursor values |
-
-## Node Graph
-
-| Shortcut | Action |
-|----------|--------|
-| Click sidebar node | Add node to graph |
-| Double-click node | Open configuration |
-| Drag node | Reposition |
+| `Ctrl+A` | Select all |
+| `Ctrl+C` | Copy |

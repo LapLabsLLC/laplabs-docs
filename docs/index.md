@@ -2,17 +2,18 @@
 
 **Visual telemetry analysis and vehicle dynamics modeling for iRacing.**
 
-LapLabs Studio is a node-graph editor that lets you load iRacing telemetry, build analysis pipelines, train ML models, and visualize vehicle dynamics — all in one tool.
+LapLabs Studio lets you load iRacing telemetry, build analysis workflows, and visualize vehicle dynamics — all in one tool.
 
 ## Features
 
-- **Node Graph Editor** — drag-and-drop visual pipeline for telemetry analysis
-- **2D & 3D Plotting** — interactive plots with linked cursors, spectrograms, and waterfall views
-- **Track 3D View** — animated vehicle replay on 3D track geometry with ghost cars
-- **Dashboards** — customizable real-time instrument panels (gauges, bar meters, tire temps, G-G plots)
-- **ML Training** — train MLP, GRU, TCN, and Transformer models on telemetry data
-- **Live Streaming** — connect to iRacing in real-time for live inference and dash display
-- **Standalone Viewer** — export dash packages that run independently
+- **Stint Browser** — scan telemetry folders, view session summaries, and select data to analyze
+- **2D Plotting** — interactive time-series plots with linked cursors and channel selection
+- **3D Track View** — animated vehicle replay on 3D track geometry with ghost cars
+- **Dashboards** — instrument panels with gauges, bar meters, tire temps, and G-G plots
+- **Extract Templates** — select and group telemetry channels for focused analysis
+- **Aux Math** — create custom derived channels with mathematical expressions
+- **Signal Filtering** — smooth, differentiate, or integrate channels with built-in filters
+- **Denoising** — automatic one-click noise reduction for cleaner signals
 
 ## Quick Links
 
