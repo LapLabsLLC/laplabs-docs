@@ -1,0 +1,42 @@
+site_name: LapLabs Studio
+site_description: Visual telemetry analysis and vehicle dynamics modeling for iRacing
+site_url: https://milodee.github.io/laplabs-docs/
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: deep purple
+    accent: amber
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: getting-started/installation.md
+    - First Run: getting-started/first-run.md
+    - Quick Start: getting-started/quick-start.md
+  - User Guide:
+    - Node Graph: guide/node-graph.md
+    - Loading Data: guide/loading-data.md
+    - Plots & Visualization: guide/plots.md
+    - Dashboards: guide/dashboards.md
+  - Reference:
+    - Node Reference: reference/nodes.md
+    - Keyboard Shortcuts: reference/shortcuts.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
