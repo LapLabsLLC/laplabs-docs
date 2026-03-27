@@ -29,6 +29,7 @@ nav:
     - 2D Plots: guide/plots-2d.md
     - 3D Track View: guide/plots-3d.md
     - Dashboards: guide/dashboards.md
+    - Track Library: guide/track-library.md
   - Reference:
     - Keyboard Shortcuts: reference/shortcuts.md
 

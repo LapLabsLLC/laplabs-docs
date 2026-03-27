@@ -45,3 +45,25 @@ This is useful for multi-monitor setups — pop out a tire temp display onto a s
 ## Removing a Dashboard
 
 Right-click a dash on the canvas and select **Remove from canvas** to clear it. You can load a different layout from the library at any time.
+
+## Live Dashboards
+
+Dashboards can display real-time data from iRacing while you drive. Any dash element that is bound to a variable available in iRSDK will update live.
+
+### How It Works
+
+When a live session is running, iRSDK streams telemetry at 60 Hz. The live data feeds directly into dash elements — gauges, bar displays, and numeric readouts all animate in real time. The same dash layouts used for playback work live, as long as the variables they reference are available in the iRSDK stream.
+
+Common live variables include speed, throttle, brake, gear, RPM, steering angle, lap time, and tire temperatures.
+
+### MiniMap Live
+
+The standard MiniMap dash uses GPS coordinates (latitude, longitude, altitude) to draw the car's position on a track outline. These coordinates are **not** available through iRSDK during live sessions.
+
+The **MiniMap Live** layout solves this by using `LapDistPct` — a single value (0–1) representing how far around the track the car is. It draws the car position on a simplified track outline without needing full 3D coordinates. Use this layout instead of the standard MiniMap when running live.
+
+### Tips
+
+- Pop out a dash to a second monitor for a live heads-up display while driving
+- Use the **Rate** dropdown to match the refresh rate to your preference — 60 Hz is a good default for live use
+- Not all telemetry channels are available through iRSDK — channels that require post-processing or model inference won't update live
