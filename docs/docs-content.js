@@ -15,6 +15,7 @@ window.DOCS_ARTICLES = {
   toc: ['requirements', 'install', 'launch'],
   tocLabels: ['System Requirements', 'Installation', 'First Launch'],
   body: `
+<!-- e2e-test-marker:laplabs-docs-pipeline -->
 <h2 id="requirements">System Requirements</h2>
 <ul>
   <li><strong>OS:</strong> Windows 10/11 (64-bit)</li>
