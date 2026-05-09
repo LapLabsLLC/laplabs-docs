@@ -1,0 +1,48 @@
+name: Trigger laplabs-site deploy
+
+# Push to main → POST a Cloudflare deploy hook so the laplabs-site project
+# rebuilds and picks up the latest docs-content.js. Only fires when docs/
+# actually changes; README/workflow tweaks don't trigger a site rebuild.
+#
+# The hook URL is stored as the CLOUDFLARE_DEPLOY_HOOK Actions secret.
+# If the secret isn't set the job is skipped (so this stays inert until
+# the dashboard wiring is done).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check secret is configured
+        id: gate
+        run: |
+          if [ -z "${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}" ]; then
+            echo "CLOUDFLARE_DEPLOY_HOOK not set — skipping"
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: POST deploy hook
+        if: steps.gate.outputs.configured == 'true'
+        env:
+          HOOK_URL: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}
+        run: |
+          set -euo pipefail
+          status=$(curl -sS -o /tmp/resp.txt -w '%{http_code}' -X POST "$HOOK_URL")
+          echo "Cloudflare responded HTTP $status"
+          cat /tmp/resp.txt
+          echo
+          # CF deploy hooks return 200 on success
+          if [ "$status" != "200" ]; then
+            exit 1
+          fi
