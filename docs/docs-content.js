@@ -15,6 +15,7 @@ window.DOCS_ARTICLES = {
   toc: ['requirements', 'install', 'launch'],
   tocLabels: ['System Requirements', 'Installation', 'First Launch'],
   body: `
+<!-- e2e-test-marker:laplabs-docs-pipeline -->
 <h2 id="requirements">System Requirements</h2>
 <ul>
   <li><strong>OS:</strong> Windows 10/11 (64-bit)</li>
@@ -1586,7 +1587,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 <h2 id="standalone-sender">Standalone Sender</h2>
 <p>The <strong>Live Dash Sender</strong> is a free standalone app for drivers who only need to broadcast telemetry. It runs without LapLabs Studio and has no dependencies beyond iRacing.</p>
 <ol>
-  <li>Download the installer from the <a href="pricing.html#relay">pricing page</a></li>
+  <li>Download the installer from the <a href="products.html#relay">products page</a></li>
   <li>Install and launch Live Dash Sender</li>
   <li>Start iRacing, then click <strong>Connect</strong></li>
   <li>Share your room code with your coach or teammate</li>
