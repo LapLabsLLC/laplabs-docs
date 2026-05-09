@@ -2,30 +2,29 @@
 
 Source of truth for the documentation rendered at **[laplabs.net/docs-home.html](https://laplabs.net/docs-home.html)**.
 
-The site itself (HTML/CSS/JS, marketing pages, dashboard, workers) lives in the private [`LapLabsLLC/laplabs-site`](https://github.com/LapLabsLLC/laplabs-site) repo. This repo is just the doc content plus the trigger that tells the site to redeploy when it changes.
+The website itself — HTML/CSS/JS, the docs rendering shell, marketing pages, dashboard, backend Workers — lives in a private companion repo. This repo holds only the documentation *content*, plus the trigger that tells the site to redeploy when content changes.
 
-## Editing docs
+## Contributing
 
-1. Open a PR against `main` editing `docs/docs-content.js`.
-2. Get it reviewed and merged.
-3. Within ~1 minute of merge, the live site reflects the change. Nobody needs to touch `laplabs-site`.
+Anyone can propose a documentation change:
 
-That's it. There is no separate publish step, no static site generator, no MkDocs build. The single file `docs/docs-content.js` is the deliverable.
+1. Fork this repo (or branch if you have write access).
+2. Edit `docs/docs-content.js`. See [Article schema](#article-schema) below.
+3. Open a PR against `main`.
+4. A maintainer reviews and merges.
+5. **The live site updates within ~1 minute of merge.** No further action needed.
 
-## File structure
+There is no static site generator and no separate publish step. The single file `docs/docs-content.js` is the deliverable.
 
-```
-docs/
-  docs-content.js              ← the only content file. Edit this.
-.github/workflows/
-  trigger-site-deploy.yml      ← on push to main affecting docs/**,
-                                 POST a Cloudflare deploy hook so
-                                 laplabs-site rebuilds.
-```
+### ⚠️ A note on safety
 
-## How `docs-content.js` is structured
+Article `body` and `lede` strings are inserted into the live page via `innerHTML` without sanitization. **Maintainers will not merge a PR containing `<script>` tags, inline event handlers (`onerror=`, `onclick=`, etc.), `javascript:` URIs, or `data:text/html` URIs in those fields.** If you legitimately need an interactive element in a doc, raise it as an issue first so we can decide whether to add it to the rendering shell rather than to user-editable content.
 
-A single IIFE that assigns to `window.DOCS_ARTICLES`. Keys are article IDs (e.g. `gs.install`); values describe the article's section, title, lede, prev/next nav, table of contents, and HTML body:
+This isn't unique to this repo's flow — it's a property of how the site renders article HTML — but it's worth being explicit about, since merged content goes live automatically.
+
+## Article schema
+
+`docs/docs-content.js` is a single IIFE that assigns to `window.DOCS_ARTICLES`. Keys are article IDs; values describe the article:
 
 ```js
 window.DOCS_ARTICLES = {
@@ -33,63 +32,78 @@ window.DOCS_ARTICLES = {
     section: 'Getting Started',
     title: 'Installation & Setup',
     lede: 'Download LapLabs Studio, install dependencies, and launch your first session.',
-    prev: null,
+    prev: null,                              // or ['id', 'Display Title']
     next: ['gs.ui-tour', 'UI Tour'],
     toc: ['requirements', 'install', 'launch'],
     tocLabels: ['System Requirements', 'Installation', 'First Launch'],
     body: `
 <h2 id="requirements">System Requirements</h2>
-...
+<ul>
+  <li><strong>OS:</strong> Windows 10/11 (64-bit)</li>
+  ...
+</ul>
 `,
   },
   // more articles...
 };
 ```
 
-The article IDs match the sidebar's `data-k` attributes in `laplabs-site/docs-shell.js`. If you add a new article, the sidebar in the site repo also needs an entry pointing to that ID.
-
-## Previewing changes locally
-
-The rendering shell (`docs-article.html`, `docs-shell.js`, `docs-shell.css`) lives in `laplabs-site`, not here. To preview a change before pushing:
-
-```bash
-git clone https://github.com/LapLabsLLC/laplabs-site
-cd laplabs-site
-LAPLABS_DOCS_URL=file:///absolute/path/to/this/repo/docs/docs-content.js \
-  bash scripts/fetch-docs.sh
-# now open docs-article.html in a browser
-```
+Notes:
+- Article IDs are referenced by the docs sidebar in the site repo. **Adding a new article ID requires a coordinated change in the site repo's sidebar configuration** — flag this in your PR and a maintainer will land both sides.
+- `toc` entries must match `id` attributes inside the body's `<h2>` / `<h3>` headings.
+- `prev`/`next` use the same article-ID format and drive the page-bottom pager.
+- HTML in `body` is rendered as-is. CSS classes that already exist in the docs stylesheet (`.callout`, `.callout.note`, `<code>`, `<pre>`, etc.) are available — copy patterns from existing articles rather than introducing new classes.
 
 ## How auto-deploy works
 
 ```
 merge to main (touching docs/**)
   └→ .github/workflows/trigger-site-deploy.yml runs
-       └→ POST $CLOUDFLARE_DEPLOY_HOOK
-            └→ Cloudflare rebuilds laplabs-site
-                 └→ build runs `bash scripts/fetch-docs.sh`
-                      └→ this repo's docs/docs-content.js fetched
-                         via raw.githubusercontent.com
-                           └→ deploy → laplabs.net updated
+       └→ POSTs the Cloudflare deploy hook
+            └→ Cloudflare rebuilds the site project
+                 └→ build fetches this file via raw.githubusercontent.com
+                      └→ deploy → laplabs.net updated
 ```
 
-Pushes to `main` that don't touch `docs/**` — README edits, workflow tweaks — are filtered out by the workflow's `paths:` and don't redeploy the site.
+Pushes to `main` not touching `docs/**` (README edits, workflow tweaks) are filtered out and don't redeploy the site.
 
-The `CLOUDFLARE_DEPLOY_HOOK` secret is a credential. If it ever leaks (Cloudflare deploy hooks are bearer tokens — anyone with the URL can trigger builds), rotate it: delete the hook in the Cloudflare dashboard for `laplabs-site`, create a fresh one, and update this repo's secret.
+## File structure
+
+```
+docs/
+  docs-content.js              ← the only content file. Edit this.
+.github/
+  workflows/
+    trigger-site-deploy.yml    ← deploy trigger
+  CODEOWNERS                   ← review requirements for docs/**
+README.md                      ← you are here
+```
 
 ## Manually triggering a redeploy
 
-- **Workflow dispatch:** Actions → "Trigger laplabs-site deploy" → Run workflow.
-- **Cloudflare dashboard:** retry the latest deployment on `laplabs-site`. (Bypasses this repo entirely; redeploys from current `main`.)
+- **Workflow dispatch:** Actions tab → "Trigger laplabs-site deploy" → Run workflow. (Requires write access.)
+- **From the site side:** maintainers can also retry the latest deployment in the Cloudflare dashboard, which redeploys from current `main` of this repo without going through the workflow.
+
+## For maintainers (private-repo links below)
+
+These resources require access to the private `LapLabsLLC/laplabs-site` repo:
+
+- The site-side companion to this README is **`DOCS-PIPELINE.md`** in the site repo. It documents the build command, deploy hook, diagnostic table, and rotation procedure.
+- **Local preview** (test a content edit before merging): clone the site repo, then point its fetch script at your local copy of this repo:
+  ```bash
+  cd path/to/laplabs-site
+  LAPLABS_DOCS_URL=file:///absolute/path/to/laplabs-docs/docs/docs-content.js \
+    bash scripts/fetch-docs.sh
+  # open docs-article.html in a browser
+  ```
+- **Rotating the Cloudflare deploy hook** (if `CLOUDFLARE_DEPLOY_HOOK` ever leaks — Cloudflare deploy hooks are bearer tokens): delete + recreate in the Cloudflare dashboard for the site project, then `gh secret set CLOUDFLARE_DEPLOY_HOOK -R LapLabsLLC/laplabs-docs` with the new URL.
 
 ## Why this repo exists separately
 
-The site is private; the docs are public. Splitting them out lets external contributors propose documentation changes via PR without needing access to the private site/product code, and keeps the site repo's commit history focused on actual product changes rather than copy edits.
-
-The trade-off is a build-time fetch step on the site side. See [`laplabs-site/DOCS-PIPELINE.md`](https://github.com/LapLabsLLC/laplabs-site/blob/main/DOCS-PIPELINE.md) for the site-side details.
+The website is private, the docs are public. Splitting them out lets external contributors propose documentation changes without needing access to the private site/product code, and keeps the website repo's commit history focused on actual product changes.
 
 ## History
 
-- **2026-03-27:** repo created as an MkDocs Material site with markdown sources.
-- **2026-04-24:** MkDocs sources removed and replaced with `docs-content.js` migrated from `laplabs-site`. Repo declared canonical, but no automation existed to enforce it.
-- **2026-05-09:** auto-deploy pipeline (this repo's GH Action + the site repo's `scripts/fetch-docs.sh`) wired up. Doc edits here actually update the live site without anyone touching `laplabs-site`.
+- **2026-03-27** — repo created as an MkDocs Material site with markdown sources.
+- **2026-04-24** — MkDocs sources removed; `docs-content.js` migrated in from the site repo. Repo declared canonical, but with no automation to enforce it.
+- **2026-05-09** — auto-deploy pipeline (this repo's GH Action + the site repo's `scripts/fetch-docs.sh`) wired up. Doc edits here actually update the live site.
