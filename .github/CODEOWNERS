@@ -1,0 +1,19 @@
+# Code owners for laplabs-docs.
+#
+# Anyone can open a PR; merge requires review from one of the listed owners.
+# Especially relevant for docs/**, which lands in the live site automatically
+# within ~1 minute of merge — see README.md "A note on safety".
+#
+# Format: <pattern>  <github-handles...>
+#         (later rules override earlier ones)
+
+# Default fallback — any change requires a maintainer review.
+*                       @rumpus @MiloDee @professorfast
+
+# Doc content lands in the DOM via innerHTML on every site visitor.
+# Keep this list narrow and review carefully.
+/docs/                  @rumpus @MiloDee @professorfast
+/docs/docs-content.js   @rumpus @MiloDee @professorfast
+
+# Deploy plumbing — changes here can reroute the auto-deploy.
+/.github/               @rumpus @MiloDee @professorfast
