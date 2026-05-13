@@ -38,7 +38,7 @@ window.DOCS_ARTICLES = {
 <h2 id="install">Install</h2>
 <p>Each edition is distributed as a standalone Windows installer (<code>.exe</code>). There is no public source repository to clone — the apps are self-contained.</p>
 <ol>
-  <li>Download the installer from <a href="https://laplabs.net/pricing.html">laplabs.net/pricing</a> (or follow the link in your purchase confirmation email).</li>
+  <li>Download the installer for your edition from <a href="https://laplabs.net/products.html">laplabs.net/products</a> (or follow the link in your purchase confirmation email).</li>
   <li>Double-click the <code>.exe</code> to launch the installer. Windows SmartScreen may prompt on first run — click <em>More info → Run anyway</em> to proceed.</li>
   <li>Choose an install location (default is under <code>C:\\Program Files\\</code>) and click <strong>Install</strong>.</li>
   <li>The installer creates Start menu and desktop shortcuts. No further setup required — everything the app needs (Python runtime, dependencies, CUDA libraries for Studio) is bundled inside the install directory.</li>
@@ -65,7 +65,7 @@ window.DOCS_ARTICLES = {
 
 <h2 id="updates">Updates</h2>
 <p>LapLabs Studio checks for a newer version of your edition shortly after each launch. If an update is available, a small notification appears at the top of the main window with a <em>Download Update</em> button — clicking it opens the latest installer in your browser. Re-run that installer over the existing install to upgrade; your settings, libraries, and dashboards are preserved.</p>
-<p>The update check is silent on failure (no network, no nag dialogs). You can always grab the latest manually from <a href="https://laplabs.net/pricing.html">laplabs.net/pricing</a>.</p>
+<p>The update check is silent on failure (no network, no nag dialogs). You can always grab the latest manually from <a href="https://laplabs.net/products.html">laplabs.net/products</a>.</p>
 `
 },
 
