@@ -490,6 +490,7 @@ window.DOCS_ARTICLES = {
 
 'nodes.aux-math': {
   section: 'Node Reference',
+  tier: 'pro',
   title: 'Aux Math',
   lede: 'Create custom computed channels using NumPy expressions with per-segment evaluation.',
   prev: ['nodes.output', 'Output'],
@@ -570,6 +571,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'nodes.filter': {
   section: 'Node Reference',
+  tier: 'pro',
   title: 'Filter',
   lede: 'Apply smoothing and signal processing filters to telemetry channels.',
   prev: ['nodes.aux-math', 'Aux Math'],
@@ -647,6 +649,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'nodes.model': {
   section: 'Node Reference',
+  tier: 'studio',
   title: 'Model',
   lede: 'Train neural networks (MLP, GRU, TCN, Transformer) and run inference on telemetry data.',
   prev: ['nodes.filter', 'Filter'],
@@ -925,6 +928,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'plot.waterfall': {
   section: 'Plotting & Visualization',
+  tier: 'studio',
   title: 'Waterfall',
   lede: 'Multi-lap stacked 3D surface for comparing lap-to-lap evolution of any channel.',
   prev: ['plot.3d', '3D Plots'],
@@ -959,6 +963,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'plot.spectrogram': {
   section: 'Plotting & Visualization',
+  tier: 'studio',
   title: 'Spectrogram',
   lede: 'Frequency-domain STFT analysis of telemetry signals over time.',
   prev: ['plot.waterfall', 'Waterfall'],
@@ -991,6 +996,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'plot.scatter': {
   section: 'Plotting & Visualization',
+  tier: 'pro',
   title: 'Scatter Panel',
   lede: 'Plot any two or three variables against each other for correlation analysis.',
   prev: ['plot.spectrogram', 'Spectrogram'],
@@ -1074,6 +1080,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'dash.elements': {
   section: 'Dashboards',
+  tier: 'pro',
   title: 'Element Types',
   lede: 'All 13 dashboard elements: gauges, bars, LEDs, steering wheels, minimaps, and more.',
   prev: ['plot.cursor', 'Cursor Sync & Legend'],
@@ -1216,6 +1223,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'dash.designer': {
   section: 'Dashboards',
+  tier: 'pro',
   title: 'Dashboard Designer',
   lede: 'The visual editor for creating, editing, and saving dash layouts.',
   prev: ['dash.elements', 'Element Types'],
@@ -1264,6 +1272,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'dash.library': {
   section: 'Dashboards',
+  tier: 'pro',
   title: 'Dash Library',
   lede: 'Browse, load, and manage saved dashboard layouts.',
   prev: ['dash.designer', 'Dashboard Designer'],
@@ -1305,6 +1314,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'dash.live-binding': {
   section: 'Dashboards',
+  tier: 'pro',
   title: 'Live Binding',
   lede: 'How dashboards connect to offline cursor data and live iRacing streams.',
   prev: ['dash.library', 'Dash Library'],
@@ -1349,6 +1359,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'tools.vehicle-lib': {
   section: 'Libraries & Tools',
+  tier: 'pro',
   title: 'Vehicle Library',
   lede: 'Browse vehicle models in a 3D carousel, set defaults, and configure mesh visualization.',
   prev: ['dash.live-binding', 'Live Binding'],
@@ -1392,6 +1403,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'tools.track-lib': {
   section: 'Libraries & Tools',
+  tier: 'pro',
   title: 'Track Library',
   lede: 'Record tracks, manage centerline geometry, sector boundaries, and GPS reference points.',
   prev: ['tools.vehicle-lib', 'Vehicle Library'],
@@ -1428,6 +1440,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'tools.scope-builder': {
   section: 'Libraries & Tools',
+  tier: 'pro',
   title: 'Scope Builder',
   lede: 'Classify telemetry variables as streaming or event-driven for ML feature engineering.',
   prev: ['tools.track-lib', 'Track Library'],
@@ -1480,6 +1493,7 @@ tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
 
 'tools.feature-wizard': {
   section: 'Libraries & Tools',
+  tier: 'studio',
   title: 'Feature Wizard',
   lede: 'Two-page wizard for defining feature and target transforms before ML training.',
   prev: ['tools.scope-builder', 'Scope Builder'],
@@ -1645,6 +1659,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'live.iracing': {
   section: 'Live Features',
+  tier: 'pro',
   title: 'iRacing Integration',
   lede: 'How LapLabs connects to iRacing via shared memory for zero-latency telemetry.',
   prev: ['tools.relay', 'Live Dash'],
@@ -1688,6 +1703,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'live.data-node': {
   section: 'Live Features',
+  tier: 'pro',
   title: 'Live Data Node',
   lede: 'The source node for real-time iRacing telemetry in live graphs.',
   prev: ['live.iracing', 'iRacing Integration'],
@@ -1730,6 +1746,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'live.recorder': {
   section: 'Live Features',
+  tier: 'pro',
   title: 'Live Recorder',
   lede: 'Capture live sessions to Parquet files for later offline analysis.',
   prev: ['live.data-node', 'Live Data Node'],
@@ -1769,6 +1786,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'live.model': {
   section: 'Live Features',
+  tier: 'studio',
   title: 'Live Model & Inference',
   lede: 'Run trained neural networks on live telemetry with rolling buffer and denormalization.',
   prev: ['live.recorder', 'Live Recorder'],
@@ -1827,6 +1845,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'live.filter': {
   section: 'Live Features',
+  tier: 'pro',
   title: 'Live Filter',
   lede: 'Apply real-time incremental smoothing to predictions or raw channels.',
   prev: ['live.model', 'Live Model & Inference'],
@@ -1876,6 +1895,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'live.auxmath': {
   section: 'Live Features',
+  tier: 'pro',
   title: 'Live Aux Math',
   lede: 'Point-wise custom math expressions on live model_stream data.',
   prev: ['live.filter', 'Live Filter'],
@@ -1929,6 +1949,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'live.output': {
   section: 'Live Features',
+  tier: 'pro',
   title: 'Live Output',
   lede: 'Real-time rolling plots of live telemetry and model predictions.',
   prev: ['live.auxmath', 'Live Aux Math'],
@@ -1994,6 +2015,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'guide.training': {
   section: 'Workflows & Guides',
+  tier: 'studio',
   title: 'Building a Training Graph',
   lede: 'End-to-end guide for training a neural network on telemetry data.',
   prev: ['live.relay', 'Live Dash Viewer'],
@@ -2023,6 +2045,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'guide.live-inference': {
   section: 'Workflows & Guides',
+  tier: 'studio',
   title: 'Live Inference Setup',
   lede: 'Run your trained model on live iRacing data.',
   prev: ['guide.training', 'Building a Training Graph'],
@@ -2056,6 +2079,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'guide.model-compare': {
   section: 'Workflows & Guides',
+  tier: 'studio',
   title: 'Model Comparison',
   lede: 'Compare multiple training runs using the Run Store.',
   prev: ['guide.live-inference', 'Live Inference Setup'],
@@ -2079,6 +2103,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'guide.custom-dash': {
   section: 'Workflows & Guides',
+  tier: 'pro',
   title: 'Creating Custom Dashboards',
   lede: 'Design a custom instrument dashboard from scratch.',
   prev: ['guide.model-compare', 'Model Comparison'],
@@ -2104,6 +2129,7 @@ slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
 
 'guide.scatter': {
   section: 'Workflows & Guides',
+  tier: 'pro',
   title: 'Telemetry Analysis',
   lede: 'Use the scatter panel to explore variable relationships.',
   prev: ['guide.custom-dash', 'Creating Custom Dashboards'],
