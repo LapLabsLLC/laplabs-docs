@@ -9,49 +9,63 @@ window.DOCS_ARTICLES = {
 'gs.install': {
   section: 'Getting Started',
   title: 'Installation & Setup',
-  lede: 'Download LapLabs Studio, install dependencies, and launch your first session.',
+  lede: 'Download the installer for your edition, run it, and launch your first session.',
   prev: null,
   next: ['gs.ui-tour', 'UI Tour'],
-  toc: ['requirements', 'install', 'launch'],
-  tocLabels: ['System Requirements', 'Installation', 'First Launch'],
+  toc: ['requirements', 'editions', 'install', 'launch', 'updates'],
+  tocLabels: ['System Requirements', 'Choose Your Edition', 'Install', 'First Launch', 'Updates'],
   body: `
 <h2 id="requirements">System Requirements</h2>
 <ul>
-  <li><strong>OS:</strong> Windows 10/11 (64-bit)</li>
-  <li><strong>Python:</strong> 3.12</li>
-  <li><strong>RAM:</strong> 8 GB minimum, 16 GB recommended for ML training</li>
-  <li><strong>GPU:</strong> Optional — CUDA 11.8 compatible GPU for accelerated training</li>
-  <li><strong>Disk:</strong> ~2 GB for application + dependencies</li>
+  <li><strong>OS:</strong> Windows 10 or 11 (64-bit). LapLabs Studio is Windows-only.</li>
+  <li><strong>RAM:</strong> 8 GB minimum, 16 GB recommended (especially for the Studio edition's ML training workloads).</li>
+  <li><strong>GPU:</strong> Optional. A CUDA 11.8-compatible NVIDIA GPU accelerates ML training in the Studio edition; everything else runs on CPU.</li>
+  <li><strong>Disk:</strong> ~2 GB for the application bundle (Studio edition slightly larger due to bundled PyTorch).</li>
+  <li><strong>iRacing:</strong> not required to install or run LapLabs Studio, but you'll need it (or its IBT telemetry files) to do anything meaningful.</li>
 </ul>
 
-<h2 id="install">Installation</h2>
-<p>LapLabs Studio is distributed as a standalone Windows executable built with PyInstaller, or can be run directly from source.</p>
+<h2 id="editions">Choose Your Edition</h2>
+<p>LapLabs Studio ships as three feature-tiered editions, plus a separate live-telemetry sender. Pick the edition that matches what you want to do:</p>
+<ul>
+  <li><strong>Lite</strong> — free. Load IBT telemetry, browse stints, view 2D/3D plots. The essentials for post-session review.</li>
+  <li><strong>Pro</strong> — adds live iRacing telemetry, waterfall &amp; spectrogram plots, Aux Math expressions, signal filters, dashboards, and the Vehicle/Track/Scope libraries.</li>
+  <li><strong>Studio</strong> — adds the ML training pipeline (MLP / GRU / TCN / Transformer), live inference, the Feature Wizard, and model comparison.</li>
+  <li><strong>LapLabs Relay</strong> — a separate lightweight standalone app that streams live iRacing telemetry to remote co-viewers. Install alongside any Studio edition if you want to broadcast.</li>
+</ul>
+<p>You can upgrade tiers later — the installers don't conflict, and your data (extract templates, dashboards, track library, etc.) carries over because all editions read the same per-user config directory.</p>
+<p>See <a href="https://laplabs.net/pricing.html">laplabs.net/pricing</a> for the full feature matrix and current pricing.</p>
 
-<h3>Option A: Standalone Executable</h3>
+<h2 id="install">Install</h2>
+<p>Each edition is distributed as a standalone Windows installer (<code>.exe</code>). There is no public source repository to clone — the apps are self-contained.</p>
 <ol>
-  <li>Download the latest <code>.exe</code> from the releases page.</li>
-  <li>Place it in a folder of your choice (e.g., <code>C:\\LapLabs\\</code>).</li>
-  <li>Double-click to launch. No installation required.</li>
-</ol>
-
-<h3>Option B: Run from Source</h3>
-<ol>
-  <li>Clone the repository.</li>
-  <li>Install dependencies: <code>pip install -r requirements.txt</code></li>
-  <li>Launch: <code>python LapLabsApp.py</code></li>
+  <li>Download the installer from <a href="https://laplabs.net/pricing.html">laplabs.net/pricing</a> (or follow the link in your purchase confirmation email).</li>
+  <li>Double-click the <code>.exe</code> to launch the installer. Windows SmartScreen may prompt on first run — click <em>More info → Run anyway</em> to proceed.</li>
+  <li>Choose an install location (default is under <code>C:\\Program Files\\</code>) and click <strong>Install</strong>.</li>
+  <li>The installer creates Start menu and desktop shortcuts. No further setup required — everything the app needs (Python runtime, dependencies, CUDA libraries for Studio) is bundled inside the install directory.</li>
 </ol>
 
 <div class="callout note">
   <span class="ic">i</span>
   <div>
     <span class="lbl">Note</span>
-    <p>For CUDA-accelerated ML training, ensure you have PyTorch 2.5.1 with CUDA 11.8 support installed. The standalone build bundles this automatically.</p>
+    <p>The Studio edition installer is the largest (~3 GB) because it bundles the full PyTorch + CUDA 11.8 runtime needed for GPU-accelerated training. Lite and Pro skip those and install in well under a gigabyte.</p>
   </div>
 </div>
 
 <h2 id="launch">First Launch</h2>
-<p>On first launch, LapLabs creates a configuration directory and opens with an empty graph workspace. The left sidebar shows the node library, the center area is the graph editor, and the right column contains the dashboard panel.</p>
-<p>To start analyzing telemetry, you'll need iRacing IBT files. See <a href="docs-article.html?page=gs.first-workflow">Your First Workflow</a> for a step-by-step guide.</p>
+<p>Open LapLabs Studio from the Start menu (or the desktop shortcut). On first launch the app creates a per-user configuration directory under your Windows profile and opens with an empty workspace.</p>
+<p>Layout overview:</p>
+<ul>
+  <li><strong>Top:</strong> menu bar and main toolbar.</li>
+  <li><strong>Left column:</strong> Stint folder browser (telemetry files), workflow panel.</li>
+  <li><strong>Center:</strong> plot tabs (2D, 3D, waterfall, spectrogram) above the node graph editor.</li>
+  <li><strong>Right column:</strong> dashboard viewer and scatter panel.</li>
+</ul>
+<p>To start analyzing data you'll need iRacing IBT files. See <a href="docs-article.html?page=gs.first-workflow">Your First Workflow</a> for a step-by-step guide.</p>
+
+<h2 id="updates">Updates</h2>
+<p>LapLabs Studio checks for a newer version of your edition shortly after each launch. If an update is available, a small notification appears at the top of the main window with a <em>Download Update</em> button — clicking it opens the latest installer in your browser. Re-run that installer over the existing install to upgrade; your settings, libraries, and dashboards are preserved.</p>
+<p>The update check is silent on failure (no network, no nag dialogs). You can always grab the latest manually from <a href="https://laplabs.net/pricing.html">laplabs.net/pricing</a>.</p>
 `
 },
 
