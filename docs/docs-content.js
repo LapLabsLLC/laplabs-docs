@@ -3,2405 +3,627 @@
 window.DOCS_ARTICLES = {
 
 // ─────────────────────────────────────────────────────────────────
-// 01: GETTING STARTED
+// 01: START
 // ─────────────────────────────────────────────────────────────────
 
-'gs.install': {
-  section: 'Getting Started',
-  title: 'Installation & Setup',
-  lede: 'Download the installer for your edition, run it, and launch your first session.',
+'start.welcome': {
+  section: 'Start here',
+  title: 'Welcome to Slipstream',
+  lede: 'What Slipstream is, how to sign in, and where everything sits on the screen.',
   prev: null,
-  next: ['gs.ui-tour', 'UI Tour'],
-  toc: ['requirements', 'editions', 'install', 'launch', 'updates'],
-  tocLabels: ['System Requirements', 'Choose Your Edition', 'Install', 'First Launch', 'Updates'],
+  next: ['start.quick', 'Quick start'],
+  toc: ['sign-in', 'browser', 'layout', 'rail', 'menus', 'first-open', 'related'],
+  tocLabels: ['Sign in with your LapLabs account', 'Use Chrome or Edge for local files', 'Find your way around the screen', 'Switch between the rail tabs', 'Use the menu bar', 'What you see the first time', 'Related'],
   body: `
-<h2 id="requirements">System Requirements</h2>
-<ul>
-  <li><strong>OS:</strong> Windows 10 or 11 (64-bit). LapLabs Studio is Windows-only.</li>
-  <li><strong>RAM:</strong> 8 GB minimum, 16 GB recommended (especially for the Studio edition's ML training workloads).</li>
-  <li><strong>GPU:</strong> Optional. A CUDA 11.8-compatible NVIDIA GPU accelerates ML training in the Studio edition; everything else runs on CPU.</li>
-  <li><strong>Disk:</strong> ~2 GB for the application bundle (Studio edition slightly larger due to bundled PyTorch).</li>
-  <li><strong>iRacing:</strong> not required to install or run LapLabs Studio, but you'll need it (or its IBT telemetry files) to do anything meaningful.</li>
-</ul>
-
-<h2 id="editions">Choose Your Edition</h2>
-<p>LapLabs Studio ships as three feature-tiered editions, plus a separate live-telemetry sender. Pick the edition that matches what you want to do:</p>
-<ul>
-  <li><strong>Lite</strong>: free. Load IBT telemetry, browse stints, view 2D/3D plots. The essentials for post-session review.</li>
-  <li><strong>Pro</strong>: adds live iRacing telemetry, waterfall &amp; spectrogram plots, Aux Math expressions, signal filters, dashboards, and the Vehicle/Track/Scope libraries.</li>
-  <li><strong>Studio</strong>: adds the ML training pipeline (MLP / GRU / TCN / Transformer), live inference, the Feature Wizard, and model comparison.</li>
-  <li><strong>LapLabs Relay</strong>: a separate lightweight standalone app that streams live iRacing telemetry to remote co-viewers. Install alongside any Studio edition if you want to broadcast.</li>
-</ul>
-<p>You can upgrade tiers later (the installers don't conflict), and your data (extract templates, dashboards, track library, etc.) carries over because all editions read the same per-user config directory.</p>
-<p>See <a href="https://laplabs.net/pricing.html">laplabs.net/pricing</a> for the full feature matrix and current pricing.</p>
-
-<h2 id="install">Install</h2>
-<p>Each edition is distributed as a standalone Windows installer (<code>.exe</code>). There is no public source repository to clone, the apps are self-contained.</p>
+<p>Slipstream is the LapLabs web app for iRacing telemetry. It runs in your browser: open a run from the LapLabs cloud or from your own telemetry folder, replay it on a 3D track with 2D plots underneath, race it against ghost laps, and dig deeper with plugins such as Timing and Corner Analysis.</p>
+<!-- SHOT start.welcome: The whole app just after first sign-in: sample run loaded, Stint Folder on the left, 3D Track view with the transport buttons and playback bar under it, 2D Plot below, the rail on the right showing the Plugins tab, and the Try it checklist in the bottom-left corner -->
+<h2 id="sign-in">Sign in with your LapLabs account</h2>
+<p>Slipstream needs a LapLabs account, the same one you use on laplabs.net. Until you sign in, you only see the sign-in screen.</p>
 <ol>
-  <li>Download the installer for your edition from <a href="https://laplabs.net/products.html">laplabs.net/products</a> (or follow the link in your purchase confirmation email).</li>
-  <li>Double-click the <code>.exe</code> to launch the installer. Windows SmartScreen may prompt on first run; click <em>More info → Run anyway</em> to proceed.</li>
-  <li>Choose an install location (default is under <code>C:\\Program Files\\</code>) and click <strong>Install</strong>.</li>
-  <li>The installer creates Start menu and desktop shortcuts. No further setup required: everything the app needs (Python runtime, dependencies, CUDA libraries for Studio) is bundled inside the install directory.</li>
+  <li>Open Slipstream. If you're already signed in to LapLabs in this browser, the button shows <strong>Checking…</strong> for a moment and then lets you straight in.</li>
+  <li>Otherwise click <strong>Sign In</strong>. You go to the LapLabs sign-in page.</li>
+  <li>Sign in, or create an account. You come back to Slipstream on the same link you opened.</li>
 </ol>
+<div class="callout tip">
+  <span class="ic">&#10003;</span>
+  <div>
+    <span class="lbl">Tip</span>
+    <p>Invite links survive sign-in: open a teammate's shared session link, sign in, and you land in their room.</p>
+  </div>
+</div>
+<h2 id="browser">Use Chrome or Edge for local files</h2>
+<p>Opening your own telemetry folder uses a browser feature that Chrome and Edge have and other browsers don't. Elsewhere, the <strong>iRacing Telemetry</strong> button in the Stint Folder stays grayed out. Picking a folder of dashboards for the Dash plugin has the same limit.</p>
+<p>Without a local folder you can still open, analyze and share cloud runs.</p>
+<h2 id="layout">Find your way around the screen</h2>
+<p>From left to right:</p>
+<ul>
+  <li><strong>Stint Folder</strong> (left): every run you can load, cloud runs and your own files in one tree. Tick laps or files to load them. The <strong>Share session</strong> button sits in its title row. See <a href="docs-article.html?page=folder.open">Opening telemetry</a>.</li>
+  <li><strong>3D Track</strong> (center, top): the car on the track. Under the view sit the transport buttons (play, rewind, lap jumps) and the playback bar, which you drag to move through the run. See <a href="docs-article.html?page=play.transport">Transport and speed</a> and <a href="docs-article.html?page=view3d.cameras">Cameras</a>.</li>
+  <li><strong>2D Plot</strong> (center, bottom): channels such as Speed, Throttle and Brake against lap distance or time. See <a href="docs-article.html?page=plots.channels">Plots and channels</a>.</li>
+  <li>The rail (right): a set of tabs for plugins and other tools, described below.</li>
+</ul>
+<p>Each plot also has its own sidebar of collapsible panels, on the left of the plot unless you move it in Preferences. The 3D sidebar holds panels such as <strong>Camera</strong>, <strong>Playlist</strong>, <strong>Ghosts</strong> and <strong>Channels + Traces</strong>. The 2D sidebar holds <strong>Channels</strong>. Click a panel's header to open or collapse it. Ghosts get their own section: start with <a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a>.</p>
+<h2 id="rail">Switch between the rail tabs</h2>
+<ul>
+  <li><strong>Plugins</strong>: analysis tools stacked as panels: Timing, Scatter, Dash, Segment Eval and Corner Analysis. See <a href="docs-article.html?page=plugins.rail">The plugin rail</a>.</li>
+  <li><strong>Timeline</strong>: points along the lap that change the camera or playback speed, or show a note, as playback passes them. See <a href="docs-article.html?page=timeline.points">Timeline points</a>.</li>
+  <li><strong>Assistant</strong>: a chat, marked <em>experimental</em>. Ask it about the loaded run (lap times, channel stats, corners) or ask it to do things for you, such as adding ghosts, moving the camera or jumping to a lap. It needs your own API key from Google Gemini or Anthropic (click <strong>Connect a provider</strong>), and the key is saved in this browser. See <a href="docs-article.html?page=assistant.using">Using the Assistant</a>.</li>
+  <li><strong>Console</strong>: a <strong>Derived</strong> tab that lists derived channels and their values at the cursor, plus app messages and performance stats. See <a href="docs-article.html?page=plots.derived">Derived channels</a>.</li>
+</ul>
+<h2 id="menus">Use the menu bar</h2>
+<ul>
+  <li><strong>Tools</strong> &gt; <strong>Libraries</strong>: <strong>Vehicle Library Viewer...</strong> for car models, <strong>Track Library...</strong> for tracks, and <strong>Dash Library...</strong> for dashboards. See <a href="docs-article.html?page=settings.vehicles">Vehicle library</a> and <a href="docs-article.html?page=settings.tracks">Track library</a>.</li>
+  <li><strong>Tools</strong> &gt; <strong>Preferences...</strong>: units (Imperial or Metric), plot settings such as which side the plot sidebars sit on, and more. See <a href="docs-article.html?page=settings.preferences">Preferences</a>.</li>
+  <li><strong>Account</strong>: <strong>My Account ↗</strong> opens your account page on laplabs.net in a new tab, and <strong>Sign Out</strong> signs you out and returns you to the sign-in screen. The grayed-out line at the bottom shows your license.</li>
+</ul>
+<h2 id="first-open">What you see the first time</h2>
+<p>After you sign in, the Stint Folder shows <strong>Loading cloud runs…</strong> and then Slipstream opens a sample run for you, ready to play. A <strong>Press play</strong> hint points at the <strong>Play</strong> button until you start playback.</p>
+<p>A <strong>Try it</strong> checklist sits in the bottom-left corner. It lists six first steps and ticks each one off by itself as you do it, while a small marker points at the control for the next step. The <a href="docs-article.html?page=start.quick">Quick start</a> walks through the same steps. The checklist has three buttons:</p>
+<ul>
+  <li><strong>Reset the checklist</strong> (↺) clears the ticks so you can start over.</li>
+  <li><strong>Collapse</strong> folds it down to its title (<strong>Expand</strong> opens it again).</li>
+  <li><strong>Dismiss</strong> (×) hides it. A small <strong>Tour</strong> pill with your progress stays in the corner; click it to bring the checklist back.</li>
+</ul>
+<p>Your progress is remembered in this browser. If you arrive through a shared session link, the sample run doesn't open: you see the room's run instead.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=start.quick">Quick start</a></li>
+  <li><a href="docs-article.html?page=folder.open">Opening telemetry</a></li>
+  <li><a href="docs-article.html?page=share.sessions">Shared sessions</a></li>
+</ul>
+`,
+},
+'start.quick': {
+  section: 'Start here',
+  title: 'Quick start',
+  lede: 'A short first session on the sample run: play it, scrub it, race ghosts, see where time is won and lost, and share it.',
+  prev: ['start.welcome', 'Welcome to Slipstream'],
+  next: ['folder.open', 'Opening telemetry'],
+  toc: ['play', 'scrub', 'ghosts', 'trace', 'delta', 'share', 'related'],
+  tocLabels: ['Press play', 'Drag the playback bar to scrub', 'Add ghosts to race against', 'Color the traces by time gained and lost', 'Plot a lap-time delta in the 2D chart', 'Share a live session', 'Related'],
+  body: `
+<p>This walk-through uses the sample run that opens when you first sign in, and follows the <strong>Try it</strong> checklist in the bottom-left corner. Each step ticks itself off as soon as you do it. If you dismissed the checklist, click the <strong>Tour</strong> pill in the same corner to bring it back.</p>
+<!-- SHOT start.quick: The Try it checklist expanded with the first two steps ticked, and the green marker pointing at the + button in the 3D sidebar's Ghosts panel -->
+<h2 id="play">Press play</h2>
+<ol>
+  <li>Find the transport buttons under the 3D Track view. On the sample run, a <strong>Press play</strong> hint points at the right one.</li>
+  <li>Click the <strong>Play</strong> button, or press <code>Space</code>. The car drives around the track and the cursor in the 2D Plot moves with it.</li>
+  <li>Click the same button again (now <strong>Pause</strong>), or press <code>Space</code>, to stop.</li>
+</ol>
+<p>Speed control and lap jumps are covered in <a href="docs-article.html?page=play.transport">Transport and speed</a>.</p>
+<h2 id="scrub">Drag the playback bar to scrub</h2>
+<p>The playback bar is the strip under the transport buttons. Its top lane covers the whole run; its bottom lane zooms in on the highlighted range, so small movements there give fine control.</p>
+<ol>
+  <li>Press on the bottom lane of the playback bar.</li>
+  <li>Drag left or right. The car, the 3D view and the 2D Plot follow the cursor.</li>
+  <li>Let go to stay there, then press play to carry on from that point.</li>
+</ol>
+<h2 id="ghosts">Add ghosts to race against</h2>
+<p>A ghost is another lap drawn as a second car, so you can see exactly where it pulls away. The lap under your cursor is the ego, the one everything is compared against.</p>
+<ol>
+  <li>In the 3D Track sidebar, find the <strong>Ghosts</strong> panel. If it's collapsed, click its header to open it.</li>
+  <li>Make sure <strong>Compare</strong> is set to <strong>Laps</strong>.</li>
+  <li>Next to <strong>Top</strong>, set how many of the fastest laps you want (5 by default), then click the <strong>+</strong> button beside it (<em>Add the N fastest complete laps as ghosts</em>).</li>
+</ol>
+<p>Press play: the ghosts drive alongside you. The <strong>×</strong> button next to it (<em>Remove all ghosts</em>) clears them. More in <a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a>.</p>
+<h2 id="trace">Color the traces by time gained and lost</h2>
+<ol>
+  <li>In the 3D Track sidebar, open the <strong>Channels + Traces</strong> panel.</li>
+  <li>Under <strong>Trace options</strong>, set <strong>Mode</strong> to <strong>Δt′ / time</strong>. When the panel is collapsed, the same choice is in a dropdown in its header.</li>
+  <li>Look at the lines on the track. Instead of a channel such as Speed, their color now shows how quickly time is being gained or lost against the ego lap at each point.</li>
+</ol>
+<p>Set <strong>Mode</strong> back to <strong>Channel</strong> to color by a channel again. The other modes are explained in <a href="docs-article.html?page=view3d.traces">Track traces</a>.</p>
+<h2 id="delta">Plot a lap-time delta in the 2D chart</h2>
+<ol>
+  <li>In the 2D Plot sidebar, open the <strong>Channels</strong> panel.</li>
+  <li>Find the <strong>LapCurrentLapTime</strong> row. If it isn't listed, type the name in the <strong>Add variables…</strong> box, tick it and click <strong>Add</strong>.</li>
+  <li>Click the <strong>Δ</strong> button at the start of that row (<em>Δ ghost−ego for LapCurrentLapTime</em>).</li>
+</ol>
+<p>The plot now shows only that channel, against lap distance, with one curve per ghost: how far ahead or behind your lap each ghost is at every point around the track. Click <strong>Δ</strong> again to go back to the normal view.</p>
+<h2 id="share">Share a live session</h2>
+<ol>
+  <li>Click <strong>Share session</strong> in the Stint Folder title row.</li>
+  <li>Pick <strong>I present</strong> (only you control the view; others watch) or <strong>Everyone drives</strong> (anyone in the room can), then click <strong>Create room</strong>.</li>
+  <li>Click <strong>Copy invite link</strong> and send the link to a teammate. They sign in with their own LapLabs account and join you on the same run.</li>
+</ol>
+<p>The room also has a six-digit code, which others can type in under <strong>or join a code</strong>. Sharing works with cloud runs only; with a local file open, the popup says <strong>Open a cloud run to share a session.</strong> To end it, open the button again and click <strong>Leave session</strong>. See <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
+<div class="callout tip">
+  <span class="ic">&#10003;</span>
+  <div>
+    <span class="lbl">Tip</span>
+    <p>That's the checklist done. Next, open your own telemetry: pick your iRacing telemetry folder in Chrome or Edge, or choose another cloud run. <a href="docs-article.html?page=folder.open">Opening telemetry</a> shows how.</p>
+  </div>
+</div>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=folder.open">Opening telemetry</a></li>
+  <li><a href="docs-article.html?page=play.range">Playback bar and range</a></li>
+  <li><a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a></li>
+</ul>
+`,
+},
 
+// ─────────────────────────────────────────────────────────────────
+// 02: FOLDER
+// ─────────────────────────────────────────────────────────────────
+
+'folder.open': {
+  section: 'Stint Folder',
+  title: 'Opening telemetry',
+  lede: 'Get telemetry into Slipstream: open the iRacing folder on your computer, or stream runs from the cloud.',
+  prev: ['start.quick', 'Quick start'],
+  next: ['folder.tree', 'The tree and selecting laps'],
+  toc: ['local', 'reopen', 'files', 'cloud', 'filter', 'pools', 'related'],
+  tocLabels: ['Open your telemetry folder', 'Reopen it next time', 'Check which files are listed', 'Use cloud runs', 'Show cloud, local or both', 'Switch to a private test pool', 'Related'],
+  body: `
+<p>The Stint Folder panel on the left is where telemetry comes in. It lists cloud runs published by LapLabs and the files in a telemetry folder on your computer, together in one tree.</p>
+<!-- SHOT folder.open: Stint Folder panel header with the "Reopen telemetry" and "Change…" buttons, the Cloud / Local / Both filter set to Both, and a tree below mixing cloud rows (cloud badge) and local rows (IBT badge) -->
+<h2 id="local">Open your telemetry folder</h2>
+<ol>
+  <li>In the Stint Folder panel, click <strong>iRacing Telemetry</strong>. A folder picker opens in your Documents folder.</li>
+  <li>Go to your iRacing telemetry folder, usually <code>Documents&#92;iRacing&#92;telemetry</code>, and select it.</li>
+  <li>Your browser asks whether Slipstream may view the files in that folder. Allow it.</li>
+  <li>Slipstream scans the folder and shows <strong>Scanning folder&hellip;</strong> with a count of files read. The files then appear in the tree, and their lap counts fill in a moment later.</li>
+</ol>
+<p>If the tree stays empty, check that you picked the folder that holds the <code>.ibt</code> files, not a folder above it.</p>
+<p>Your files stay on your computer. Slipstream reads them inside the browser and doesn't upload them. Opening a folder needs Chrome or Edge. In other browsers the button is grayed out, but cloud runs still work.</p>
+<h2 id="reopen">Reopen it next time</h2>
+<p>Slipstream remembers the folder you picked. Next time, the button shows <strong>Reopen</strong> followed by the folder's name, for example <strong>Reopen telemetry</strong>. Click it and allow access if the browser asks again. If access is refused, or the folder is gone, the picker opens so you can choose again.</p>
+<p><strong>Reopen</strong> is also your refresh button. It picks up sessions you've driven since the last scan and reloads the list of cloud runs. Files that haven't changed load from a cache, so it's quick. To use a different folder, click <strong>Change&hellip;</strong>.</p>
 <div class="callout note">
   <span class="ic">i</span>
   <div>
     <span class="lbl">Note</span>
-    <p>The Studio edition installer is the largest (~3 GB) because it bundles the full PyTorch + CUDA 11.8 runtime needed for GPU-accelerated training. Lite and Pro skip those and install in well under a gigabyte.</p>
+    <p>Opening, reopening or changing a folder clears the ticks in the tree, so whatever you had loaded is unloaded. Tick the laps again to bring them back.</p>
   </div>
 </div>
-
-<h2 id="launch">First Launch</h2>
-<p>Open LapLabs Studio from the Start menu (or the desktop shortcut). On first launch the app creates a per-user configuration directory under your Windows profile and opens with an empty workspace.</p>
-<p>Layout overview:</p>
+<h2 id="files">Check which files are listed</h2>
 <ul>
-  <li><strong>Top:</strong> menu bar and main toolbar.</li>
-  <li><strong>Left column:</strong> Stint folder browser (telemetry files), workflow panel.</li>
-  <li><strong>Center:</strong> plot tabs (2D, 3D, waterfall, spectrogram) above the node graph editor.</li>
-  <li><strong>Right column:</strong> dashboard viewer and scatter panel.</li>
+  <li><code>.ibt</code> files, the telemetry iRacing records. They carry an <strong>IBT</strong> badge.</li>
+  <li><code>.parquet</code> telemetry files. They carry a <strong>PQT</strong> badge.</li>
 </ul>
-<p>To start analyzing data you'll need iRacing IBT files. See <a href="docs-article.html?page=gs.first-workflow">Your First Workflow</a> for a step-by-step guide.</p>
-
-<h2 id="updates">Updates</h2>
-<p>LapLabs Studio checks for a newer version of your edition shortly after each launch. If an update is available, a small notification appears at the top of the main window with a <em>Download Update</em> button; clicking it opens the latest installer in your browser. Re-run that installer over the existing install to upgrade; your settings, libraries, and dashboards are preserved.</p>
-<p>The update check is silent on failure (no network, no nag dialogs). You can always grab the latest manually from <a href="https://laplabs.net/products.html">laplabs.net/products</a>.</p>
-`
+<p>When an <code>.ibt</code> and a <code>.parquet</code> file share a name, they appear as one row with both badges, and Slipstream opens the Parquet copy. Only files sitting directly in the folder are listed: subfolders aren't scanned. A file that can't be read still appears, with its name in red.</p>
+<h2 id="cloud">Use cloud runs</h2>
+<p>Cloud runs are sessions LapLabs has published. They stream from the cloud, so you don't need a folder to use them. Slipstream loads the list when it starts (you'll see <strong>Loading cloud runs&hellip;</strong>), and a demo run opens straight away with its row already ticked.</p>
+<p>Cloud runs sit in the same tree as your own files, marked with a cloud badge (&#9729;) on their file rows. Like your own files, they're named by session date, time and driver. When a cloud run and one of your files come from the same track, they appear under the same track row. Tick both in the same layout to load them together.</p>
+<h2 id="filter">Show cloud, local or both</h2>
+<p>Three buttons next to the folder buttons choose what the tree lists:</p>
+<ul>
+  <li><strong>Cloud</strong>: only cloud runs.</li>
+  <li><strong>Local</strong>: only files from your folder.</li>
+  <li><strong>Both</strong>: everything together. This is the default, and Slipstream starts on it each time.</li>
+</ul>
+<p>Pick <strong>Local</strong> when you only want to see your own sessions. The filter only changes what the tree lists. It doesn't delete or upload anything.</p>
+<h2 id="pools">Switch to a private test pool</h2>
+<p>If you're a member of a private test pool, a drop-down appears next to the filter. Choose <strong>Public demo</strong> for the public cloud runs, or your pool's name to list that pool's runs instead. Slipstream remembers your choice in this browser. To add your own sessions to a pool, see <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=folder.tree">The tree and selecting laps</a></li>
+  <li><a href="docs-article.html?page=start.quick">Quick start</a></li>
+  <li><a href="docs-article.html?page=ref.troubleshooting">Troubleshooting</a></li>
+</ul>
+`,
 },
-
-'gs.ui-tour': {
-  section: 'Getting Started',
-  title: 'UI Tour',
-  lede: 'A walkthrough of the main panels, menus, and controls in LapLabs Studio.',
-  prev: ['gs.install', 'Installation & Setup'],
-  next: ['gs.first-workflow', 'Your First Workflow'],
-  toc: ['layout', 'sidebar', 'graph', 'plots', 'dash', 'menus', 'shortcuts'],
-  tocLabels: ['Main Layout', 'Node Sidebar', 'Graph Editor', 'Plot Panels', 'Dashboard', 'Menus', 'Keyboard Shortcuts'],
+'folder.tree': {
+  section: 'Stint Folder',
+  title: 'The tree and selecting laps',
+  lede: 'Find the session you want, then tick exactly the files, stints, outings or laps to load.',
+  prev: ['folder.open', 'Opening telemetry'],
+  next: ['play.transport', 'Transport and speed'],
+  toc: ['levels', 'select', 'solo', 'filter', 'symbols', 'related'],
+  tocLabels: ['Read the tree', 'Tick what you want to load', 'Load just one row', 'Filter, sort and zoom', 'What the columns and symbols mean', 'Related'],
   body: `
-<h2 id="layout">Main Layout</h2>
-<p>LapLabs Studio uses a three-column layout with collapsible panels:</p>
-<ul>
-  <li><strong>Left column:</strong> Stint browser (loaded data segments) and console output</li>
-  <li><strong>Center:</strong> Plot tabs (2D, 3D, waterfall, spectrogram) above the node graph editor</li>
-  <li><strong>Right column:</strong> Dashboard viewer and scatter plot panel</li>
-</ul>
-<p>All panels are connected via resizable splitters with pull-tab handles for collapsing.</p>
-
-<h2 id="sidebar">Node Sidebar</h2>
-<p>The node library sidebar (bottom-center, within the graph area) lists all available node types organized by category: Data, Transform, Output, and Live. Drag a node from the sidebar onto the graph canvas to add it.</p>
-
-<h2 id="graph">Graph Editor</h2>
-<p>The visual node graph is where you build analysis workflows. Nodes have typed input/output ports; connect them by dragging from an output port to a compatible input port. The graph executes topologically: upstream nodes run first, passing data downstream.</p>
-
-<h2 id="plots">Plot Panels</h2>
-<p>Plot outputs appear as tabbed panels above the graph. Supported plot types:</p>
-<ul>
-  <li><strong>2D Plots:</strong> Multi-line time-series with cursor sync, legend, and unit conversion</li>
-  <li><strong>3D Plots:</strong> Track visualization with car position, ghost laps, and color mapping</li>
-  <li><strong>Waterfall:</strong> Multi-lap stacked view for lap-to-lap comparison</li>
-  <li><strong>Spectrogram:</strong> Frequency-domain analysis</li>
-</ul>
-
-<h2 id="dash">Dashboard</h2>
-<p>The dashboard panel on the right displays real-time instrument gauges, bar meters, numeric readouts, and more. It syncs with the 2D plot cursor in offline mode and with live iRacing data during streaming.</p>
-
-<h2 id="menus">Menus</h2>
-<ul>
-  <li><strong>File:</strong> New, Save, Load layouts (Ctrl+N, Ctrl+S, Ctrl+O)</li>
-  <li><strong>Run:</strong> Execute graph (F5), Run Live (F6), Pause (F8), Stop (F12)</li>
-  <li><strong>View:</strong> Toggle Sidebar, Dashboard, Scatter Panel</li>
-  <li><strong>Tools:</strong> Vehicle Library, Track Library, Scope Builder, Feature Wizard, Dash Library, Live Dash, Preferences</li>
-</ul>
-
-<h2 id="shortcuts">Keyboard Shortcuts</h2>
-<ul>
-  <li><strong>Ctrl+N</strong>: New layout</li>
-  <li><strong>Ctrl+O</strong>: Load layout</li>
-  <li><strong>Ctrl+S</strong>: Save layout</li>
-  <li><strong>Ctrl+Shift+S</strong>: Save layout as</li>
-  <li><strong>F5</strong>: Run graph</li>
-  <li><strong>F6</strong>: Run live</li>
-  <li><strong>F8</strong>: Pause</li>
-  <li><strong>F12</strong>: Stop</li>
-  <li><strong>Ctrl+W</strong>: Toggle sidebar</li>
-  <li><strong>Ctrl+Shift+D</strong>: Toggle dashboard</li>
-  <li><strong>Ctrl+Shift+X</strong>: Toggle scatter panel</li>
-  <li><strong>Ctrl+Q</strong>: Quit</li>
-</ul>
-`
-},
-
-'gs.first-workflow': {
-  section: 'Getting Started',
-  title: 'Your First Workflow',
-  lede: 'Load an IBT file, build a simple graph, and generate your first telemetry plot.',
-  prev: ['gs.ui-tour', 'UI Tour'],
-  next: ['gs.stint-browser', 'Stint Folder Browser'],
-  toc: ['overview', 'load', 'output', 'run', 'explore'],
-  tocLabels: ['Overview', 'Add Load Data', 'Add Output', 'Run the Graph', 'Explore the Plot'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The simplest useful workflow in LapLabs is two nodes: <strong>Load Data</strong> to read telemetry files, and <strong>Output</strong> to visualize them. This guide walks through that setup.</p>
-
-<h2 id="load">Step 1: Add a Load Data Node</h2>
+<p>Once your telemetry is listed, you choose what to load by ticking rows in the tree. Ticks take effect straight away, with no extra button to press.</p>
+<!-- SHOT folder.tree: Stint Folder tree expanded from a track down to lap rows, one outing ticked (green-tinted parent rows), a lap row showing S1/S2/S3 sector splits and a gold star marker, an Out Lap row in gray, and the Selected files table with its Totals line below the tree -->
+<h2 id="levels">Read the tree</h2>
+<p>The tree has seven levels: Track &gt; Layout &gt; Car &gt; File &gt; Stint &gt; Outing &gt; Lap. Everything starts collapsed. Click &#9656; to open a row.</p>
+<p>Layout rows show how many cars they hold in brackets, and car rows show how many files. File rows are named by session date, time and driver; hover over the name to see the original file name. Outings are the driving between pit visits, and their laps are listed in the order you drove them.</p>
+<p>Lap rows show sector splits (<strong>S1</strong>, <strong>S2</strong> and so on) when the track has sectors. A sector that couldn't be timed shows <code>--</code>. Incomplete laps appear in gray with their duration: <strong>Out Lap</strong> and <strong>In Lap</strong> at the start and end of an outing, <strong>Reset Lap</strong> for a lap cut short by a reset or tow, and <strong>Partial</strong> for any other incomplete lap. These can't be ticked on their own; they load with their outing.</p>
+<h2 id="select">Tick what you want to load</h2>
 <ol>
-  <li>Drag a <strong>Load Data</strong> node from the Data category in the sidebar onto the graph canvas.</li>
-  <li>Double-click the node to open its properties.</li>
-  <li>Set the <strong>IBT Folder</strong> to the directory containing your iRacing IBT files (usually <code>Documents\\iRacing\\telemetry</code>).</li>
-  <li>Select a stint from the dropdown.</li>
+  <li>Open a track, then a layout, then a car.</li>
+  <li>Tick a file to load the whole session, or open it and tick just a stint, an outing or a lap.</li>
+  <li>Keep ticking to add more. Each tick adds that data to what's loaded, and unticking removes it.</li>
 </ol>
-
-<h2 id="output">Step 2: Add an Output Node</h2>
-<ol>
-  <li>Drag an <strong>Output</strong> node from the Output category onto the canvas.</li>
-  <li>Connect the <strong>TrainData</strong> output port of Load Data to the <strong>Data</strong> input port of Output.</li>
-</ol>
-
-<h2 id="run">Step 3: Run the Graph</h2>
-<p>Press <strong>F5</strong> or click Run in the toolbar. The graph will execute: Load Data reads and parses the IBT file, then Output generates the plots.</p>
-
-<h2 id="explore">Step 4: Explore the Plot</h2>
-<p>After execution, plot tabs appear above the graph:</p>
 <ul>
-  <li><strong>2D Plot:</strong> Time-series of all telemetry channels. Click the legend to show/hide channels. Scroll to zoom, drag to pan.</li>
-  <li><strong>3D Plot:</strong> Track visualization with the car position. Use mouse to rotate, scroll to zoom.</li>
+  <li>Only one layout loads at a time, and its radio button shows which. Ticking a row in another layout switches to that layout with only that row ticked. Clicking a layout's radio button switches to it with nothing ticked yet.</li>
+  <li>Adding or removing rows in the same layout keeps your ghosts and cursor where they are. Switching layouts starts fresh.</li>
+  <li>A checkbox showing a dash means only part of what's underneath is ticked. Click it to tick everything underneath.</li>
+  <li>Untick one lap inside a ticked file and the rest of the file stays ticked.</li>
+  <li>Rows with something ticked inside are tinted green, so you can find your selection with the tree collapsed.</li>
 </ul>
-<p>The dashboard panel on the right will also populate with gauges bound to the loaded data. Move the cursor on the 2D plot to scrub through the session.</p>
-`
-},
-
-'gs.stint-browser': {
-  section: 'Getting Started',
-  title: 'Stint Folder Browser',
-  lede: 'Navigate your telemetry library with the folder tree and quick-nav shortcuts.',
-  prev: ['gs.first-workflow', 'Your First Workflow'],
-  next: ['gs.summary-tree', 'Summary Hierarchy'],
-  toc: ['overview', 'folder-tree', 'quick-nav', 'selection'],
-  tocLabels: ['Overview', 'Folder Tree', 'Quick Navigation', 'Folder Selection'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Stint Folder Browser</strong> is the left-column panel that lets you navigate to folders of telemetry files on disk. It's the starting point for the non-model workflow: select a folder, and the summary tree and workflow panel do the rest.</p>
-<p>The panel layout from top to bottom:</p>
-<ul>
-  <li>Folder path display (truncated current path)</li>
-  <li>Quick-nav shortcut buttons</li>
-  <li>Folder tree (file system browser)</li>
-  <li>Summary tree (populated after folder selection)</li>
-</ul>
-
-<h2 id="folder-tree">Folder Tree</h2>
-<p>The folder tree uses a <code>QFileSystemModel</code> to display your file system as a navigable directory tree. The currently selected folder is highlighted in cyan with bold text.</p>
-<ul>
-  <li><strong>Click</strong> any folder to select it as the active stint library</li>
-  <li>The tree only shows directories (files are hidden)</li>
-  <li>Selection triggers automatic summarization: the app scans the folder for IBT/Parquet/CSV files in the background</li>
-  <li>Your selection is saved to app config and restored on next launch</li>
-</ul>
-
-<h2 id="quick-nav">Quick Navigation</h2>
-<p>Two shortcut buttons above the folder tree jump to common locations:</p>
-<ul>
-  <li><strong>iRacing Telemetry</strong>: navigates to <code>~/Documents/iRacing/telemetry</code> (or OneDrive equivalent)</li>
-  <li><strong>LapLabs StintData</strong>: navigates to your configured stint data folder</li>
-</ul>
-<p>These save you from manually drilling through the file system tree to reach frequently-used directories.</p>
-
-<h2 id="selection">Folder Selection</h2>
-<p>When you select a folder:</p>
-<ol>
-  <li>The folder path updates in the header label</li>
-  <li>A background worker (<code>FolderSummaryWorker</code>) scans all telemetry files in the folder</li>
-  <li>Results are cached to a <code>.cache.json</code> file for instant re-loading next time</li>
-  <li>The Summary Hierarchy tree populates with the scanned data</li>
-  <li>The Workflow Panel becomes ready to run on the selected data</li>
-</ol>
-<p>The scan runs in a background thread so the UI stays responsive even for folders with hundreds of IBT files.</p>
-`
-},
-
-'gs.summary-tree': {
-  section: 'Getting Started',
-  title: 'Summary Hierarchy',
-  lede: 'The multi-level tree that organizes your telemetry by car, track, file, stint, outing, and lap.',
-  prev: ['gs.stint-browser', 'Stint Folder Browser'],
-  next: ['gs.workflow-panel', 'Workflow Panel'],
-  toc: ['overview', 'hierarchy', 'columns', 'selection', 'play-icon', 'caching'],
-  tocLabels: ['Overview', 'Hierarchy Levels', 'Columns', 'Selection & Checkboxes', 'Play Icon', 'Caching'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Summary Hierarchy</strong> is a tree widget below the folder browser that organizes all telemetry files in the selected folder into a structured view: Car → Track → File → Stint → Outing → Lap. It shows aggregate statistics and lets you select exactly which data to analyze.</p>
-
-<h2 id="hierarchy">Hierarchy Levels</h2>
-<p>The tree has up to 5 nesting levels, built automatically from file metadata:</p>
-<ul>
-  <li><strong>Car</strong> (top level): groups all sessions by vehicle. Bold text, no checkbox. Background: dark blue-tint.</li>
-  <li><strong>Track</strong>: groups files by circuit within each car. <strong>Radio-checked</strong>: only one track can be active per car at a time. Selecting a different track deselects the previous one.</li>
-  <li><strong>File</strong>: individual telemetry files. Checkable. Shows a format indicator: ◆ for Parquet, ○ for CSV, blank for IBT.</li>
-  <li><strong>Stint</strong>: continuous on-track runs within each file. Checkable. Shows stint duration.</li>
-  <li><strong>Outing / Lap</strong>: individual laps within stints. Checkable. Shows lap time with best-lap highlighting.</li>
-</ul>
-<p>A <strong>Totals row</strong> at the bottom (pinned, always last) shows aggregate counts and the overall best lap time across all files.</p>
-
-<h2 id="columns">Columns</h2>
-<p>The tree has 6 columns with proportional resizing:</p>
-<ul>
-  <li><strong>Name</strong> (40%): car/track/file/stint/lap label</li>
-  <li><strong>Stints</strong> (12%): number of stints in this item</li>
-  <li><strong>Outings</strong> (12%): number of outings</li>
-  <li><strong>Laps</strong> (12%): total lap count</li>
-  <li><strong>Best</strong> (12%): best lap time (highlighted for the overall best)</li>
-  <li><strong>Time</strong> (12%): total session time</li>
-</ul>
-<p>Click any column header to sort. The sort direction indicator (▲/▼) shows the current order.</p>
-
-<h2 id="selection">Selection & Checkboxes</h2>
-<p>Checkboxes control which data the workflow panel processes:</p>
-<ul>
-  <li><strong>Track level:</strong> Radio behavior, checking one track unchecks others in the same car group</li>
-  <li><strong>File level:</strong> Checking/unchecking cascades to all child stints and laps</li>
-  <li><strong>Stint/Lap level:</strong> Checking cascades down; parent updates to partial (tri-state) if only some children are checked</li>
-</ul>
-<p>Only checked items are included when you run the workflow. This lets you quickly isolate specific stints or laps for analysis.</p>
-
-<h2 id="play-icon">Play Icon</h2>
-<p>Each tree item has a small play icon (▶) that appears on hover. Clicking it immediately runs the workflow on <em>just that item</em>: whether it's a single file, a stint, or even a single lap.</p>
-<ul>
-  <li>Clicking play on a <strong>file</strong> runs the entire file</li>
-  <li>Clicking play on a <strong>stint</strong> loads only that stint's time range</li>
-  <li>Clicking play on a <strong>lap</strong> loads only that lap's session time window</li>
-</ul>
-<p>This is the fastest way to visualize a specific portion of data. One click and the plots appear.</p>
-
-<h2 id="caching">Caching</h2>
-<p>Folder scan results are cached to <code>~/.laplabsstudio/stint_summary_HASH.cache.json</code>. The cache stores:</p>
-<ul>
-  <li>Per-file metadata: stint count, outing count, lap count, best lap time, total session time</li>
-  <li>Detailed stint/outing/lap structure with SessionTime ranges</li>
-  <li>Your checkbox selection state (which tracks/files/stints are checked)</li>
-</ul>
-<p>On re-opening the same folder, the tree loads instantly from cache. The cache invalidates when files are added, removed, or modified.</p>
-`
-},
-
-'gs.workflow-panel': {
-  section: 'Getting Started',
-  title: 'Workflow Panel',
-  lede: 'The primary analysis interface for running telemetry through extraction, expressions, and filtering without building a node graph.',
-  prev: ['gs.summary-tree', 'Summary Hierarchy'],
-  next: ['nodes.load-data', 'Load Data'],
-  toc: ['overview', 'sections', 'data-source', 'view-data', 'processing', 'output', 'running'],
-  tocLabels: ['Overview', 'Panel Sections', 'Data Source', 'View Data', 'Processing', 'Output & Run', 'Running'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Workflow Panel</strong> is the primary way to use LapLabs when you're not building ML models. It provides a streamlined, graph-free interface for loading telemetry, applying transforms, and generating plots: all controlled from a compact vertical panel.</p>
-<p>Behind the scenes, the panel drives 5 hidden node instances in sequence: <strong>Load Data → Extract Set → [Aux Math] → [Filter] → Output</strong>. You get all the power of the node graph without building one.</p>
-
-<h2 id="sections">Panel Sections</h2>
-<p>The workflow panel is organized into four collapsible sections from top to bottom:</p>
-<ol>
-  <li><strong>Data Source</strong>: segmentation and track settings</li>
-  <li><strong>View Data</strong>: extraction template selection</li>
-  <li><strong>Processing</strong>: optional Aux Math and Filter steps</li>
-  <li><strong>Output</strong>: plot type toggles and run buttons</li>
-</ol>
-
-<h2 id="data-source">Data Source</h2>
-<ul>
-  <li><strong>Segmentation</strong>: dropdown: Stint, Tire Change, Pit, Best Lap. Controls how the loaded files are split into segments (same options as the Load Data node).</li>
-  <li><strong>Track</strong>: dropdown populated from your track library. Determines which track geometry is used for the 3D plot. Set to Auto for automatic detection from file metadata.</li>
-  <li><strong>Denoise</strong>: checkbox (enabled by default). Applies session clock jitter correction, highly recommended for clean time-series.</li>
-</ul>
-
-<h2 id="view-data">View Data</h2>
-<ul>
-  <li><strong>Template</strong>: dropdown of extraction templates (Standard, Detailed, Tire Temps, etc.). Controls which variables are extracted from the raw data.</li>
-  <li><strong>Gear button</strong>: opens the Extract Set configuration dialog for editing the template or adding custom channels.</li>
-</ul>
-<p>The template determines what's available in the plots. "Standard" covers common dashboard variables; "Detailed" includes tire data, suspension, and engine parameters.</p>
-
-<h2 id="processing">Processing (Optional)</h2>
-<h3>Aux Math</h3>
-<ul>
-  <li>Checkbox to enable: when unchecked, this step is skipped entirely</li>
-  <li>Expression field for custom computed channels (same syntax as the Aux Math node)</li>
-  <li>Gear button opens the full expression editor dialog</li>
-</ul>
-<p>Use this for quick derived channels like total G-force, speed conversions, or slip calculations without needing to add a node to a graph.</p>
-
-<h3>Filter</h3>
-<ul>
-  <li>Checkbox to enable: when unchecked, raw data passes through unfiltered</li>
-  <li>Method dropdown (Butterworth, Savitzky-Golay, EMA, etc.)</li>
-</ul>
-<p>Useful for smoothing noisy signals before visualization.</p>
-
-<h2 id="output">Output & Run</h2>
-<ul>
-  <li><strong>2D Plot LED</strong>: toggle on/off. When green, generates 2D time-series plots.</li>
-  <li><strong>3D Track LED</strong>: toggle on/off. When green, generates 3D track visualization with ghost cars.</li>
-  <li><strong>Run button</strong>: executes the workflow on all checked items in the summary tree</li>
-  <li><strong>Run Recent button</strong>: finds the most recent .ibt file in your iRacing telemetry folder and runs it immediately (one-click latest session analysis)</li>
-</ul>
-
-<div class="callout tip">
-  <span class="ic">&#10003;</span>
-  <div>
-    <span class="lbl">Tip</span>
-    <p><strong>Run Recent</strong> is the fastest path from "I just finished a session" to "I'm looking at the data." It auto-finds the newest IBT file and runs the full pipeline with one click.</p>
-  </div>
-</div>
-
-<h2 id="running">Running</h2>
-<p>The workflow runs in a background thread with a progress indicator. You can:</p>
-<ul>
-  <li>Watch the status label for progress ("Loading file 2 of 5…")</li>
-  <li>Stop execution at any time with F12</li>
-  <li>Results appear in the plot tabs above the graph area</li>
-  <li>The dashboard panel populates with gauge values synced to the cursor</li>
-</ul>
-<p>Each run is saved to the <strong>Run Store</strong> (bottom panel) so you can switch between different runs to compare results.</p>
-`
-},
-
-// ─────────────────────────────────────────────────────────────────
-// 02: NODE REFERENCE
-// ─────────────────────────────────────────────────────────────────
-
-'nodes.load-data': {
-  section: 'Node Reference',
-  title: 'Load Data',
-  lede: 'Read iRacing IBT telemetry files from disk with automatic segmentation and train/test splitting.',
-  prev: ['gs.workflow-panel', 'Workflow Panel'],
-  next: ['nodes.output', 'Output'],
-  toc: ['overview', 'params', 'segmentation', 'splitting', 'formats', 'output'],
-  tocLabels: ['Overview', 'Parameters', 'Segmentation Modes', 'Train/Test Splitting', 'File Formats', 'Output Format'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Load Data</strong> node is the primary data source for offline analysis. It reads iRacing IBT (binary telemetry) files, auto-detects driving stints, segments them by your chosen strategy, performs train/test splitting, and outputs structured data ready for downstream nodes.</p>
-<ul>
-  <li><strong>Category:</strong> Data</li>
-  <li><strong>Input:</strong> None</li>
-  <li><strong>Output:</strong> <code>TrainData</code> (training_dict)</li>
-</ul>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>IBT Folder</strong>: path to folder or single file. Accepts IBT, CSV, or Parquet. Supports <code>~</code> home directory expansion.</li>
-  <li><strong>Segmentation</strong>: how to split continuous data into segments (see below)</li>
-  <li><strong>Short Stint</strong>: minimum stint duration in frames. Segments shorter than <code>short_stint × 60</code> samples are discarded.</li>
-  <li><strong>Min Laps</strong>: minimum laps per segment (for lap-based segmentation modes)</li>
-  <li><strong>Convert Files</strong>: auto-convert IBT/CSV to Parquet on first load for 10–50x faster future reads</li>
-  <li><strong>Track ID</strong>: track identifier for geometry lookup. Set to <code>__auto__</code> for automatic matching from session metadata.</li>
-  <li><strong>Track Library Folder</strong>: path to track JSON files for centerline/sector data</li>
-  <li><strong>Clean Clock</strong>: fix iRacing SessionTime column jitter by interpolating gaps (strongly recommended)</li>
-  <li><strong>Comparison Source</strong>: optional second folder/file for comparison data (loaded independently)</li>
-</ul>
-
-<h2 id="segmentation">Segmentation Modes</h2>
-<p>Controls how continuous telemetry is split into discrete segments:</p>
-<ul>
-  <li><strong>stint</strong>: split by continuous on-track runs (uses <code>EnterExitReset</code> signal: 1/2 = on-track, 0 = off-track)</li>
-  <li><strong>tire_change</strong>: split when tire wear values change (detects <code>LFwearL</code> transitions)</li>
-  <li><strong>pit</strong>: split at pit stop boundaries (rising edges of <code>PitstopActive</code>)</li>
-  <li><strong>best_lap</strong>: extract only the best individual laps by time</li>
-  <li><strong>lap</strong>: split into individual laps within each stint (from <code>LapDistPct</code> zero crossings)</li>
-</ul>
-
+<p>Once something is ticked, the <strong>Selected files</strong> table appears below the tree. It has one row per file, showing the stints, outings, laps, best lap and time you've picked, plus a <strong>Totals</strong> line.</p>
 <div class="callout note">
   <span class="ic">i</span>
   <div>
-    <span class="lbl">Fallback chain</span>
-    <p>If the requested segmentation mode yields no segments, Load Data tries a fallback chain: tire_change → pit → stint → whole file. This ensures you always get data even if the session didn't have tire changes or pit stops.</p>
+    <span class="lbl">Note</span>
+    <p>In a <a href="docs-article.html?page=share.sessions">shared session</a>, only the person who started it can change the ticks. Everyone else's tree is locked and follows theirs.</p>
   </div>
 </div>
-
-<h2 id="splitting">Train/Test Splitting</h2>
-<p>Once segments are identified, Load Data splits them into training and test sets:</p>
+<h2 id="solo">Load just one row</h2>
+<p>File, stint, outing and lap rows have a <strong>Play</strong> button (&#9654;) before the name. Click it to load only that row: it gets ticked and everything else in the layout is unticked. It doesn't start playback; use the <a href="docs-article.html?page=play.transport">transport controls</a> for that.</p>
+<h2 id="filter">Filter, sort and zoom</h2>
 <ul>
-  <li><strong>Static</strong>: first N% of segments become test, the rest become train (ordered by time)</li>
-  <li><strong>Random</strong>: segments are shuffled with a configurable seed, then split by percentage</li>
-  <li><strong>Custom</strong>: manually assign each segment as "train" or "test" via a per-segment list</li>
+  <li>Type in <strong>Filter track / layout&hellip;</strong> to narrow the tree by track or layout name. It ignores case and accents (&ldquo;nurburg&rdquo; finds N&uuml;rburgring) and also matches other names a circuit is known by.</li>
+  <li>Type in <strong>Filter car&hellip;</strong> to narrow by car. With both filters filled in, a row has to match both.</li>
+  <li>Click a column header to sort by it, and click again to reverse. Drag the edge of a header to resize its column.</li>
+  <li>Hold <code>Ctrl</code> and turn the mouse wheel over the tree to make its text larger or smaller.</li>
 </ul>
-<p><strong>Split Percentage</strong> (default 50%) controls the ratio. <strong>Split Seed</strong> makes random splits reproducible across runs.</p>
-
-<h2 id="formats">File Formats</h2>
-<p>When a folder contains multiple formats of the same session, Load Data uses this priority: <strong>Parquet > CSV > IBT</strong>. This means once you've converted to Parquet, the IBT is no longer read.</p>
+<h2 id="symbols">What the columns and symbols mean</h2>
+<h3>Columns</h3>
 <ul>
-  <li><strong>IBT</strong>: iRacing binary telemetry. Parsed via the built-in IBT parser. GPS coordinates are auto-interpolated when values are 0.</li>
-  <li><strong>CSV</strong>: comma-separated values (exported from iRacing or third-party tools)</li>
-  <li><strong>Parquet</strong>: Apache Arrow columnar format. 10–50x faster reads than IBT. Generated automatically when <code>Convert Files</code> is enabled.</li>
+  <li><strong>Stints</strong>, <strong>Outings</strong>, <strong>Laps</strong>: how many the row contains.</li>
+  <li><strong>Best</strong>: the fastest lap in the row. On a lap row, that lap's own time.</li>
+  <li><strong>Time</strong>: the total time the row covers.</li>
+  <li><strong>3D</strong>: on track and layout rows, whether there's a 3D model of the track. A green &#10003; means LapLabs has published one. A blue &#10003; means it comes from your own track folder (see <a href="docs-article.html?page=settings.tracks">Track library</a>). &#10007; means there's no model, so the 3D view falls back to a ribbon built from the GPS trace. ~ on a track row means its layouts differ.</li>
 </ul>
-
-<h2 id="output">Output Format</h2>
-<p>The output <code>TrainData</code> dictionary contains:</p>
+<h3>Badges and markers</h3>
 <ul>
-  <li><code>train.df_segments</code>: list of DataFrames (one per training segment)</li>
-  <li><code>test.df_segments</code>: list of DataFrames (one per test segment)</li>
-  <li><code>comparison.df_segments</code>: optional comparison data (if comparison source set)</li>
-  <li><code>track_xyz</code>: Nx3 NumPy array of track centerline coordinates</li>
-  <li><code>track_mesh</code>: track barrier/curb geometry (if available)</li>
-  <li><code>latlonalt0</code>: GPS origin tuple (lat, lon, alt) for coordinate conversion</li>
-  <li><code>meta</code>: session metadata: track name, car, split info, segment counts, etc.</li>
+  <li><strong>IBT</strong>: a raw iRacing file. <strong>PQT</strong>: a Parquet file. Cloud runs show <strong>PQT</strong>, and a local row can show both.</li>
+  <li>&#9729;: a cloud run.</li>
+  <li><strong>!!!</strong> after a red file name: the file couldn't be read. Hover over it to see why.</li>
+  <li>&#9733; (gold): the fastest lap of everything you've ticked.</li>
+  <li>&#9670; (cyan): the fastest lap in its file.</li>
+  <li>&#9650; (green): the fastest lap in its stint.</li>
+  <li>&#9679; (silver): the fastest lap in its outing, shown only when the stint has more than one outing.</li>
+  <li>* after a lap time: that lap had an incident. Next to a higher row's <strong>Best</strong> time, the best lap there was an incident lap.</li>
 </ul>
-`
-},
-
-'nodes.output': {
-  section: 'Node Reference',
-  title: 'Output',
-  lede: 'Visualize telemetry data as 2D plots, 3D track views, waterfall, and spectrogram.',
-  prev: ['nodes.load-data', 'Load Data'],
-  next: ['nodes.aux-math', 'Aux Math'],
-  toc: ['overview', 'leds', 'data-flow', 'usage'],
-  tocLabels: ['Overview', 'Plot Toggles', 'Data Flow', 'Usage'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Output</strong> node (also called Combined Plot) is the visualization endpoint of any graph. It receives processed data and generates interactive plot tabs. Multiple plot types can be generated simultaneously from a single Output node.</p>
+<p>A lap shows at most one marker, the widest one it earns.</p>
+<h2 id="related">Related</h2>
 <ul>
-  <li><strong>Category:</strong> Output</li>
-  <li><strong>Input:</strong> <code>Data</code> (var_dict)</li>
-  <li><strong>Output:</strong> None (creates plot tabs)</li>
+  <li><a href="docs-article.html?page=folder.open">Opening telemetry</a></li>
+  <li><a href="docs-article.html?page=play.transport">Transport and speed</a></li>
+  <li><a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a></li>
 </ul>
-
-<h2 id="leds">Plot Toggles</h2>
-<p>The Output node has LED toggle buttons on its right side that control which visualizations are generated:</p>
-<ul>
-  <li><strong>Plot 2D</strong>: time-series line plots with interactive cursor, legend, segment overlay, and unit conversion. Enabled by default.</li>
-  <li><strong>Track 3D</strong>: 3D OpenGL track visualization with car mesh, ghost laps, color-mapped driving lines, and playback. Enabled by default.</li>
-</ul>
-<p>Click an LED to toggle it on/off before running the graph. Disabled plot types are skipped during execution for faster runs.</p>
-
-<h2 id="data-flow">Data Flow</h2>
-<p>The Output node accepts a <code>var_dict</code> (set_dict) which may contain:</p>
-<ul>
-  <li><strong>TrainData / TestData / Data</strong>: segment groups</li>
-  <li><strong>Raw</strong>: original telemetry values</li>
-  <li><strong>Pred</strong>: model predictions (from Model node)</li>
-  <li><strong>Val</strong>: validation values (from Extract Set)</li>
-  <li><strong>AuxMath</strong>: computed channels (from Aux Math)</li>
-  <li><strong>Error</strong>: prediction error (Pred − Raw)</li>
-</ul>
-<p>All present branches are rendered in the plots. The legend and variable tree let you show/hide individual branches and channels interactively.</p>
-
-<h2 id="usage">Usage</h2>
-<p>Connect any node that outputs a <code>Data</code> (var_dict) type: Model, Extract Set, Filter, or Aux Math. The Output node renders whatever is present. For a simple telemetry view without ML, use <strong>Load Data → Extract Set → Output</strong>.</p>
-`
-},
-
-'nodes.aux-math': {
-  section: 'Node Reference',
-  tier: 'pro',
-  title: 'Aux Math',
-  lede: 'Create custom computed channels using NumPy expressions with per-segment evaluation.',
-  prev: ['nodes.output', 'Output'],
-  next: ['nodes.filter', 'Filter'],
-  toc: ['overview', 'syntax', 'functions', 'examples', 'params'],
-  tocLabels: ['Overview', 'Expression Syntax', 'Available Functions', 'Examples', 'Parameters'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Aux Math</strong> node lets you create new telemetry channels from mathematical expressions applied to existing channels. Expressions are evaluated per-segment (each segment gets its own array). Results are stored in the AuxMath sub-branch of the data.</p>
-<ul>
-  <li><strong>Category:</strong> Transform</li>
-  <li><strong>Input:</strong> <code>Data</code> (set_dict)</li>
-  <li><strong>Output:</strong> <code>Data</code> (set_dict with AuxMath entries added)</li>
-</ul>
-
-<h2 id="syntax">Expression Syntax</h2>
-<ul>
-  <li>One expression per line</li>
-  <li>Reference variables with backticks: <code>\`VelocityX\`</code></li>
-  <li>Lines starting with <code>@</code> are <strong>outputs</strong> (saved to AuxMath branch): <code>@speed = sqrt(\`VelocityX\`**2)</code></li>
-  <li>Lines without <code>@</code> are <strong>temporaries</strong> (carried forward within the program but not saved)</li>
-  <li>Comments: lines starting with <code>#</code> are ignored (but <code>#</code> inside backticks is preserved)</li>
-</ul>
-
-<h2 id="functions">Available Functions</h2>
-<p>The expression namespace includes:</p>
-<ul>
-  <li><strong>NumPy</strong>: all <code>np.*</code> functions: <code>sqrt</code>, <code>sin</code>, <code>cos</code>, <code>tan</code>, <code>exp</code>, <code>log</code>, <code>abs</code>, <code>clip</code>, <code>max</code>, <code>min</code>, <code>mean</code>, <code>std</code>, <code>where</code>, <code>interp</code>, etc.</li>
-  <li><strong>Math constants</strong>: <code>pi</code>, <code>e</code></li>
-  <li><strong>Rolling helpers</strong> (60 Hz default):
-    <ul>
-      <li><code>rolling_max(arr, window_sec, dt=1/60)</code>: rolling maximum over window</li>
-      <li><code>rolling_min(arr, window_sec, dt=1/60)</code>: rolling minimum over window</li>
-      <li><code>rolling_mean(arr, window_sec, dt=1/60)</code>: rolling average over window</li>
-    </ul>
-  </li>
-  <li><strong>diff(arr)</strong>: first-order difference with prepend (same length as input)</li>
-</ul>
-
-<h2 id="examples">Examples</h2>
-<div class="code-block">
-  <div class="ch">
-    <div style="display:flex;align-items:center;gap:12px;"><div class="dots"><span></span><span></span><span></span></div><span>Aux Math Expressions</span></div>
-    <button class="copy">Copy</button>
-  </div>
-<pre><span class="c"># Compute speed magnitude from velocity components</span>
-<span class="k">@speed</span> = sqrt(<span class="s">\`VelocityX\`</span>**2 + <span class="s">\`VelocityY\`</span>**2 + <span class="s">\`VelocityZ\`</span>**2)
-
-<span class="c"># G-force magnitude</span>
-<span class="k">@total_g</span> = sqrt(<span class="s">\`LatAccel\`</span>**2 + <span class="s">\`LongAccel\`</span>**2)
-
-<span class="c"># Smoothed speed (100ms window at 60Hz)</span>
-<span class="k">@speed_smooth</span> = rolling_mean(<span class="s">\`Speed\`</span>, <span class="n">0.1</span>)
-
-<span class="c"># Brake pressure derivative (brake application rate)</span>
-<span class="k">@brake_rate</span> = diff(<span class="s">\`Brake\`</span>) * <span class="n">60</span>
-
-<span class="c"># Temporary variable (not saved)</span>
-tmp = <span class="s">\`Throttle\`</span> - <span class="s">\`Brake\`</span>
-<span class="k">@pedal_balance</span> = clip(tmp, <span class="n">-1</span>, <span class="n">1</span>)
-</pre>
-</div>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>Expression</strong>: multi-line expression editor (the program)</li>
-  <li><strong>Branch</strong>: which data branches to apply to: <code>All</code>, <code>Train</code>, or <code>Test</code></li>
-  <li><strong>Channel In</strong>: variable resolution order:
-    <ul>
-      <li><code>Auto</code>: searches Raw → Pred → Val → Error → AuxMath</li>
-      <li>Specific name: prefer that channel, then fallback</li>
-      <li>Comma-separated: explicit priority order</li>
-    </ul>
-  </li>
-</ul>
-`
-},
-
-'nodes.filter': {
-  section: 'Node Reference',
-  tier: 'pro',
-  title: 'Filter',
-  lede: 'Apply smoothing and signal processing filters to telemetry channels.',
-  prev: ['nodes.aux-math', 'Aux Math'],
-  next: ['nodes.model', 'Model'],
-  toc: ['overview', 'methods', 'ema', 'one-euro', 'butterworth', 'other', 'params'],
-  tocLabels: ['Overview', 'Filter Methods', 'EMA', 'One Euro', 'Butterworth', 'Integrate & Differentiate', 'Parameters'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Filter</strong> node applies signal processing filters to all numeric variables in selected data branches. Use it to smooth noisy telemetry, remove spikes, integrate/differentiate signals, or prepare clean targets for ML training.</p>
-<ul>
-  <li><strong>Category:</strong> Transform</li>
-  <li><strong>Input:</strong> <code>Data</code> (set_dict)</li>
-  <li><strong>Output:</strong> <code>Data</code> (set_dict with filtered values replacing originals)</li>
-</ul>
-<p>Filters are applied per-variable per-segment independently. Arrays are treated as [T, V] where T = time samples and V = variable values.</p>
-
-<h2 id="methods">Filter Methods</h2>
-<ul>
-  <li><strong>None (passthrough)</strong>: no filtering applied</li>
-  <li><strong>EMA</strong>: exponential moving average (causal, introduces phase lag)</li>
-  <li><strong>EMA (fwd-bwd)</strong>: bidirectional EMA for zero-phase filtering (non-causal)</li>
-  <li><strong>MA (centered)</strong>: centered moving average with reflected edge padding</li>
-  <li><strong>Median (centered)</strong>: median filter for removing spikes without broadening edges</li>
-  <li><strong>One Euro</strong>: adaptive low-latency filter (cutoff increases with signal velocity)</li>
-  <li><strong>Butterworth (IIR)</strong>: classic low-pass with sharp rolloff, uses SOS for stability</li>
-  <li><strong>Integrate (cumtrapz)</strong>: cumulative trapezoidal integration</li>
-  <li><strong>Differentiate (diff)</strong>: first-order finite difference</li>
-</ul>
-
-<h2 id="ema">EMA (Exponential Moving Average)</h2>
-<p>A simple first-order IIR filter controlled by a time constant <strong>tau</strong>:</p>
-<ul>
-  <li><code>alpha = 1 - exp(-dt / tau)</code></li>
-  <li><code>y[n] = (1 - alpha) * y[n-1] + alpha * x[n]</code></li>
-  <li>Larger tau = more smoothing, more lag</li>
-  <li>The fwd-bwd variant runs the filter forward then backward, eliminating phase lag (best for offline analysis)</li>
-</ul>
-
-<h2 id="one-euro">One Euro Filter</h2>
-<p>An adaptive filter that smooths slow signals heavily but preserves fast transients. Ideal for telemetry with both slow drifts and fast events (e.g., brake pressure).</p>
-<ul>
-  <li><strong>min_cutoff</strong>: minimum cutoff frequency in Hz (lower = more smoothing for slow signals)</li>
-  <li><strong>beta</strong>: responsiveness to speed. Higher beta makes the filter track fast changes more closely.</li>
-  <li><strong>d_cutoff</strong>: cutoff for the derivative estimator (Hz)</li>
-  <li>Formula: <code>fc = min_cutoff + beta × |dx/dt|</code></li>
-</ul>
-
-<h2 id="butterworth">Butterworth (IIR)</h2>
-<p>A classic analog-derived low-pass filter with maximally flat passband:</p>
-<ul>
-  <li><strong>Order</strong>: filter steepness (2–4 typical). Higher order = sharper cutoff but more phase distortion.</li>
-  <li><strong>Cutoff Hz</strong>: -3 dB frequency. For 60 Hz telemetry, values of 1–10 Hz are typical.</li>
-  <li>Implementation uses second-order sections (SOS) for numerical stability</li>
-</ul>
-
-<h2 id="other">Integrate & Differentiate</h2>
-<ul>
-  <li><strong>Integrate</strong>: cumulative trapezoidal rule. Set the initial value (default 0). Useful for computing distance from speed, or angle from angular velocity.</li>
-  <li><strong>Differentiate</strong>: first-order finite difference scaled by dt. First sample is forward-filled. Useful for computing acceleration from speed, or rate of change from any signal.</li>
-</ul>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>Method</strong>: which filter algorithm to apply</li>
-  <li><strong>Branch Mode</strong>: <code>All</code>, <code>Train</code>, or <code>Test</code></li>
-  <li><strong>Channel Selection</strong>: checkboxes for which branches to filter: Pred, Val, Error, AuxMath</li>
-  <li><strong>Tau</strong>: EMA time constant in seconds (default depends on signal)</li>
-  <li><strong>Window</strong>: window size in samples for MA/Median (auto-forced to odd)</li>
-  <li><strong>One Euro params</strong>: min_cutoff, beta, d_cutoff</li>
-  <li><strong>Butterworth params</strong>: order (2–4), cutoff_hz</li>
-  <li><strong>dt</strong>: sample period (default 1/60 for 60 Hz telemetry)</li>
-</ul>
-`
-},
-
-'nodes.model': {
-  section: 'Node Reference',
-  tier: 'studio',
-  title: 'Model',
-  lede: 'Train neural networks (MLP, GRU, TCN, Transformer) and run inference on telemetry data.',
-  prev: ['nodes.filter', 'Filter'],
-  next: ['nodes.extract-set', 'Extract Set'],
-  toc: ['overview', 'architectures', 'training', 'loss', 'params', 'output'],
-  tocLabels: ['Overview', 'Architectures', 'Training Loop', 'Loss Functions', 'Parameters', 'Output'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Model</strong> node is the ML core of LapLabs. It trains neural networks on telemetry data, runs inference on both train and test splits, and stores predictions in the Pred branch for comparison against raw ground truth.</p>
-<ul>
-  <li><strong>Category:</strong> Transform</li>
-  <li><strong>Input:</strong> <code>TrainData</code> (training_dict)</li>
-  <li><strong>Output:</strong> <code>Data</code> (var_dict with Raw + Pred + Val + Error branches)</li>
-</ul>
-
-<h2 id="architectures">Architectures</h2>
-<ul>
-  <li><strong>Linear / Ridge</strong>: closed-form least-squares regression with optional L2 regularization (lambda parameter). Instant training, good baseline. Use <code>ridge_lambda</code> to control regularization strength.</li>
-  <li><strong>MLP</strong>: multi-layer perceptron. Configurable width, depth, and activation. The workhorse architecture for most telemetry prediction tasks.</li>
-  <li><strong>GRU</strong>: gated recurrent unit. Unfolds <code>hist_len</code> timesteps of history. Good for modeling temporal dependencies (e.g., tire wear evolution).</li>
-  <li><strong>TCN</strong>: temporal convolutional network with causal dilated convolutions. Configurable kernel size. Parallelizable and fast. Good alternative to GRU for long sequences.</li>
-  <li><strong>Transformer</strong>: encoder-only transformer with multi-head self-attention. Parameters: d_model, nhead, dim_feedforward, dropout. Best for complex multi-variable interactions with long history.</li>
-</ul>
-
-<h2 id="training">Training Loop</h2>
-<ol>
-  <li><strong>Standardization:</strong> Input X is normalized to zero mean, unit variance. Stats (x_mean, x_std, y_mean, y_std) are saved in the model bundle for inference.</li>
-  <li><strong>Model construction:</strong> Architecture is built from parameters (input_dim, output_dim, hidden_width, num_layers, etc.)</li>
-  <li><strong>For linear models:</strong> Closed-form solution via pseudo-inverse (or ridge solver with lambda)</li>
-  <li><strong>For neural networks:</strong>
-    <ul>
-      <li>Data split into minibatches of <code>batch_size</code></li>
-      <li>Loop over <code>epochs</code></li>
-      <li>Compute loss → backprop → optimizer step</li>
-      <li>Optional early stopping on validation loss</li>
-    </ul>
-  </li>
-  <li><strong>Inference:</strong> Runs on both train and test splits. Predictions denormalized using saved stats.</li>
-</ol>
-
-<h2 id="loss">Loss Functions</h2>
-<ul>
-  <li><strong>MSE</strong>: mean squared error. Penalizes large errors heavily.</li>
-  <li><strong>MAE</strong>: mean absolute error. More robust to outliers.</li>
-  <li><strong>SmoothL1</strong> (default): quadratic near zero, linear far away. Configurable <code>beta</code> controls the transition point.</li>
-  <li><strong>Huber</strong>: similar to SmoothL1 with configurable <code>delta</code> threshold.</li>
-</ul>
-
-<h2 id="params">Parameters</h2>
-<h3>Architecture</h3>
-<ul>
-  <li><strong>Model Kind</strong>: <code>mlp</code>, <code>linear</code>, <code>ridge</code>, <code>gru</code>, <code>tcn</code>, <code>transformer</code></li>
-  <li><strong>Hidden Width</strong>: neurons per hidden layer (default 64)</li>
-  <li><strong>Num Layers</strong>: hidden layer count (default 2)</li>
-  <li><strong>History Length</strong>: temporal window for sequence models. 1 = memoryless MLP.</li>
-  <li><strong>Activation</strong>: hidden activation: ReLU, Tanh, Sigmoid, LeakyReLU</li>
-  <li><strong>Output Activation</strong>: output layer activation: None, ReLU, Softplus, etc.</li>
-</ul>
-<h3>Training</h3>
-<ul>
-  <li><strong>Train Enabled</strong>: whether to train or just load an existing model</li>
-  <li><strong>Optimizer</strong>: Adam (default) or SGD</li>
-  <li><strong>Learning Rate</strong>: default 1e-3</li>
-  <li><strong>Epochs</strong>: training iterations (default 10)</li>
-  <li><strong>Batch Size</strong>: default 512</li>
-  <li><strong>Device</strong>: <code>cpu</code> or <code>gpu</code> (auto-fallback to CPU if CUDA unavailable)</li>
-  <li><strong>Loss</strong>: MSE, MAE, SmoothL1, Huber</li>
-</ul>
-<h3>Sequence Models (GRU/TCN/Transformer)</h3>
-<ul>
-  <li><strong>TCN Kernel</strong>: convolutional kernel size (default 3)</li>
-  <li><strong>d_model</strong>: transformer model dimension (default 64)</li>
-  <li><strong>nhead</strong>: number of attention heads (default 4)</li>
-  <li><strong>Dropout</strong>: transformer dropout rate (default 0.1)</li>
-</ul>
-
-<h2 id="output">Output</h2>
-<p>The output set_dict contains predictions alongside raw data for every segment:</p>
-<ul>
-  <li><code>TrainData/Pred</code>: model predictions on training segments</li>
-  <li><code>TrainData/Raw</code>: raw ground truth for comparison</li>
-  <li><code>TestData/Pred</code> and <code>TestData/Raw</code>: same for test split</li>
-  <li><code>Error</code>: Pred minus Raw (per-variable per-segment)</li>
-  <li>Metadata: model parameters, final loss, test loss, training time</li>
-</ul>
-`
-},
-
-'nodes.extract-set': {
-  section: 'Node Reference',
-  title: 'Extract Set',
-  lede: 'Build a visualization-ready dataset from raw telemetry without training a model.',
-  prev: ['nodes.model', 'Model'],
-  next: ['plot.2d', '2D Plots'],
-  toc: ['overview', 'templates', 'extraction', 'output'],
-  tocLabels: ['Overview', 'Templates', 'What Gets Extracted', 'Output Structure'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Extract Set</strong> node pulls a curated set of variables from training data and packages them into a visualization-ready set_dict, without any ML training. Use it when you want to visualize specific channels, feed the dashboard, or export data.</p>
-<ul>
-  <li><strong>Category:</strong> Data</li>
-  <li><strong>Input:</strong> <code>TrainData</code> (training_dict)</li>
-  <li><strong>Output:</strong> <code>Data</code> (var_dict with Val + Raw branches)</li>
-</ul>
-
-<h2 id="templates">Templates</h2>
-<p>Extract templates define which variables to include. Select from built-in presets or add channels manually:</p>
-<ul>
-  <li><strong>dash</strong>: core dashboard variables (Speed, Throttle, Brake, Gear, RPM, Steering)</li>
-  <li><strong>tiretemps</strong>: tire temperature channels (inner/middle/outer per corner)</li>
-  <li><strong>suspension</strong>: shock deflection, ride height, spring loads</li>
-  <li><strong>raw</strong>: all available columns (full extraction)</li>
-</ul>
-<p>The <strong>Extra Channels</strong> parameter lets you add specific columns beyond the template selection.</p>
-
-<h2 id="extraction">What Gets Extracted</h2>
-<p>For each segment (train + test combined, deduplicated), Extract Set builds:</p>
-<ul>
-  <li><strong>Position (POS):</strong> XYZ world coordinates, Roll/Pitch/Yaw, LapDistPct, SessionTime, lap number, lap time, incidents</li>
-  <li><strong>Telemetry (Telem):</strong> Brake, Clutch, Gear, RPM, SteeringWheelAngle, Throttle, plus wheel speeds and shock deflection per corner</li>
-  <li><strong>Data:</strong> Template-selected channels (tire temps, pressures, custom variables)</li>
-</ul>
-
-<h2 id="output">Output Structure</h2>
-<p>Unlike the Model node, Extract Set produces Val and Raw branches (no Pred or Error):</p>
-<ul>
-  <li><code>Data/AuxMath</code>: template-selected Val channels + Telem + POS</li>
-  <li><code>Data/Raw</code>: all raw DataFrame columns + Telem + POS</li>
-  <li><code>ComparisonData</code>: same structure if comparison segments were provided in the Load Data node</li>
-  <li>Passes through <code>track_xyz</code>, <code>latlonalt0</code>, and <code>meta</code></li>
-</ul>
-`
+`,
 },
 
 // ─────────────────────────────────────────────────────────────────
-// 03: PLOTTING & VISUALIZATION
+// 03: PLAYBACK
 // ─────────────────────────────────────────────────────────────────
 
-'plot.2d': {
-  section: 'Plotting & Visualization',
-  title: '2D Plots',
-  lede: 'Interactive time-series plots with multi-segment overlay, cursor sync, and variable tree.',
-  prev: ['nodes.extract-set', 'Extract Set'],
-  next: ['plot.3d', '3D Plots'],
-  toc: ['overview', 'x-axis', 'variable-tree', 'segments', 'cursor', 'toolbar', 'units'],
-  tocLabels: ['Overview', 'X-Axis Modes', 'Variable Tree', 'Multi-Segment Overlay', 'Cursor Sync', 'Toolbar', 'Unit Conversion'],
+'play.transport': {
+  section: 'Playback',
+  title: 'Transport and speed',
+  lede: 'Play, pause, change speed and jump between laps, with every view following the same playback cursor.',
+  prev: ['folder.tree', 'The tree and selecting laps'],
+  next: ['play.range', 'Playback bar and range'],
+  toc: ['find', 'play', 'speed', 'laps', 'status', 'points', 'related'],
+  tocLabels: ['Find the transport', 'Play and pause', 'Change speed and play in reverse', 'Jump between segments and laps', 'Read the status line', 'Let Speed points set the pace', 'Related'],
   body: `
-<h2 id="overview">Overview</h2>
-<p>2D plots display telemetry channels as time-series line charts with full interactive controls. Multiple segments can be overlaid for lap comparison. Variables are organized in a tree with per-branch toggles and per-variable solo/delta buttons.</p>
-<ul>
-  <li><strong>Zoom:</strong> Scroll wheel (X and Y independently with Ctrl/Shift)</li>
-  <li><strong>Pan:</strong> Left-click drag</li>
-  <li><strong>Reset view:</strong> Right-click → Auto Range</li>
-</ul>
-
-<h2 id="x-axis">X-Axis Modes</h2>
-<p>The toolbar toggles between two X-axis representations:</p>
-<ul>
-  <li><strong>Lap Distance %</strong>: 0 to 100%, normalized per lap. Best for comparing cornering performance across laps.</li>
-  <li><strong>Session Time</strong>: absolute time in seconds. Best for viewing temporal patterns, stint evolution, or multi-lap sequences.</li>
-</ul>
-<p>Segments are placed contiguously on the X-axis with red boundary lines marking transitions between segments.</p>
-
-<h2 id="variable-tree">Variable Tree</h2>
-<p>The left panel shows a hierarchical variable tree with two main sections:</p>
-<ul>
-  <li><strong>Segments section:</strong> Checkboxes per segment, grouped under branch labels (Train/Test/Data/Comparison). Check/uncheck to show/hide individual segments.</li>
-  <li><strong>Variables section:</strong> Multi-select with per-variable controls:
-    <ul>
-      <li><strong>S button</strong>: solo this variable (hide all others)</li>
-      <li><strong>Δ button</strong>: delta mode (difference between two overlaid segments)</li>
-      <li><strong>Pred/Val toggle</strong>: switch between Pred and Val display for that variable</li>
-    </ul>
-  </li>
-</ul>
-<p>Variables are grouped by branch: Pred, Val, AuxMath, Error. All can be toggled independently.</p>
-
-<h2 id="segments">Multi-Segment Overlay</h2>
-<p>When multiple segments are loaded (e.g., different laps, train vs test), they overlay on the same axes. This enables direct comparison of driving technique, model fit, or parameter evolution across segments.</p>
-<p>Comparison data (from the Load Data node's comparison source) is automatically aligned to the primary segment's lap 1 for synchronized overlay.</p>
-
-<h2 id="cursor">Cursor Sync</h2>
-<p>A vertical cursor line syncs across all 2D plot tabs and drives downstream panels:</p>
-<ul>
-  <li>Dashboard gauges interpolate values at the cursor's position</li>
-  <li>3D plot car position matches the cursor time</li>
-  <li>Waterfall plot highlights the current time position</li>
-</ul>
-
-<h2 id="toolbar">Toolbar</h2>
-<ul>
-  <li><strong>X-axis mode</strong>: toggle Lap Distance / Session Time</li>
-  <li><strong>Y-axis scale</strong>: Linear or Log</li>
-  <li><strong>Auto-range</strong>: fit all visible data to view</li>
-</ul>
-
-<h2 id="units">Unit Conversion</h2>
-<p>Dashboard elements and plots support unit conversion presets:</p>
-<ul>
-  <li>Speed: m/s ↔ mph ↔ km/h</li>
-  <li>Temperature: °C ↔ °F</li>
-  <li>Pressure: kPa ↔ psi</li>
-  <li>Angles: radians ↔ degrees</li>
-  <li>Distance: m ↔ ft</li>
-</ul>
-`
-},
-
-'plot.3d': {
-  section: 'Plotting & Visualization',
-  title: '3D Plots',
-  lede: 'OpenGL track visualization with car meshes, ghost laps, color-mapped driving lines, and playback.',
-  prev: ['plot.2d', '2D Plots'],
-  next: ['plot.waterfall', 'Waterfall'],
-  toc: ['overview', 'navigation', 'variable-tree', 'color-mapping', 'ghosts', 'playback', 'toolbar'],
-  tocLabels: ['Overview', 'Navigation', 'Variable Tree', 'Color Mapping', 'Ghost Laps', 'Playback', 'Toolbar Controls'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The 3D plot renders the track surface with car position, driving line traces, and ghost lap overlays using hardware-accelerated OpenGL via pyqtgraph's GLViewWidget. It syncs with the 2D plot cursor and supports full playback with follow-camera.</p>
-
-<h2 id="navigation">Navigation</h2>
-<ul>
-  <li><strong>Rotate:</strong> Left-click drag</li>
-  <li><strong>Pan:</strong> Middle-click drag</li>
-  <li><strong>Zoom:</strong> Scroll wheel</li>
-  <li><strong>Follow cam:</strong> Locks camera to the current car position during playback</li>
-</ul>
-
-<h2 id="variable-tree">Variable Tree</h2>
-<p>The 3D plot has its own variable tree (left sidebar), different from the 2D tree:</p>
-<ul>
-  <li><strong>Segments:</strong> Same as 2D, checkboxes to show/hide individual segments</li>
-  <li><strong>Variables:</strong> <strong>Exclusive single-select</strong>: only one variable at a time maps to trace color (unlike 2D which allows multi-select)</li>
-  <li><strong>S button:</strong> Solo highlights current variable</li>
-  <li><strong>Pred/Val toggle:</strong> Switch which branch drives the color mapping</li>
-</ul>
-
-<h2 id="color-mapping">Color Mapping</h2>
-<p>The driving line trace is color-coded by the selected variable's value. For example, select "Speed" to see fast/slow sections, or "Brake" to see braking zones highlighted.</p>
-<ul>
-  <li><strong>Color Max / Min:</strong> Adjustable-increment spinboxes set the colorbar range</li>
-  <li><strong>Auto-scale:</strong> Button to automatically fit color range to the data</li>
-  <li><strong>Scale mode:</strong> Linear or Log color mapping</li>
-</ul>
-<p>The trace truncates at the current playhead position during playback; only the "past" portion is visible.</p>
-
-<h2 id="ghosts">Ghost Laps</h2>
-<p>When multiple segments are loaded, ghost car meshes render at each segment's current playback position. This lets you directly see how different laps compare on track.</p>
-<ul>
-  <li>Ghosts use a C DLL for fast batch rendering via OpenGL display lists</li>
-  <li>Up to 32+ simultaneous ghost cars</li>
-  <li>Each ghost uses the car model from the Vehicle Library</li>
-  <li>Ghost positions include full 6-DOF: position (XYZ) + orientation (Roll, Pitch, Yaw)</li>
-</ul>
-
-<h2 id="playback">Playback</h2>
-<ul>
-  <li><strong>Play/Pause</strong>: animate all cars around the track</li>
-  <li><strong>Speed slider</strong>: 0.1x to 10x playback speed</li>
-  <li><strong>Frame stepping</strong>: advance one tick at a time</li>
-  <li>Playback syncs with the 2D cursor and dashboard</li>
-</ul>
-
-<h2 id="toolbar">Toolbar Controls</h2>
-<ul>
-  <li><strong>Color variable selector</strong>: which channel maps to trace color</li>
-  <li><strong>Color Max / Min spinboxes</strong>: adjustable-increment (step = 10^exponent)</li>
-  <li><strong>Auto-scale button</strong>: fit color range to visible data</li>
-  <li><strong>Track texture toggle</strong>: show/hide road surface texture</li>
-  <li><strong>Start/finish line</strong>: show/hide the S/F marker</li>
-  <li><strong>Playback controls</strong>: play, pause, speed, frame step</li>
-  <li><strong>Screenshot</strong>: capture current view</li>
-</ul>
-`
-},
-
-'plot.waterfall': {
-  section: 'Plotting & Visualization',
-  tier: 'studio',
-  title: 'Waterfall',
-  lede: 'Multi-lap stacked 3D surface for comparing lap-to-lap evolution of any channel.',
-  prev: ['plot.3d', '3D Plots'],
-  next: ['plot.spectrogram', 'Spectrogram'],
-  toc: ['overview', 'axes', 'toolbar', 'playback'],
-  tocLabels: ['Overview', 'Axis Layout', 'Toolbar Controls', 'Playback'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The waterfall plot stacks multiple segments in 3D space, making it easy to spot lap-to-lap trends. Each segment appears as a colored line strip offset in the Y-direction. This is ideal for visualizing tire degradation, fuel-load effects, or consistency patterns.</p>
-
-<h2 id="axes">Axis Layout</h2>
-<ul>
-  <li><strong>X-axis:</strong> Lap distance (0–100%)</li>
-  <li><strong>Z-axis:</strong> Variable value (amplitude)</li>
-  <li><strong>Y-axis:</strong> Segment index (each lap offset vertically)</li>
-</ul>
-<p>The Y-scale is adaptive: <code>y_scale = sqrt(2) / session_length_hours</code>, so shorter sessions spread laps further apart for clarity.</p>
-
-<h2 id="toolbar">Toolbar Controls</h2>
-<ul>
-  <li><strong>Y-scale spinner</strong>: adjust separation between stacked segments</li>
-  <li><strong>Z-scale spinner</strong>: adjust variable amplitude scaling</li>
-  <li><strong>Color auto-scale</strong>: fit colorbar to data range</li>
-  <li><strong>Color max/min</strong>: manual color range control</li>
-</ul>
-
-<h2 id="playback">Playback</h2>
-<p>During playback, future samples (past the cursor) are greyed out on each lap. The current time position sweeps across all laps simultaneously, so you can see exactly where each lap is relative to the cursor.</p>
-<p>The waterfall renderer uses a C DLL (<code>wf_update_colors</code>) for batch color updates at full playback speed.</p>
-`
-},
-
-'plot.spectrogram': {
-  section: 'Plotting & Visualization',
-  tier: 'studio',
-  title: 'Spectrogram',
-  lede: 'Frequency-domain STFT analysis of telemetry signals over time.',
-  prev: ['plot.waterfall', 'Waterfall'],
-  next: ['plot.scatter', 'Scatter Panel'],
-  toc: ['overview', 'params', 'usage'],
-  tocLabels: ['Overview', 'Parameters', 'Use Cases'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The spectrogram plot shows the frequency content of telemetry signals over time using Short-Time Fourier Transform (STFT). It renders a heatmap with time on one axis, frequency on the other, and color intensity representing signal power (dB).</p>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>Window Size</strong>: STFT window in samples: 16, 32, 64, 128, 256, 512, or 1024. Larger windows = better frequency resolution but worse time resolution.</li>
-  <li><strong>Overlap</strong>: 0–99%. Higher overlap gives smoother time transitions.</li>
-  <li><strong>Frequency Max/Min</strong>: display range in Hz (0–30 Hz typical for 60 Hz data)</li>
-  <li><strong>dB Ceil/Floor</strong>: color intensity range (-160 to 0 dB)</li>
-  <li><strong>Colormap</strong>: CET-L1 (perceptually uniform) or viridis</li>
-</ul>
-
-<h2 id="usage">Use Cases</h2>
-<ul>
-  <li><strong>Suspension vibration:</strong> Plot shock deflection spectrograms to identify damper oscillation frequencies</li>
-  <li><strong>Steering oscillation:</strong> Detect driver-induced steering oscillations or corrections</li>
-  <li><strong>Engine harmonics:</strong> RPM-correlated vibration patterns in accelerometer data</li>
-  <li><strong>Noise identification:</strong> Distinguish sensor noise from real signal content for choosing filter cutoff frequencies</li>
-</ul>
-<p>The variable tree allows per-variable spectrograms with multi-select (same as 2D plots).</p>
-`
-},
-
-'plot.scatter': {
-  section: 'Plotting & Visualization',
-  tier: 'pro',
-  title: 'Scatter Panel',
-  lede: 'Plot any two or three variables against each other for correlation analysis.',
-  prev: ['plot.spectrogram', 'Spectrogram'],
-  next: ['plot.cursor', 'Cursor Sync & Legend'],
-  toc: ['overview', 'usage', 'expressions', 'segments', 'scaling'],
-  tocLabels: ['Overview', 'Usage', 'Expressions', 'Segment Selection', 'Axis Scaling'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The scatter panel sits below the dashboard in the right column. It plots variables against each other (rather than over time) to reveal correlations, clusters, and performance envelopes that aren't visible in time-series plots.</p>
-<ul>
-  <li><strong>2D mode:</strong> pyqtgraph ScatterPlotItem, fast interactive with zoom/pan</li>
-  <li><strong>3D mode:</strong> pyqtgraph OpenGL GLScatterPlotItem, rotatable point cloud</li>
-</ul>
-
-<h2 id="usage">Usage</h2>
+<p>Slipstream has one playback cursor. The car in the 3D view, the cursor line on the 2D plots, your dashes and the plugins all read the same position, so when you play, pause or jump to another lap, every view moves together. The transport is where you drive that cursor.</p>
+<!-- SHOT play.transport: bottom of the 3D Track view showing the transport row (play button, lap buttons, status line) above the playback bar, with a lap loaded and playback running at +2.0 -->
+<h2 id="find">Find the transport</h2>
+<p>The transport is the row of buttons docked at the bottom of the <strong>3D Track</strong> view, just above the playback bar. The left group controls playback, the middle group moves between laps, and the status line sits on the right. Hover any button to see its name and, where it has one, its shortcut.</p>
+<p>The keyboard shortcuts work wherever you are in the app, unless a text box, number field, dropdown or checkbox has focus. Right after you tick a lap in the Stint Folder, click the 3D view before pressing <code>Space</code>, or <code>Space</code> will untick the box instead of playing.</p>
+<h2 id="play">Play and pause</h2>
 <ol>
-  <li>Select <strong>Scatter 2D</strong> or <strong>Scatter 3D</strong> from the Type dropdown</li>
-  <li>Type variable names into the X, Y (and Z for 3D) fields; autocomplete suggests all available channels from the current dataset</li>
-  <li>Check/uncheck segments in the right sidebar to include or exclude them</li>
-  <li>Click <strong>Plot</strong></li>
+  <li>Click <strong>Play</strong> or press <code>Space</code>. Play always starts forward at normal speed (1&times;).</li>
+  <li>Click <strong>Pause</strong> or press <code>Space</code> again to stop. The cursor stays where it is.</li>
+  <li>Playback stops on its own when it reaches the end of the session (or the start, when playing in reverse), unless <strong>Loop range</strong> is on.</li>
 </ol>
-<p>Each segment renders in a distinct color from an 8-color cycle (blue, red, lime, gold, purple, turquoise, orange, pink) for easy identification.</p>
-
-<h2 id="expressions">Expressions</h2>
-<p>Variable fields accept expressions in addition to plain channel names. The safe evaluation namespace includes all NumPy functions:</p>
+<p>In the demo, a <strong>Press play</strong> hint points at the button until you start playback for the first time.</p>
+<h2 id="speed">Change speed and play in reverse</h2>
+<p><strong>Fast-forward</strong> (<code>.</code>) and <strong>Rewind</strong> (<code>,</code>) work in steps of two. What each press does depends on what playback is doing at the time:</p>
 <ul>
-  <li><strong>Bare operators:</strong> <code>Speed * 0.621371</code> (auto-detected when operators present)</li>
-  <li><strong>Backtick variables:</strong> <code>\`VelocityX\` ** 2 + \`VelocityY\` ** 2</code></li>
-  <li><strong>Functions:</strong> <code>sqrt(\`LatAccel\` ** 2 + \`LongAccel\` ** 2)</code></li>
-  <li><strong>Available:</strong> np, sqrt, sin, cos, tan, log, exp, abs, clip, min, max, pi</li>
+  <li><strong>Fast-forward while paused:</strong> starts playing forward at 2&times;.</li>
+  <li><strong>Fast-forward while playing forward:</strong> doubles the speed (2&times;, 4&times;, 8&times;).</li>
+  <li><strong>Fast-forward while playing in reverse:</strong> halves the reverse speed, so the rewind slows down.</li>
+  <li><strong>Rewind while paused:</strong> starts playing in reverse at 1&times;.</li>
+  <li><strong>Rewind while playing forward:</strong> halves the speed, for slow motion (0.5&times;, 0.25&times;).</li>
+  <li><strong>Rewind while playing in reverse:</strong> doubles the reverse speed.</li>
 </ul>
-
-<h2 id="segments">Segment Selection</h2>
-<p>The collapsible sidebar on the right of the scatter panel shows a tree of all available segments with checkboxes. All segments are checked by default. Uncheck specific segments to exclude them from the scatter plot. Useful for isolating train vs test, or comparing specific laps.</p>
-
-<h2 id="scaling">Axis Scaling</h2>
-<p>Each axis has an adjustable-increment spinbox (same control as the 3D plot toolbar). The exponent control sets the step size (10^n): low exponents for fine adjustment, high exponents for coarse.</p>
-<p>Changing a scale value instantly re-renders the plot without re-clicking Plot. This enables real-time exploration of different value ranges.</p>
-`
-},
-
-'plot.cursor': {
-  section: 'Plotting & Visualization',
-  title: 'Cursor Sync & Legend',
-  lede: 'How cursor synchronization, variable trees, and plot legends work across all panels.',
-  prev: ['plot.scatter', 'Scatter Panel'],
-  next: ['dash.elements', 'Element Types'],
-  toc: ['cursor', 'legend', 'sync-targets'],
-  tocLabels: ['Cursor Sync', 'Legend & Variable Tree', 'Sync Targets'],
-  body: `
-<h2 id="cursor">Cursor Sync</h2>
-<p>All 2D plot tabs share a synchronized vertical cursor. The cursor represents a single point in time (or lap distance). Moving it on any plot tab broadcasts the position to all connected panels.</p>
-<p>The cursor is driven by mouse movement on any 2D plot. Click and drag horizontally to scrub through the data.</p>
-
-<h2 id="legend">Legend & Variable Tree</h2>
-<p>The variable tree (left panel of each plot type) provides full control over visibility:</p>
-<ul>
-  <li><strong>Click</strong> a channel name to toggle visibility</li>
-  <li><strong>S button</strong>: solo: hide everything except this variable</li>
-  <li><strong>Δ button</strong> (2D only): delta mode: show the difference between two overlaid segments</li>
-  <li><strong>Pred/Val toggle</strong>: switch between predicted and validation values</li>
-  <li>Channels are grouped by branch: Pred, Val, Raw, Error, AuxMath</li>
-</ul>
-<p>The 2D tree uses <strong>non-exclusive multi-select</strong> (multiple variables visible at once). The 3D tree uses <strong>exclusive single-select</strong> (one color-mapping variable at a time).</p>
-
-<h2 id="sync-targets">Sync Targets</h2>
-<p>When the cursor position changes, the following panels update:</p>
-<ul>
-  <li><strong>All 2D tabs</strong>: cursor line moves to matching position</li>
-  <li><strong>Dashboard gauges</strong>: interpolate values at cursor time</li>
-  <li><strong>3D plot</strong>: car mesh moves to cursor position on track</li>
-  <li><strong>Waterfall plot</strong>: grey-out everything past cursor</li>
-</ul>
-<p>Dashboard refresh rate is configurable: 15, 30, 60, or 120 Hz (higher = smoother but more CPU).</p>
-`
-},
-
-// ─────────────────────────────────────────────────────────────────
-// 04: DASHBOARDS
-// ─────────────────────────────────────────────────────────────────
-
-'dash.elements': {
-  section: 'Dashboards',
-  tier: 'pro',
-  title: 'Element Types',
-  lede: 'All 13 dashboard elements: gauges, bars, LEDs, steering wheels, minimaps, and more.',
-  prev: ['plot.cursor', 'Cursor Sync & Legend'],
-  next: ['dash.designer', 'Dashboard Designer'],
-  toc: ['overview', 'common', 'gauges', 'displays', 'indicators', 'specialty'],
-  tocLabels: ['Overview', 'Common Properties', 'Gauges & Meters', 'Displays', 'Indicators', 'Specialty Elements'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>Dashboard elements are the visual building blocks of a dash layout. Each element binds to a telemetry variable and displays its value in real-time. Elements are registered via the <code>@register_element</code> decorator and inherit from <code>DashElement(QGraphicsItem)</code>.</p>
-
-<h2 id="common">Common Properties</h2>
-<p>All elements share these configurable properties:</p>
-<ul>
-  <li><strong>Position:</strong> x, y on the canvas</li>
-  <li><strong>Size:</strong> w, h (resizable in designer)</li>
-  <li><strong>Variable:</strong> telemetry channel name to bind to (e.g., "Speed", "Throttle")</li>
-  <li><strong>Label:</strong> display name, font size, color, font family</li>
-  <li><strong>Value display:</strong> show/hide, font size, color, font family</li>
-  <li><strong>Appearance:</strong> border color/width, background color, corner radius, opacity</li>
-  <li><strong>Depth:</strong> z-index for layering</li>
-  <li><strong>Unit conversion:</strong> signal_scale, signal_offset, conversion preset</li>
-</ul>
-
-<h2 id="gauges">Gauges & Meters</h2>
-
-<h3>Gauge (circular dial)</h3>
-<p>Classic speedometer-style circular arc gauge with needle. Default size: 130×130.</p>
-<ul>
-  <li><strong>low, high</strong>: value range (default 0–100)</li>
-  <li><strong>precision</strong>: decimal places for value text</li>
-  <li><strong>color</strong>: needle color (default green)</li>
-  <li>Arc sweep: 240° from bottom-left to bottom-right, 5 major ticks with labels</li>
-</ul>
-
-<h3>VBarMeter (vertical bar)</h3>
-<p>Vertical fill bar. Ideal for throttle, brake, clutch. Default size: 60×150.</p>
-<ul>
-  <li><strong>low, high</strong>: value range (default 0–100)</li>
-  <li><strong>bar_origin</strong>: "bottom" (fill upward) or "top" (fill downward)</li>
-  <li><strong>zero_pin</strong>: draw a reference line at zero when zero is within range</li>
-  <li><strong>color_low, color_high</strong>: gradient endpoints (HSV blend, default red→green)</li>
-</ul>
-
-<h3>HBarMeter (horizontal bar)</h3>
-<p>Same as VBarMeter but horizontal. Default size: 150×40. <code>bar_origin</code> is "left" or "right".</p>
-
-<h2 id="displays">Displays</h2>
-
-<h3>NumericDisplay</h3>
-<p>Large numeric readout with label. Default size: 120×60.</p>
-<ul>
-  <li><strong>precision</strong>: decimal places (default 2)</li>
-  <li><strong>display_format</strong>: "decimal" (standard number) or "time" (HH:MM:SS format)</li>
-</ul>
-
-<h3>ConditionalDisplay</h3>
-<p>Rule-based text + color display. Evaluates rules top-to-bottom, first match wins. Default size: 120×60.</p>
-<ul>
-  <li><strong>rules</strong>: list of {var, op, threshold, text, color}. Operators: &gt;, &lt;, &gt;=, &lt;=, ==, !=</li>
-  <li><strong>default_text, default_color</strong>: fallback if no rule matches</li>
-</ul>
-
-<h3>LEDArray</h3>
-<p>Multi-LED indicator strip for binary conditions. Default size: 120×30.</p>
-<ul>
-  <li><strong>leds</strong>: list of LED definitions: {var, op, threshold, color, blink_threshold}</li>
-  <li><strong>orientation</strong>: "horizontal" or "vertical"</li>
-  <li><strong>blink_rate</strong>: blink speed in ms (default 200) when value exceeds blink_threshold</li>
-</ul>
-
-<h2 id="indicators">Indicators</h2>
-
-<h3>SteeringWheel</h3>
-<p>Rotating steering wheel image. Default size: 160×160.</p>
-<ul>
-  <li><strong>wheel_file</strong>: path to wheel PNG/JPG image</li>
-  <li><strong>units</strong>: "Degrees" (1× scale), "Radians" (57.3× scale), or "Custom"</li>
-  <li><strong>invert</strong>: negate the angle</li>
-  <li><strong>rotation_scale</strong>: custom multiplier (when units = Custom)</li>
-  <li>Shows degree readout below the wheel</li>
-</ul>
-
-<h3>SteeringRatioGauge</h3>
-<p>Displays steering ratio deviation from baseline. Default size: 160×140.</p>
-<ul>
-  <li>Computes: <code>ratio = SteeringWheelAngle × Speed / YawRate</code></li>
-  <li><strong>speed_threshold</strong>: collects calibration samples below this speed</li>
-  <li>Auto-calibrates baseline from first 50 samples at low speed</li>
-  <li>Deviation from baseline indicates understeer (negative) or oversteer (positive)</li>
-</ul>
-
-<h3>SlipGauge</h3>
-<p>Body slip angle or understeer angle gauge. Default size: 130×130.</p>
-<ul>
-  <li><strong>mode</strong>: "body_slip" (heading vs velocity vector) or "understeer" (normalized by steering)</li>
-  <li><strong>half_range</strong>: display range in degrees (default ±15°)</li>
-  <li>Narrow arc gauge with needle</li>
-</ul>
-
-<h2 id="specialty">Specialty Elements</h2>
-
-<h3>XYPlot (G-G diagram)</h3>
-<p>Embedded mini scatter plot. Default size: 160×160.</p>
-<ul>
-  <li><strong>var_x, var_y</strong>: two variables to plot against each other</li>
-  <li><strong>scale</strong>: plot range (default ±2.0, ideal for G-force)</li>
-  <li>Shows outer circle, crosshairs, half-scale ring, and live dot position</li>
-  <li>Coordinate text readout at bottom</li>
-</ul>
-
-<h3>Minimap</h3>
-<p>2D overhead track map with position marker. Default size: 160×160.</p>
-<ul>
-  <li><strong>mode</strong>: "lapdist" (position from LapDistPct 0–1) or "latlon" (GPS coordinates)</li>
-  <li><strong>marker_size</strong>: position dot radius</li>
-  <li><strong>trace_color, trace_width</strong>: historical path line</li>
-  <li><strong>ribbon_var</strong>: optional variable for color-coded position line (e.g., speed colormap)</li>
-  <li><strong>show_corner_labels</strong>: apex/sector markers on track outline</li>
-  <li><strong>rotation</strong>: map rotation in degrees</li>
-</ul>
-
-<h3>TrackPositionGauge</h3>
-<p>Lateral track position + heading angle indicator. Default size: 130×130.</p>
-<ul>
-  <li>Shows where the car is laterally on the track (inner ↔ outer)</li>
-  <li>Shows car heading relative to track tangent</li>
-  <li><strong>angle_exaggeration</strong>: visual scaling of heading angle display</li>
-</ul>
-
-<h3>SegmentBorder</h3>
-<p>Decorative polyline or polygon for organizing layouts. Default size: 100×100.</p>
-<ul>
-  <li><strong>points</strong>: list of [x, y] coordinates (editable in designer)</li>
-  <li><strong>closed</strong>: draw as closed polygon</li>
-  <li><strong>line_color, line_width</strong>: border appearance</li>
-  <li>No data binding: purely decorative</li>
-</ul>
-`
-},
-
-'dash.designer': {
-  section: 'Dashboards',
-  tier: 'pro',
-  title: 'Dashboard Designer',
-  lede: 'The visual editor for creating, editing, and saving dash layouts.',
-  prev: ['dash.elements', 'Element Types'],
-  next: ['dash.library', 'Dash Library'],
-  toc: ['overview', 'workflow', 'controls', 'config', 'saving'],
-  tocLabels: ['Overview', 'Workflow', 'Controls', 'Element Configuration', 'Saving'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Dashboard Designer</strong> is a standalone window for visually creating instrument layouts. It provides a canvas where elements can be placed, resized, configured, and arranged freely.</p>
-
-<h2 id="workflow">Workflow</h2>
-<ol>
-  <li>Open the Dash Designer from <strong>Tools > Dash Library</strong></li>
-  <li>Drag elements from the element palette onto the canvas</li>
-  <li>Position and resize elements using drag handles</li>
-  <li>Double-click an element to open its configuration dialog</li>
-  <li>Save the layout to the dash library</li>
-</ol>
-
-<h2 id="controls">Controls</h2>
-<ul>
-  <li><strong>Click + drag:</strong> Move element</li>
-  <li><strong>Corner handles:</strong> Resize element</li>
-  <li><strong>Double-click:</strong> Open config dialog</li>
-  <li><strong>Right-click:</strong> Context menu (delete, duplicate, properties)</li>
-  <li><strong>Ctrl+Z / Ctrl+Y:</strong> Undo / Redo</li>
-  <li><strong>Delete key:</strong> Remove selected element</li>
-  <li><strong>Grid snapping:</strong> Elements snap to grid for alignment</li>
-</ul>
-
-<h2 id="config">Element Configuration</h2>
-<p>The config dialog (double-click any element) lets you set:</p>
-<ul>
-  <li><strong>Variable binding:</strong> Which telemetry channel drives this element (with autocomplete)</li>
-  <li><strong>Value range:</strong> Low/high for gauges and bars</li>
-  <li><strong>Label text:</strong> Display name shown on the element</li>
-  <li><strong>Colors:</strong> Element color, gradient endpoints, text color</li>
-  <li><strong>Precision:</strong> Decimal places for numeric display</li>
-  <li><strong>Unit conversion:</strong> Apply scale/offset or select a conversion preset</li>
-</ul>
-
-<h2 id="saving">Saving</h2>
-<p>Dashboards are saved as JSON files (DashSpec format) containing the element list with positions, sizes, types, and all parameters. Saved layouts immediately appear in the Dash Library sidebar.</p>
-`
-},
-
-'dash.library': {
-  section: 'Dashboards',
-  tier: 'pro',
-  title: 'Dash Library',
-  lede: 'Browse, load, and manage saved dashboard layouts.',
-  prev: ['dash.designer', 'Dashboard Designer'],
-  next: ['dash.live-binding', 'Live Binding'],
-  toc: ['overview', 'format'],
-  tocLabels: ['Overview', 'File Format'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The Dash Library is the sidebar in the Dashboard panel. It lists all saved dash layouts. Click a layout to load it onto the canvas. The library auto-refreshes when files are added or modified in the dash library folder.</p>
-<p>The library folder path is configurable in <strong>Preferences > File Paths</strong>.</p>
-
-<h2 id="format">File Format (DashSpec)</h2>
-<p>Each dashboard layout is stored as a JSON file:</p>
-<div class="code-block">
-  <div class="ch">
-    <div style="display:flex;align-items:center;gap:12px;"><div class="dots"><span></span><span></span><span></span></div><span>example_dash.json</span></div>
-    <button class="copy">Copy</button>
-  </div>
-<pre>{
-  <span class="s">"name"</span>: <span class="s">"Race Dashboard"</span>,
-  <span class="s">"description"</span>: <span class="s">"Standard race view"</span>,
-  <span class="s">"elements"</span>: [
-    {
-      <span class="s">"type"</span>: <span class="s">"gauge"</span>,
-      <span class="s">"x"</span>: <span class="n">20</span>, <span class="s">"y"</span>: <span class="n">20</span>,
-      <span class="s">"w"</span>: <span class="n">130</span>, <span class="s">"h"</span>: <span class="n">130</span>,
-      <span class="s">"params"</span>: {
-        <span class="s">"var"</span>: <span class="s">"Speed"</span>,
-        <span class="s">"low"</span>: <span class="n">0</span>, <span class="s">"high"</span>: <span class="n">300</span>,
-        <span class="s">"label"</span>: <span class="s">"Speed"</span>
-      }
-    }
-  ]
-}</pre>
-</div>
-<p>Layouts created in the designer use <code>to_dict()</code> for serialization and <code>from_dict()</code> for loading. This makes them easy to version control, share, or edit by hand.</p>
-`
-},
-
-'dash.live-binding': {
-  section: 'Dashboards',
-  tier: 'pro',
-  title: 'Live Binding',
-  lede: 'How dashboards connect to offline cursor data and live iRacing streams.',
-  prev: ['dash.library', 'Dash Library'],
-  next: ['tools.vehicle-lib', 'Vehicle Library'],
-  toc: ['offline', 'live', 'priority', 'refresh'],
-  tocLabels: ['Offline Mode', 'Live Mode', 'Branch Priority', 'Refresh Rate'],
-  body: `
-<h2 id="offline">Offline Mode</h2>
-<p>After running a graph (F5), the dashboard enters offline mode. All element values are driven by the 2D plot cursor position:</p>
-<ul>
-  <li>Moving the cursor interpolates values at that point in time for every bound variable</li>
-  <li>The dashboard acts as a virtual instrument panel replaying the recorded session</li>
-  <li>Scrubbing the cursor = scrubbing through the data</li>
-</ul>
-
-<h2 id="live">Live Mode</h2>
-<p>During live streaming (F6), the dashboard switches to live mode:</p>
-<ul>
-  <li>Values update directly from the iRacing telemetry stream</li>
-  <li>No cursor interaction: gauges show real-time values</li>
-  <li>Live model predictions (if running) are also available for binding</li>
-</ul>
-
-<h2 id="priority">Branch Priority</h2>
-<p>When a variable name exists in multiple data branches (e.g., "Speed" in both Raw and Pred), the dashboard resolves the value using a priority list:</p>
-<ol>
-  <li><strong>Raw</strong>: original telemetry (highest priority)</li>
-  <li><strong>Pred</strong>: model predictions</li>
-  <li><strong>Val</strong>: validation values</li>
-  <li><strong>AuxMath</strong>: computed channels</li>
-</ol>
-<p>This ensures you see the "real" value by default. To display predictions instead, bind to a variable that only exists in the Pred branch, or adjust priority in settings.</p>
-
-<h2 id="refresh">Refresh Rate</h2>
-<p>Dashboard update frequency is configurable: 15, 30, 60, or 120 Hz. Higher rates give smoother gauge animation but use more CPU. 30 Hz is a good balance for most use cases.</p>
-`
-},
-
-// ─────────────────────────────────────────────────────────────────
-// 05: LIBRARIES & TOOLS
-// ─────────────────────────────────────────────────────────────────
-
-'tools.vehicle-lib': {
-  section: 'Libraries & Tools',
-  tier: 'pro',
-  title: 'Vehicle Library',
-  lede: 'Browse vehicle models in a 3D carousel, set defaults, and configure mesh visualization.',
-  prev: ['dash.live-binding', 'Live Binding'],
-  next: ['tools.track-lib', 'Track Library'],
-  toc: ['overview', 'carousel', 'vehicle-config', 'mesh-classes', 'bundled-vehicles'],
-  tocLabels: ['Overview', '3D Carousel', 'Vehicle Configuration', 'Mesh Classes', 'Bundled Vehicles'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Vehicle Library Viewer</strong> (Tools > Libraries > Vehicle Library Viewer) is a 3D carousel interface for browsing and selecting vehicle models. Vehicles are displayed as rotating 3D meshes. The selected vehicle is used as the ghost car model in 3D plot rendering.</p>
-
-<h2 id="carousel">3D Carousel</h2>
-<ul>
-  <li>Vehicles arranged in a ring layout (adjustable spacing, ~15m default)</li>
-  <li><strong>Click</strong> a car to select it</li>
-  <li><strong>Drag</strong> to spin the carousel</li>
-  <li>Each vehicle has independent yaw tracking (smooth rotation transitions)</li>
-  <li><strong>"Set Default"</strong> button saves the current selection to <code>~/.laplabsstudio/config.json</code></li>
-</ul>
-<p>On app startup, the default vehicle is loaded automatically (fallback to first in library if missing).</p>
-
-<h2 id="vehicle-config">Vehicle Configuration</h2>
-<p>Each vehicle is defined by an OBJ mesh file + a JSON configuration:</p>
-<ul>
-  <li><strong>obj_path</strong>: path to the 3D mesh file (OBJ format with materials)</li>
-  <li><strong>length_m</strong>: vehicle length in meters (used for uniform scaling)</li>
-  <li><strong>pre_rot_x_deg, pre_rot_y_deg, pre_rot_z_deg</strong>: model-space axis corrections (default: -90° Y for standard conventions)</li>
-  <li><strong>mesh_classes</strong>: per-object visual classification (see below)</li>
-</ul>
-<p>The vehicle library folder path is configurable in Preferences. Add new vehicles by placing an OBJ + JSON pair in this folder.</p>
-
-<h2 id="mesh-classes">Mesh Classes</h2>
-<p>Each named object in the OBJ file is assigned to a visual class:</p>
-<ul>
-  <li><strong>Default</strong>: solid opaque rendering (body panels, wheels)</li>
-  <li><strong>Glass</strong>: translucent rendering with tint (windshield, windows). Auto-detected from names containing "glass" or "windshield".</li>
-  <li><strong>Hide</strong>: invisible (interior parts you don't want rendered). Auto-detected from names containing "hide".</li>
-</ul>
-<p>Override automatic classification via the <code>mesh_classes</code> dict in the vehicle JSON config.</p>
-
-<h2 id="bundled-vehicles">Bundled Vehicles</h2>
-<p>Studio ships with two generic vehicle models that cover the most common car shapes for ghost-car rendering and dashboard previews:</p>
-<ul>
-  <li><strong>2026 LLS LMP</strong>: a generic Le Mans prototype body, suited to sportscars and other closed-cockpit road racers.</li>
-  <li><strong>2026 LLS Stock</strong>: a generic stock car body, suited to NASCAR-style oval racing.</li>
-</ul>
-<p>More vehicle models will be added in future releases. Until your specific car is bundled, pick whichever of the two is the closest visual fit, or drop your own OBJ + JSON pair into the vehicle library folder.</p>
-`
-},
-
-'tools.track-lib': {
-  section: 'Libraries & Tools',
-  tier: 'pro',
-  title: 'Track Library',
-  lede: 'Record tracks, manage centerline geometry, sector boundaries, and GPS reference points.',
-  prev: ['tools.vehicle-lib', 'Vehicle Library'],
-  next: ['tools.scope-builder', 'Scope Builder'],
-  toc: ['overview', 'track-data', 'recording', 'auto-matching', 'bundled-tracks'],
-  tocLabels: ['Overview', 'Track Data', 'Track Recording', 'Auto-Matching', 'Bundled Tracks'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Track Library</strong> (Tools > Libraries > Track Library) manages track definitions used for 3D visualization, sector timing, and spatial analysis. Each track stores geometry and metadata as a JSON file.</p>
-
-<h2 id="track-data">Track Data</h2>
-<p>A track library entry contains:</p>
-<ul>
-  <li><strong>Centerline XYZ</strong>: Nx3 array of 3D coordinates around the track (used for 3D rendering and LapDistPct → position mapping)</li>
-  <li><strong>Sector boundaries</strong>: LapDistPct values where sectors begin/end (for sector timing in the dashboard)</li>
-  <li><strong>GPS origin</strong>: (lat, lon, alt) reference point for converting GPS coordinates to local XYZ</li>
-  <li><strong>Track mesh</strong>: optional barrier and curb geometry for detailed 3D rendering</li>
-  <li><strong>Track ID</strong>: unique identifier for automatic matching</li>
-</ul>
-
-<h2 id="recording">Track Recording</h2>
-<p>The track recorder captures a new track definition from a live or recorded iRacing session:</p>
-<ol>
-  <li>Drive a clean lap to establish the centerline (GPS coordinates sampled at 60 Hz)</li>
-  <li>The recorder averages multiple laps for a smooth centerline</li>
-  <li>Sector boundaries are defined by clicking positions on the resulting map</li>
-  <li>Save the track to the library folder</li>
-</ol>
-
-<h2 id="auto-matching">Auto-Matching</h2>
-<p>When the Load Data node's Track ID is set to <code>__auto__</code>, it uses session metadata (track name from IBT header) to automatically find the matching track in the library. This means you usually only need to record a track once, it's reused for all future sessions at that circuit.</p>
-
-<h2 id="bundled-tracks">Bundled Tracks</h2>
-<p>Studio ships with the following tracks pre-installed in the Track Library. Auto-Match recognizes these out of the box; you can also pick them explicitly in any Load Data node.</p>
-<ul>
-  <li><strong>Autódromo José Carlos Pace</strong> (Interlagos, Grand Prix)</li>
-  <li><strong>Bristol Motor Speedway</strong> (Single Pit Road oval)</li>
-  <li><strong>Centripetal Circuit</strong> (skidpad)</li>
-  <li><strong>Charlotte Motor Speedway</strong> (Oval)</li>
-  <li><strong>Circuit de Spa-Francorchamps</strong> (Grand Prix)</li>
-  <li><strong>Circuito de Navarra</strong> (Speed Circuit Long)</li>
-  <li><strong>Daytona International Speedway</strong> (Road Course)</li>
-  <li><strong>Dover Motor Speedway</strong></li>
-  <li><strong>Kansas Speedway</strong> (Oval)</li>
-  <li><strong>Las Vegas Motor Speedway</strong> (Oval)</li>
-  <li><strong>Lime Rock Park</strong> (Grand Prix)</li>
-  <li><strong>Michigan International Speedway</strong></li>
-  <li><strong>Mount Panorama Circuit</strong> (Bathurst)</li>
-  <li><strong>North Wilkesboro Speedway</strong> (Oval)</li>
-  <li><strong>Okayama International Circuit</strong> (Full Course)</li>
-  <li><strong>Pocono Raceway</strong> (Oval)</li>
-  <li><strong>Richmond Raceway</strong></li>
-  <li><strong>Road America</strong> (Full Course)</li>
-  <li><strong>Silverstone Circuit</strong> (Arena Grand Prix)</li>
-  <li><strong>Texas Motor Speedway</strong> (Oval)</li>
-  <li><strong>Tsukuba Circuit</strong> (2k Full)</li>
-  <li><strong>Watkins Glen</strong> (Boot)</li>
-  <li><strong>WeatherTech Raceway Laguna Seca</strong></li>
-</ul>
-<p>New tracks are added frequently, and the geometric detail of each one (barriers, curbs, elevation accuracy) will continue to improve in future releases. You can also record your own tracks at any time using the Track Recording flow above.</p>
-`
-},
-
-'tools.scope-builder': {
-  section: 'Libraries & Tools',
-  tier: 'pro',
-  title: 'Scope Builder',
-  lede: 'Classify telemetry variables as streaming or event-driven for ML feature engineering.',
-  prev: ['tools.track-lib', 'Track Library'],
-  next: ['tools.feature-wizard', 'Feature Wizard'],
-  toc: ['overview', 'concepts', 'workflow', 'type-inference', 'event-rules'],
-  tocLabels: ['Overview', 'Core Concepts', 'Workflow', 'Type Inference', 'Event-Driven Rules'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Scope Builder</strong> (Tools > Libraries > Scope Library) defines which telemetry variables are predictors and which are ground truth for ML workflows. It automatically infers whether each variable is a continuous streaming signal or a discrete event/state, then saves this classification as a scope config JSON.</p>
-
-<h2 id="concepts">Core Concepts</h2>
-<p>A <strong>Scope</strong> is a JSON configuration that classifies variables:</p>
-<ul>
-  <li><strong>Variable key</strong>: lowercase column name</li>
-  <li><strong>Display name</strong>: original column name for UI display</li>
-  <li><strong>Predictors type</strong>: "Streaming", "Event / State", or "None"</li>
-  <li><strong>Truth type</strong>: "Streaming", "Event / State", or "None"</li>
-</ul>
-<p>This classification drives how the Feature Wizard treats each variable during feature engineering.</p>
-
-<h2 id="workflow">Workflow</h2>
-<ol>
-  <li>Select a <strong>predictors source</strong> file (CSV or Parquet with raw telemetry)</li>
-  <li>Select a <strong>ground truth source</strong> file (may be the same file or a different one)</li>
-  <li>Click <strong>Load/Refresh</strong>: type inference runs automatically</li>
-  <li>Review the variable table and adjust any incorrect classifications</li>
-  <li>(Optional) Add event-driven rules for more nuanced classification</li>
-  <li>Click <strong>Save Config JSON</strong>: saves the scope for use in the Feature Wizard</li>
-</ol>
-
-<h2 id="type-inference">Type Inference</h2>
-<p>The inference algorithm is simple but effective:</p>
-<ul>
-  <li>Variables with <strong>>6 unique values</strong> → classified as <strong>Streaming</strong> (continuous signal like Speed, Throttle, temperature)</li>
-  <li>Variables with <strong>≤6 unique values</strong> → classified as <strong>Event / State</strong> (discrete signal like Gear, PitstopActive, flag status)</li>
-</ul>
-<p>Inference runs on chunks (100k rows) for memory efficiency. NaN values are treated as equal for comparison.</p>
-
-<h2 id="event-rules">Event-Driven Rules</h2>
-<p>Rules refine type classification based on trigger events:</p>
-<ul>
-  <li><strong>Trigger variable</strong>: which column to watch (e.g., "EnterExitReset")</li>
-  <li><strong>Trigger value</strong>: value that fires the rule (e.g., 0 = off-track)</li>
-  <li><strong>Type name</strong>: custom label applied to affected variables (e.g., "On Reset")</li>
-  <li><strong>Apply to</strong>: "predictors", "ground_truth", or "both"</li>
-</ul>
-<p>The scanner looks for column changes within ±1 row around trigger events to identify which variables are affected by the event.</p>
-`
-},
-
-'tools.feature-wizard': {
-  section: 'Libraries & Tools',
-  tier: 'studio',
-  title: 'Feature Wizard',
-  lede: 'Two-page wizard for defining feature and target transforms before ML training.',
-  prev: ['tools.scope-builder', 'Scope Builder'],
-  next: ['tools.extract-templates', 'Extract Templates'],
-  toc: ['overview', 'page1', 'page2', 'expressions', 'output'],
-  tocLabels: ['Overview', 'Page 1: Selection', 'Page 2: Transforms', 'Expression Syntax', 'Output Format'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Feature Wizard</strong> (Tools > Libraries > User Model Library) is a two-page wizard for defining the complete feature/target engineering pipeline. It takes a scope config (from Scope Builder) and produces a spec JSON that the Model node uses to build training features.</p>
-
-<h2 id="page1">Page 1: Variable Selection</h2>
-<p>Load a scope config and select variables:</p>
-<ul>
-  <li><strong>Predictors table</strong>: all variables classified as predictors. Checkbox to include/exclude each one.</li>
-  <li><strong>Ground truth table</strong>: all target variables. Checkbox to include/exclude.</li>
-  <li>Tables show: Variable name, Key, Predictors Type, Truth Type</li>
-  <li>"Save Selection JSON" exports your choices for re-use across sessions</li>
-</ul>
-
-<h2 id="page2">Page 2: Feature & Target Transforms</h2>
-<p>Three expression editors define how selected variables are transformed:</p>
-<ol>
-  <li><strong>Features</strong>: multi-variable transforms for predictors (input to the model)</li>
-  <li><strong>Targets</strong>: multi-variable transforms for ground truth (what the model predicts)</li>
-  <li><strong>Validation</strong> (optional): raw signals shown alongside smoothed targets for comparison</li>
-</ol>
-
-<h2 id="expressions">Expression Syntax</h2>
-<h3>Single-Variable Expressions (per row)</h3>
-<p>Comma-separated, using <code>x</code> as placeholder for the variable value:</p>
-<div class="code-block">
-  <div class="ch">
-    <div style="display:flex;align-items:center;gap:12px;"><div class="dots"><span></span><span></span><span></span></div><span>Single-var examples</span></div>
-  </div>
-<pre>x, ema(x, 0.25), cos(2*pi*x), sin(2*pi*x), abs(x)
-x, x**2, diff(x)
-</pre>
-</div>
-
-<h3>Multi-Variable Expressions (one per line)</h3>
-<p>Reference any variable with backticks. Optional naming with <code>name = expr</code>:</p>
-<div class="code-block">
-  <div class="ch">
-    <div style="display:flex;align-items:center;gap:12px;"><div class="dots"><span></span><span></span><span></span></div><span>Multi-var examples</span></div>
-  </div>
-<pre>speed_sq = \`Speed\` ** 2
-g_total = sqrt(\`LatAccel\`**2 + \`LongAccel\`**2)
-slip_ratio = (\`WheelSpeed_FL\` - \`Speed\`) / \`Speed\`
-</pre>
-</div>
-<p>Derived variables like <code>x_gps</code>, <code>y_gps</code>, <code>z_gps</code> (flat-earth GPS coordinates) are automatically available.</p>
-
-<h2 id="output">Output Format</h2>
-<p>The wizard saves a spec JSON containing: source scope path, selected variable keys, single-var expressions per variable, multi-var expression lists, and target/validation definitions. This JSON is loaded by the Model node to build the feature matrix at training time.</p>
-`
-},
-
-'tools.extract-templates': {
-  section: 'Libraries & Tools',
-  title: 'Extract Templates',
-  lede: 'Pre-defined variable extraction patterns for the Extract Set node.',
-  prev: ['tools.feature-wizard', 'Feature Wizard'],
-  next: ['tools.relay', 'Live Dash'],
-  toc: ['overview', 'builtins', 'custom'],
-  tocLabels: ['Overview', 'Built-in Templates', 'Custom Templates'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p><strong>Extract Templates</strong> define which telemetry variables the Extract Set node pulls from raw data. They're presets that save you from manually selecting channels every time.</p>
-
-<h2 id="builtins">Built-in Templates</h2>
-<ul>
-  <li><strong>dash</strong>: core dashboard variables: Speed, Throttle, Brake, Gear, RPM, SteeringWheelAngle</li>
-  <li><strong>tiretemps</strong>: tire temperature channels: inner/middle/outer per corner (12 channels total)</li>
-  <li><strong>suspension</strong>: shock deflection, ride height, spring loads per corner</li>
-  <li><strong>raw</strong>: all available columns (full extraction, no filtering)</li>
-  <li><strong>detailed</strong>: extended physics: tire compounds, setup parameters, fuel, wear</li>
-</ul>
-
-<h2 id="custom">Custom Templates</h2>
-<p>Create custom templates by specifying a list of column names. Save them as JSON files in the extract templates folder. They'll appear in the Extract Set node's template dropdown alongside the built-ins.</p>
-<p>The <strong>Extra Channels</strong> parameter in Extract Set lets you add channels on top of any template without creating a new one.</p>
-`
-},
-
-'tools.relay': {
-  section: 'Libraries & Tools',
-  title: 'Live Dash',
-  lede: 'Stream live iRacing telemetry to remote viewers at 60 Hz via WebSocket.',
-  prev: ['tools.extract-templates', 'Extract Templates'],
-  next: ['live.iracing', 'iRacing Integration'],
-  toc: ['overview', 'setup', 'standalone-sender', 'data-streamed', 'sharing', 'technical'],
-  tocLabels: ['Overview', 'Setup (Studio)', 'Standalone Sender', 'Data Streamed', 'Sharing', 'Technical Details'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p><strong>Live Dash</strong> streams live iRacing data over WebSocket to the LapLabs cloud relay server. Remote viewers watch the session in a web browser dashboard using a 6-digit room code, no software install needed on the viewer side.</p>
-<p>There are two ways to send data:</p>
-<ul>
-  <li><strong>Inside LapLabs Studio</strong>: open the Live Dash sender from the Tools menu</li>
-  <li><strong>Standalone Live Dash Sender</strong>: a free, lightweight app that broadcasts telemetry without needing Studio installed</li>
-</ul>
-
-<h2 id="setup">Setup (Studio)</h2>
-<ol>
-  <li>Open the Live Dash dialog from the <strong>Tools</strong> menu</li>
-  <li>Start iRacing and enter a session (practice, qualify, or race)</li>
-  <li>Click <strong>Connect</strong>: the sender auto-discovers an available room code and begins streaming at 60 Hz</li>
-  <li>The room code appears in the dialog header (e.g., "Room: 482917")</li>
-</ol>
-
+<p>In short: Fast-forward always pushes toward faster forward, Rewind toward faster reverse. Neither flips direction while you are playing, so Rewind during forward playback only slows you down. To play backwards, pause first, then press Rewind. Speed stays between 1/16&times; and 16&times; in either direction.</p>
 <div class="callout tip">
   <span class="ic">&#10003;</span>
   <div>
-    <span class="lbl">Initial state</span>
-    <p>When you first open the dialog, the status reads "Ready. Open iRacing and click Connect to start relaying." Nothing happens until you explicitly click Connect.</p>
+    <span class="lbl">Tip</span>
+    <p>For slow motion through a corner, press <code>Space</code> to play, then <code>,</code> once for half speed or twice for quarter speed. Press <code>Space</code> twice (pause, then play) to get back to normal speed.</p>
   </div>
 </div>
-
-<h2 id="standalone-sender">Standalone Sender</h2>
-<p>The <strong>Live Dash Sender</strong> is a free standalone app for drivers who only need to broadcast telemetry. It runs without LapLabs Studio and has no dependencies beyond iRacing.</p>
+<h2 id="laps">Jump between segments and laps</h2>
+<p>A segment is one piece of what you loaded: a whole file, or a stint, outing or lap you ticked in the Stint Folder.</p>
+<ul>
+  <li><strong>Previous segment / restart current:</strong> goes back to the start of the segment you are in. Click again at the start to go to the previous segment.</li>
+  <li><strong>Next segment:</strong> goes to the start of the next segment, or to the end of the session from the last one.</li>
+  <li><strong>Previous lap</strong> (<code>Shift</code>+<code>,</code>): restarts the current lap first, then steps back a lap on the next press.</li>
+  <li><strong>Next lap</strong> (<code>Shift</code>+<code>.</code>): goes to the start of the next lap.</li>
+  <li><strong>Prev lap, same LapDistPct</strong> (<code>Ctrl</code>+<code>,</code>) and <strong>Next lap, same LapDistPct</strong> (<code>Ctrl</code>+<code>.</code>): move to the previous or next lap but keep your position on track, so you can flip between laps at the same corner.</li>
+  <li><strong>Snap 2D plot to lap at cursor</strong> (<code>Ctrl</code>+<code>Space</code>): sets the playback range to the lap you are in, so the 2D plot shows just that lap. See <a href="docs-article.html?page=play.range">Playback bar and range</a>.</li>
+</ul>
+<p>The lap buttons do nothing when there is no lap in that direction.</p>
+<h2 id="status">Read the status line</h2>
+<p>The status line on the right shows three things, left to right:</p>
+<ul>
+  <li><strong>Speed:</strong> a pause symbol when paused. While playing, an arrow for the direction and the rate, for example +2.0 forward or -1.0 in reverse.</li>
+  <li><strong>Lap:</strong> the lap number at the cursor, or a question mark when the file has no lap channel.</li>
+  <li><strong>Position:</strong> session time (hours, minutes, seconds and tenths), or the lap distance as a percentage when the playback bar's X axis is set to LapDist %.</li>
+</ul>
+<h2 id="points">Let Speed points set the pace</h2>
+<p>You don't have to change speed by hand. Timeline Speed points set the playback speed automatically as the cursor passes them, for example slowing down for a braking zone and speeding up again on the straight. A Speed point can also hold playback for a few seconds; a countdown ring on the 3D view shows when it will resume. Speed points only act while playback is running. See <a href="docs-article.html?page=timeline.points">Timeline points</a> to add them.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=play.range">Playback bar and range</a></li>
+  <li><a href="docs-article.html?page=timeline.points">Timeline points</a></li>
+  <li><a href="docs-article.html?page=ref.shortcuts">Keyboard and mouse</a></li>
+</ul>
+`,
+},
+'play.range': {
+  section: 'Playback',
+  title: 'Playback bar and range',
+  lede: 'Scrub through the session, zoom into a window of it, and choose how that window follows the cursor.',
+  prev: ['play.transport', 'Transport and speed'],
+  next: ['ghosts.basics', 'Ego and ghosts'],
+  toc: ['scrub', 'range', 'markings', 'buttons', 'follow', 'related'],
+  tocLabels: ['Scrub through the session', 'Zoom into a range', 'Read the markings', 'Set snapping, axis and links', 'Pick a follow mode', 'Related'],
+  body: `
+<p>The playback bar sits under the transport at the bottom of the <strong>3D Track</strong> view. Its top lane is an overview of the whole session with a highlighted range window. Its bottom lane is a close-up of that window for precise scrubbing. The range window also sets what the 2D plot shows.</p>
+<!-- SHOT play.range: the playback bar zoomed to two or three laps, showing the range window with its gold edges, lap ticks with L labels, best-lap shading and time on the overview lane, and the button grid on the left -->
+<h2 id="scrub">Scrub through the session</h2>
 <ol>
-  <li>Download the installer from the <a href="products.html#relay">products page</a></li>
-  <li>Install and launch Live Dash Sender</li>
-  <li>Start iRacing, then click <strong>Connect</strong></li>
-  <li>Share your room code with your coach or teammate</li>
+  <li>Drag along the bottom lane to move the cursor through the range window. The more you zoom in, the finer the control.</li>
+  <li>To move a long way, click the top lane outside the range window, or grab the red-orange cursor line there and drag it.</li>
 </ol>
-<p>The standalone sender is identical to the one built into Studio: same data, same 60 Hz rate, same room codes.</p>
-
-<h2 id="data-streamed">Data Streamed</h2>
-<p>The sender transmits JSON packets at 60 Hz containing:</p>
+<p>Every view follows while you drag. If the bar feels cramped, drag the divider above it upward; the lanes grow with it.</p>
+<h2 id="range">Zoom into a range</h2>
 <ul>
-  <li><strong>Speed</strong>: converted from m/s to MPH</li>
-  <li><strong>LapDistPct</strong>: lap progress fraction (0–1)</li>
-  <li><strong>Throttle, Brake, Clutch</strong>: normalized 0–1</li>
-  <li><strong>Gear</strong>: integer</li>
-  <li><strong>SteeringWheelAngle</strong>: radians</li>
-  <li><strong>RPM</strong>: engine speed</li>
-  <li><strong>OilTemp, WaterTemp</strong>: °C</li>
-  <li><strong>FuelLevelPct</strong>: fuel remaining (0–1)</li>
+  <li><strong>Zoom:</strong> scroll the mouse wheel over the bar. Scroll up to zoom in, down to zoom out. The zoom is centered on the cursor, so it stays put on screen.</li>
+  <li><strong>Move the window:</strong> on the top lane, drag inside the range window to slide it along the session.</li>
+  <li><strong>Resize:</strong> drag either gold edge of the window.</li>
+  <li><strong>One lap:</strong> press <code>Ctrl</code>+<code>Space</code> to fit the window to the lap at the cursor.</li>
 </ul>
-
-<h2 id="sharing">Sharing</h2>
+<p>While the 2D plot is linked (the default), zooming or panning it moves the range window, and double-clicking it shows the whole session again.</p>
+<h2 id="markings">Read the markings</h2>
 <ul>
-  <li><strong>Copy button:</strong> Copies the room code to clipboard (next to the room label)</li>
-  <li><strong>Open Dashboard:</strong> Launches browser at <code>laplabs.net/dashboard?room=XXXXXX</code></li>
-  <li>Share the room code with anyone: they open the same URL to view</li>
-  <li>Multiple viewers can connect simultaneously</li>
+  <li><strong>Green ticks with L numbers:</strong> the start of each lap. A lap that has a ghost is tinted in that ghost's color.</li>
+  <li><strong>Light vertical lines:</strong> where each segment (each file, stint, outing or lap you loaded) begins.</li>
+  <li><strong>Dashed magenta lines:</strong> sector boundaries, on tracks that have sectors.</li>
+  <li><strong>Light blue shading, a diamond and a time:</strong> on the top lane, each segment's best complete lap and its time.</li>
+  <li><strong>Small colored ticks on the bottom lane:</strong> <a href="docs-article.html?page=timeline.points">timeline points</a>, colored by type.</li>
+  <li><strong>Teal dashed line with a diamond:</strong> the ghost sync point, once you set one.</li>
+  <li><strong>Colored strip between the lanes:</strong> with two or more files loaded, shows which file is where. In sync mode on the Session Time axis, each file gets its own row with the driver's initials. The file you are following is brighter; click a row to follow that file. Hover to see the file's name.</li>
 </ul>
-
-<h2 id="technical">Technical Details</h2>
+<h2 id="buttons">Set snapping, axis and links</h2>
+<p>The small buttons on the left of the bar come in two columns; hover one for its name. The left column holds four toggles:</p>
 <ul>
-  <li><strong>Protocol:</strong> WebSocket (wss://)</li>
-  <li><strong>Room discovery:</strong> Probes 5 random 6-digit codes in parallel to find an empty room</li>
-  <li><strong>Reconnection:</strong> Exponential backoff (1s → 10s max) on disconnection</li>
-  <li><strong>Frame size:</strong> Max 8 MB per WebSocket message</li>
-  <li><strong>Latency:</strong> Typically < 100ms end-to-end (sender → viewer)</li>
+  <li><strong>Snap range edges to detents</strong> (magnet): click to cycle off, lap and sector. When on, the window's edges and the cursor snap to nearby lap lines (or sector and lap lines) as you drag slowly; a quick drag glides past. The button lights blue for lap, magenta for sector.</li>
+  <li><strong>Toggle X-axis: LapDist % vs Session Time</strong>: changes the bar's own axis. LapDist % gives every lap the same width; Session Time spaces it by elapsed time, so slow laps and stops take more room. The status line's position readout follows it. It needs a LapDistPct channel and doesn't change the 2D plot's axis.</li>
+  <li><strong>Timeline: stack (stints end-to-end) vs sync (overlay on shared clock)</strong>: with several files loaded, Stack plays them one after another, and Sync places files recorded in the same session on one clock so they play side by side. See <a href="docs-article.html?page=ghosts.sync">Comparing outings and stints</a>.</li>
+  <li><strong>Link 2D &harr; 3D range + cursor</strong>: on by default, so the 2D plot shows exactly the range window. Turn it off to zoom the 2D plot on its own. The cursor stays shared either way, and any extra 2D plots you add stay linked.</li>
 </ul>
-`
-},
-
-// ─────────────────────────────────────────────────────────────────
-// 06: LIVE FEATURES
-// ─────────────────────────────────────────────────────────────────
-
-'live.iracing': {
-  section: 'Live Features',
-  tier: 'pro',
-  title: 'iRacing Integration',
-  lede: 'How LapLabs connects to iRacing via shared memory for zero-latency telemetry.',
-  prev: ['tools.relay', 'Live Dash'],
-  next: ['live.data-node', 'Live Data Node'],
-  toc: ['overview', 'connection', 'channels', 'requirements'],
-  tocLabels: ['Overview', 'Connection Method', 'Available Channels', 'Requirements'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>LapLabs Studio connects to iRacing using the <strong>iRSDK</strong> (iRacing SDK) Python bindings. Data is read directly from iRacing's shared memory at 60 Hz, no file I/O, no UDP configuration, no network latency. This provides the fastest possible access to live telemetry.</p>
-
-<h2 id="connection">Connection Method</h2>
+<h2 id="follow">Pick a follow mode</h2>
+<p>The right column holds four follow modes. Only one can be on at a time; it lights purple, and clicking it again turns it off. A linked 2D plot scrolls along with the window.</p>
 <ul>
-  <li><strong>Transport:</strong> Windows shared memory (memory-mapped file)</li>
-  <li><strong>Polling rate:</strong> ~1000 Hz internal polling (deduplicates on SimTick changes)</li>
-  <li><strong>Output rate:</strong> 60 Hz (one sample per sim tick advance)</li>
-  <li><strong>Latency:</strong> < 1ms from sim to LapLabs</li>
+  <li><strong>Jump-cut at range edge:</strong> when the cursor runs past the window's edge, the window jumps a whole window ahead (or back). Good for watching a long run page by page.</li>
+  <li><strong>Loop range:</strong> playback wraps from the end of the window back to its start. Good for repeating one corner or one lap.</li>
+  <li><strong>Auto-center range on cursor:</strong> the window slides to keep the cursor in the middle. Good for a smooth scrolling view.</li>
+  <li><strong>Lock cursor at fixed offset within range:</strong> the window slides to keep the cursor where it was when you turned lock on. Good for keeping the cursor near the left edge to see what's coming.</li>
 </ul>
-<p>The Live Data node's internal worker (<code>IRSDKWorker</code>) runs in a dedicated QThread. It polls iRSDK at high frequency and only emits a new sample when the simulation tick advances, ensuring clean 60 Hz output.</p>
-
-<h2 id="channels">Available Channels</h2>
-<p>iRacing exposes all session variables via iRSDK. Common channels include:</p>
-<ul>
-  <li><strong>Motion:</strong> Speed, VelocityX/Y/Z, Yaw, Pitch, Roll, LatAccel, LongAccel, VertAccel</li>
-  <li><strong>Inputs:</strong> Throttle, Brake, Clutch, SteeringWheelAngle, Gear</li>
-  <li><strong>Engine:</strong> RPM, OilTemp, WaterTemp, FuelLevel, FuelLevelPct, FuelUsePerHour</li>
-  <li><strong>Tires:</strong> LF/RF/LR/RR pressure, temp (inner/middle/outer), wear, speed</li>
-  <li><strong>Suspension:</strong> LF/RF/LR/RR shock deflection, ride height</li>
-  <li><strong>Session:</strong> SessionTime, LapDistPct, Lap, LapLastLapTime, PlayerTrackSurface</li>
-</ul>
-<p>The full channel list is determined dynamically from the iRSDK header at session start.</p>
-
-<h2 id="requirements">Requirements</h2>
-<ul>
-  <li>iRacing must be running on the <strong>same machine</strong> as LapLabs (shared memory doesn't cross network boundaries)</li>
-  <li>The <code>pyirsdk</code> Python package must be installed (bundled in the standalone build)</li>
-  <li>iRacing must be in an active session: garage/menu screens don't produce telemetry</li>
-  <li>LapLabs and iRacing must run as the same user (or both elevated)</li>
-</ul>
-`
-},
-
-'live.data-node': {
-  section: 'Live Features',
-  tier: 'pro',
-  title: 'Live Data Node',
-  lede: 'The source node for real-time iRacing telemetry in live graphs.',
-  prev: ['live.iracing', 'iRacing Integration'],
-  next: ['live.recorder', 'Live Recorder'],
-  toc: ['overview', 'params', 'stream-output', 'usage'],
-  tocLabels: ['Overview', 'Parameters', 'Stream Output', 'Usage'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Live Data</strong> node (LiveIRSDKNode) is the entry point for live telemetry. It connects to iRacing via iRSDK and emits a 60 Hz sample stream to downstream live nodes.</p>
-<ul>
-  <li><strong>Category:</strong> Live</li>
-  <li><strong>Input:</strong> None</li>
-  <li><strong>Output:</strong> <code>LiveOut</code> (stream type)</li>
-</ul>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>Vars</strong>: comma-separated list of iRacing channel names to extract. Leave blank to capture all available channels. Example: <code>Speed,Throttle,Brake,SteeringWheelAngle,RPM</code></li>
-</ul>
-<p>Filtering variables reduces memory usage and speeds up downstream processing when you only need specific channels.</p>
-
-<h2 id="stream-output">Stream Output</h2>
-<p>Each emitted sample is a tuple: <code>(session_time, data_dict, tick)</code></p>
-<ul>
-  <li><strong>session_time</strong>: float, seconds since session start</li>
-  <li><strong>data_dict</strong>: dict of {channel_name: value} for all captured vars</li>
-  <li><strong>tick</strong>: integer sim tick counter (monotonically increasing at 60 Hz)</li>
-</ul>
-
-<h2 id="usage">Usage</h2>
-<p>Place a Live Data node at the start of your live graph. Connect it to downstream nodes:</p>
-<ul>
-  <li><strong>Live Data → Live Model → Live Output</strong>: real-time inference pipeline</li>
-  <li><strong>Live Data → Live Recorder</strong>: record session to Parquet</li>
-  <li><strong>Live Data → Live Pass-Through → Live Output</strong>: view raw data without a model</li>
-</ul>
-<p>Press <strong>F6</strong> to start the live graph. The node waits for iRacing, then begins streaming automatically. Press <strong>F12</strong> to stop.</p>
-`
-},
-
-'live.recorder': {
-  section: 'Live Features',
-  tier: 'pro',
-  title: 'Live Recorder',
-  lede: 'Capture live sessions to Parquet files for later offline analysis.',
-  prev: ['live.data-node', 'Live Data Node'],
-  next: ['live.model', 'Live Model & Inference'],
-  toc: ['overview', 'params', 'output-format', 'gap-filling'],
-  tocLabels: ['Overview', 'Parameters', 'Output Format', 'Gap Filling'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Live Recorder</strong> node buffers streaming telemetry in memory and writes a Parquet file when the session ends. The saved file is directly compatible with the Load Data node for offline analysis.</p>
-<ul>
-  <li><strong>Category:</strong> Live</li>
-  <li><strong>Input:</strong> <code>LiveIn</code> (stream type)</li>
-  <li><strong>Output:</strong> None (writes file to disk)</li>
-</ul>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>Output Directory</strong>: where to save recordings (default: <code>~/.laplabsstudio/LiveRecordings</code>)</li>
-  <li><strong>File Prefix</strong>: filename prefix (default: "live_recording"). Output: <code>{prefix}_{YYYYMMDD_HHMMSS}.parquet</code></li>
-  <li><strong>Compression</strong>: Parquet compression codec: zstd (default), snappy, gzip, brotli, or none</li>
-  <li><strong>Dtype</strong>: value precision: float32 (smaller files) or float64 (full precision)</li>
-  <li><strong>Include Tick</strong>: store the Tick column (default: yes)</li>
-  <li><strong>Include Session Time</strong>: store the SessionTime column (default: yes)</li>
-  <li><strong>Record Keys</strong>: allowlist of channels to record (blank = all)</li>
-  <li><strong>Exclude Keys</strong>: blocklist of channels to skip</li>
-  <li><strong>Fill Missing Ticks</strong>: interpolate gaps when ticks are skipped (default: yes)</li>
-  <li><strong>Auto Arm</strong>: start recording automatically on first sample</li>
-</ul>
-
-<h2 id="output-format">Output Format</h2>
-<p>A single Parquet file with columns: SessionTime, Tick, and all recorded telemetry channels. Numeric columns are coerced to the selected dtype. This file loads directly in the Load Data node as if it were a converted IBT.</p>
-
-<h2 id="gap-filling">Gap Filling</h2>
-<p>If the sim tick jumps by more than 1 (e.g., momentary freeze or alt-tab), the recorder can interpolate the missing samples. This produces smooth, gap-free recordings that downstream analysis won't choke on. Disable if you want exact raw samples only.</p>
-`
-},
-
-'live.model': {
-  section: 'Live Features',
-  tier: 'studio',
-  title: 'Live Model & Inference',
-  lede: 'Run trained neural networks on live telemetry with rolling buffer and denormalization.',
-  prev: ['live.recorder', 'Live Recorder'],
-  next: ['live.filter', 'Live Filter'],
-  toc: ['overview', 'params', 'pipeline', 'workflow', 'output'],
-  tocLabels: ['Overview', 'Parameters', 'Real-Time Pipeline', 'Setup Workflow', 'Output Format'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Live Model</strong> node loads a saved model bundle (.pt file) and runs inference on each incoming telemetry sample in real-time. It supports all model architectures: Linear, MLP, GRU, TCN, and Transformer.</p>
-<ul>
-  <li><strong>Category:</strong> Live</li>
-  <li><strong>Input:</strong> <code>LiveIn</code> (stream type)</li>
-  <li><strong>Output:</strong> <code>LiveOut</code> (model_stream type)</li>
-</ul>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>Model File</strong>: path to saved model bundle (.pt). Contains weights, architecture params, normalization stats.</li>
-  <li><strong>Device Mode</strong>: "auto" (use GPU if available), "cpu", or "cuda"</li>
-  <li><strong>Buffer Samples</strong>: rolling buffer size (default 60 ≈ 1 second at 60 Hz). Needed for sequence models (GRU/TCN/Transformer) that require history.</li>
-  <li><strong>Aux Cols</strong>: comma-separated auxiliary columns to pass through to downstream nodes</li>
-</ul>
-
-<h2 id="pipeline">Real-Time Pipeline</h2>
-<p>For each new incoming sample:</p>
-<ol>
-  <li>Raw iRSDK values are buffered in a rolling FIFO deque</li>
-  <li>Feature vector X is built using the same feature construction as offline training</li>
-  <li>For sequence models: X history is maintained (length = hist_len)</li>
-  <li>Inference runs: linear matrix multiply or torch forward pass</li>
-  <li>Predictions are denormalized using saved y_mean/y_std from the model bundle</li>
-  <li>Output is emitted with raw values, features, and predictions</li>
-</ol>
-<p><strong>Backpressure:</strong> If feature-building or inference lags behind the 60 Hz input, intermediate ticks are dropped (latest-only mode). This ensures the display always shows the most recent prediction.</p>
-
-<h2 id="workflow">Setup Workflow</h2>
-<ol>
-  <li>Train a model offline (Model node) and save to the registry</li>
-  <li>Add a Live Model node to your live graph</li>
-  <li>Select the saved model file</li>
-  <li>Connect: <strong>Live Data → Live Model → Live Output</strong></li>
-  <li>Press F6 to start live inference</li>
-</ol>
-
-<h2 id="output">Output Format</h2>
-<p>Each output sample (model_stream) contains:</p>
-<ul>
-  <li><code>raw</code>: dict of raw iRSDK values at this tick</li>
-  <li><code>X</code>: feature vector (NumPy array)</li>
-  <li><code>pred</code>: prediction vector (NumPy array, denormalized)</li>
-  <li><code>mode</code>: model mode string (e.g., "dpos")</li>
-  <li><code>Y_names</code>: list of prediction output names</li>
-</ul>
-`
-},
-
-'live.filter': {
-  section: 'Live Features',
-  tier: 'pro',
-  title: 'Live Filter',
-  lede: 'Apply real-time incremental smoothing to predictions or raw channels.',
-  prev: ['live.model', 'Live Model & Inference'],
-  next: ['live.auxmath', 'Live Aux Math'],
-  toc: ['overview', 'methods', 'state', 'recommendations'],
-  tocLabels: ['Overview', 'Methods', 'Stateful Processing', 'Recommendations'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Live Filter</strong> node applies incremental smoothing filters to live model_stream data. Unlike the offline Filter node which processes entire arrays, this node processes one sample at a time, maintaining internal state across ticks.</p>
-<ul>
-  <li><strong>Category:</strong> Live</li>
-  <li><strong>Input:</strong> <code>LiveIn</code> (model_stream)</li>
-  <li><strong>Output:</strong> <code>LiveOut</code> (model_stream, filtered)</li>
-</ul>
-
-<h2 id="methods">Methods</h2>
-<p>Same methods as the offline Filter node, adapted for sample-by-sample operation:</p>
-<ul>
-  <li><strong>EMA</strong>: exponential moving average. Params: tau (time constant), dt (1/60)</li>
-  <li><strong>One Euro</strong>: adaptive cutoff. Params: min_cutoff, beta, d_cutoff</li>
-  <li><strong>Butterworth</strong>: IIR low-pass. Params: order, cutoff_hz</li>
-  <li><strong>MA</strong>: moving average (keeps internal buffer of last N samples)</li>
-  <li><strong>Median</strong>: median of rolling window</li>
-  <li><strong>Integrate</strong>: running cumulative trapezoidal sum</li>
-  <li><strong>Differentiate</strong>: finite difference from previous sample</li>
-</ul>
-
-<h2 id="state">Stateful Processing</h2>
-<p>The Live Filter maintains a per-channel state dictionary (<code>_states</code>). This stores:</p>
-<ul>
-  <li>Previous output value (for EMA, Butterworth)</li>
-  <li>Rolling buffer (for MA, Median)</li>
-  <li>Derivative estimate (for One Euro)</li>
-  <li>Cumulative sum (for Integrate)</li>
-</ul>
-<p>State resets when the live graph restarts (F6). Backpressure handling: drops intermediate ticks to stay real-time.</p>
-
-<h2 id="recommendations">Recommendations</h2>
-<ul>
-  <li><strong>For minimal latency:</strong> Use EMA (tau = 0.05–0.2s) or One Euro (min_cutoff = 1–5 Hz, beta = 0.01)</li>
-  <li><strong>For spike removal:</strong> Use Median with small window (3–5 samples)</li>
-  <li><strong>Avoid centered filters</strong> in live mode, they introduce delay equal to half the window</li>
-  <li><strong>Butterworth</strong> is good for sharp cutoff needs but adds phase lag proportional to order</li>
-</ul>
-`
-},
-
-'live.auxmath': {
-  section: 'Live Features',
-  tier: 'pro',
-  title: 'Live Aux Math',
-  lede: 'Point-wise custom math expressions on live model_stream data.',
-  prev: ['live.filter', 'Live Filter'],
-  next: ['live.output', 'Live Output'],
-  toc: ['overview', 'syntax', 'variables', 'limitations'],
-  tocLabels: ['Overview', 'Syntax', 'Available Variables', 'Limitations'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Live Aux Math</strong> node applies custom point-wise math expressions to each incoming model_stream sample. Use it to compute derived channels in real-time (e.g., total G-force, slip angles, custom indicators).</p>
-<ul>
-  <li><strong>Category:</strong> Live</li>
-  <li><strong>Input:</strong> <code>LiveIn</code> (model_stream)</li>
-  <li><strong>Output:</strong> <code>LiveOut</code> (model_stream with added aux channels)</li>
-</ul>
-
-<h2 id="syntax">Syntax</h2>
-<p>Same backtick expression syntax as the offline Aux Math node:</p>
-<div class="code-block">
-  <div class="ch">
-    <div style="display:flex;align-items:center;gap:12px;"><div class="dots"><span></span><span></span><span></span></div><span>Live Aux Math</span></div>
-    <button class="copy">Copy</button>
-  </div>
-<pre><span class="c"># Compute total G-force from raw iRSDK channels</span>
-<span class="k">@total_g</span> = sqrt(<span class="s">\`LatAccel\`</span>**2 + <span class="s">\`LongAccel\`</span>**2)
-
-<span class="c"># Speed in km/h (iRSDK gives m/s)</span>
-<span class="k">@speed_kph</span> = <span class="s">\`Speed\`</span> * <span class="n">3.6</span>
-
-<span class="c"># Use model predictions</span>
-<span class="k">@pred_error</span> = pred[<span class="n">0</span>] - <span class="s">\`Speed\`</span>
-</pre>
-</div>
-
-<h2 id="variables">Available Variables</h2>
-<p>In addition to raw iRSDK channels (via backticks), live expressions can access:</p>
-<ul>
-  <li><code>pred</code>: model prediction vector (NumPy array). Access elements with <code>pred[0]</code>, <code>pred[1]</code>, etc.</li>
-  <li><code>X</code>: feature vector (NumPy array)</li>
-  <li><code>t</code>: current session time (float, seconds)</li>
-  <li>NumPy functions: sqrt, sin, cos, abs, clip, min, max, etc.</li>
-</ul>
-
-<h2 id="limitations">Limitations</h2>
-<ul>
-  <li><strong>Point-wise only</strong>: no history access. Rolling helpers (rolling_mean, rolling_max) are NOT available in live mode. Use the Live Filter node for smoothing.</li>
-  <li><strong>No inter-sample state</strong>: each expression evaluates independently per tick</li>
-  <li>Expressions are compiled once at graph start for performance</li>
-</ul>
-`
-},
-
-'live.output': {
-  section: 'Live Features',
-  tier: 'pro',
-  title: 'Live Output',
-  lede: 'Real-time rolling plots of live telemetry and model predictions.',
-  prev: ['live.auxmath', 'Live Aux Math'],
-  next: ['live.relay', 'Live Dash Viewer'],
-  toc: ['overview', 'params', 'display'],
-  tocLabels: ['Overview', 'Parameters', 'Display'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Live Output</strong> node displays live data as rolling time-series plots. A sliding window shows the most recent N seconds, scrolling continuously. Both raw telemetry and model predictions are displayed simultaneously.</p>
-<ul>
-  <li><strong>Category:</strong> Live</li>
-  <li><strong>Input:</strong> <code>LiveIn</code> (model_stream)</li>
-  <li><strong>Output:</strong> None (creates plot window)</li>
-</ul>
-
-<h2 id="params">Parameters</h2>
-<ul>
-  <li><strong>Window Seconds</strong>: rolling window duration (default 10 seconds, showing ~600 samples)</li>
-  <li><strong>Redraw Hz</strong>: plot refresh rate (default 20 Hz). Higher = smoother but more CPU.</li>
-  <li><strong>Auto Open</strong>: automatically open the plot window when F6 is pressed</li>
-</ul>
-
-<h2 id="display">Display</h2>
-<p>The live plot window shows:</p>
-<ul>
-  <li><strong>Raw channels</strong>: direct iRSDK values as colored lines</li>
-  <li><strong>Predictions</strong>: model output overlaid (if using Live Model upstream)</li>
-  <li><strong>Aux channels</strong>: computed values from Live Aux Math</li>
-</ul>
-<p>The dashboard panel also updates in real-time during live mode, displaying gauge values from the latest sample.</p>
-`
-},
-
-'live.relay': {
-  section: 'Live Features',
-  title: 'Live Dash Viewer',
-  lede: 'Watch a live iRacing session remotely in your browser via Live Dash.',
-  prev: ['live.output', 'Live Output'],
-  next: ['guide.corner-modes', 'Corner Modes: Find What to Investigate'],
-  toc: ['overview', 'viewer-features'],
-  tocLabels: ['Overview', 'Web Viewer Features'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The Live Dash viewer lets anyone with a room code watch a live iRacing session in a web browser. No software install needed. The driver runs the <a href="docs-article.html?page=tools.relay">Live Dash sender</a> (built into Studio or the free standalone app) to broadcast telemetry.</p>
-
-<h2 id="viewer-features">Web Viewer Features</h2>
-<p>The web dashboard at <code>laplabs.net/dashboard?room=XXXXXX</code> displays:</p>
-<ul>
-  <li><strong>Real-time charts:</strong> Speed, throttle, brake traces scrolling at 60 Hz</li>
-  <li><strong>Gauges:</strong> Circular speed gauge, RPM gauge, gear indicator</li>
-  <li><strong>Steering wheel:</strong> Animated rotation matching driver input</li>
-  <li><strong>Pedal bars:</strong> Throttle and brake position bars</li>
-  <li><strong>Engine temps:</strong> Oil and water temperature readouts</li>
-  <li><strong>Fuel level:</strong> Remaining fuel percentage</li>
-</ul>
-<p>Multiple viewers can connect to the same room simultaneously. The viewer auto-reconnects if the connection drops.</p>
-`
-},
-
-// ─────────────────────────────────────────────────────────────────
-// 07: WORKFLOWS & GUIDES
-// ─────────────────────────────────────────────────────────────────
-
-'guide.corner-modes': {
-  section: 'Workflows & Guides',
-  tier: 'pro',
-  title: 'Corner Modes: Find What to Investigate',
-  lede: "The atlas for telemetry analysis: cluster a corner's passes into driving modes, see what makes each mode different, then drill in with the tools you already know.",
-  prev: ['live.relay', 'Live Dash Viewer'],
-  next: ['guide.training', 'Building a Training Graph'],
-  toc: [
-    'atlas',
-    'open-and-pick',
-    'reading-cards',
-    'drill-view',
-    'canonical-workflow',
-    'going-deeper',
-  ],
-  tocLabels: [
-    'The Atlas Concept',
-    'Open a Set, Pick a Corner',
-    'Reading the Mode Cards',
-    'The Drill-In View',
-    'The Canonical Workflow',
-    'Going Deeper',
-  ],
-  body: `
-<h2 id="atlas">The Atlas Concept</h2>
-<p>The <strong>Corner Modes</strong> panel (right column, below the Scatter panel) clusters every flying pass through a chosen corner into a handful of distinct driving <em>modes</em>: coherent groups of laps that were driven the same way. Each mode is a card with a color, a sector-time delta vs the population average, a list of post-hoc tags ("Lower min Speed", "Later release Brake", …) and a per-stint distribution bar.</p>
-<p>It's deliberately a <strong>pointer, not a source of truth</strong>. The panel tells you <em>where to look</em>; the actual investigation happens in the tools you already use, synced 2D and 3D plots, the dashboard, the scatter panel. Think of it as the atlas for your session: it shows you the territory and which regions are worth visiting, then you grab the field tools to dig in.</p>
+<p>Slipstream remembers all of these buttons in your browser.</p>
 <div class="callout note">
   <span class="ic">i</span>
   <div>
-    <span class="lbl">Why an atlas</span>
-    <p>A session with 80 laps doesn't have 80 different driving styles. It has maybe 3–5 distinct ones, repeated. Pulling them apart turns a wall of nearly-identical traces into "here are your three approaches, here's the delta between them, here's the lap that exemplifies each." That's where coaching and setup conversations actually start.</p>
+    <span class="lbl">Note</span>
+    <p>Right-click the bottom lane for <strong>Set ghost sync point here</strong> and <strong>Reset sync point (lap start)</strong>, which choose the track position where ghosts are lined up in time. See <a href="docs-article.html?page=ghosts.sync">Comparing outings and stints</a>.</p>
   </div>
 </div>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=play.transport">Transport and speed</a></li>
+  <li><a href="docs-article.html?page=ghosts.sync">Comparing outings and stints</a></li>
+  <li><a href="docs-article.html?page=plots.navigate">Navigating plots</a></li>
+</ul>
+`,
+},
 
-<h2 id="open-and-pick">Open a Set, Pick a Corner</h2>
+// ─────────────────────────────────────────────────────────────────
+// 04: GHOSTS
+// ─────────────────────────────────────────────────────────────────
+
+'ghosts.basics': {
+  section: 'Ghosts',
+  title: 'Ego and ghosts',
+  lede: 'Replay other laps next to the one you are watching, so you can see exactly where time is won and lost.',
+  prev: ['play.range', 'Playback bar and range'],
+  next: ['ghosts.sync', 'Comparing outings and stints'],
+  toc: ['playlist', 'fastest', 'rows', 'options', 'colors', 'related'],
+  tocLabels: ['Add ghosts from the Playlist', 'Add your fastest laps', 'Manage your ghosts', 'Choose what ghosts show', 'Pick ghost colors', 'Related'],
+  body: `
+<p>The ego is the lap you're watching: whichever lap the playback cursor sits in as you play or scrub. Ghosts are other laps replayed alongside it, drawn as see-through cars in the 3D view. Ghosts reach beyond the 3D view too: the 2D plots can overlay their traces and gap curves, the Timing table colors ghosted laps, a dash can follow a ghost, and Corner Analysis can add ghosts for you.</p>
+<!-- SHOT ghosts.basics: 3D view with the ego car and three translucent ghost cars with floating labels, the position table in the top-left corner, and the sidebar showing the Playlist with ghosted laps tinted and the Ghosts panel listing three ghost rows -->
+<h2 id="playlist">Add ghosts from the Playlist</h2>
+<p>The <strong>Playlist</strong> panel in the 3D view's sidebar lists every stint and its complete laps.</p>
 <ol>
-  <li><strong>Run a workflow first.</strong> Corner Modes works off the most-recent run in the Run Store, load IBT data, execute the graph, then look right. Multi-segment sets (multiple stints in one set) are fully supported.</li>
-  <li><strong>Pick a corner</strong> from the dropdown at the top. Corners are auto-detected from the dash's track outline; a re-detection runs whenever a new track is loaded. You can also add <strong>★ Custom</strong> entries with arbitrary LapDistPct bounds, useful for complex chicanes, or for slicing a long section like Maggotts–Becketts.</li>
-  <li>Analysis fires automatically on every change. There's no Analyze button. Change the corner, K, dim, channels, label rules, or the source run and the cards re-cluster immediately. Results are disk-cached per (track, corner, settings).</li>
+  <li>Click <strong>Expand</strong> (the ▸ arrow) on a stint to list its laps. The fastest one is marked ★.</li>
+  <li>Click the small circle at the start of a lap row (<strong>Add as ghost</strong>). The circle fills with the ghost's color and the lap name turns the same color.</li>
+  <li>Click the circle again (<strong>Remove ghost</strong>) to take that ghost away.</li>
 </ol>
-<p>The <strong>Options ▾</strong> menu groups the rest of the controls:</p>
-<ul>
-  <li><strong>K</strong>: target number of modes. Higher = finer splits; lower = broader groups. The actual K may be lower than requested when there's not enough data.</li>
-  <li><strong>Dim</strong>: PCA components used for clustering (default 8). Mostly leave alone unless modes look unstable on small data.</li>
-  <li><strong>Channels…</strong>: which telemetry channels feed the clustering. Speed / Brake / Throttle / Steering by default; you can add any Raw or AuxMath channel.</li>
-  <li><strong>Labels…</strong>: edit the auto-tag rule set. Each rule reduces a channel to a scalar (mean, peak, min, first-cross, last-cross, range, etc.); modes whose scalar lands far from the population mean get tagged.</li>
-  <li><strong>Fit-score matrix…</strong> / <strong>Scalar correlation matrix…</strong>: see "Going Deeper" below.</li>
-  <li><strong>+ all (replace ghosts)</strong>: clears existing ghosts and adds the top-N most-representative pass of each mode as a ghost. The N per mode comes from each card's spinbox.</li>
-  <li><strong>Sync to corner</strong>: sets the ghost sync point + playback range to the current corner's span and seeks the playhead there. Pairs with the next bullet.</li>
-  <li><strong>Auto</strong>: when checked, every successful analysis automatically runs "+ all" and "Sync". Lets you scrub through corners and watch the ghosts repaint themselves without clicking anything.</li>
-</ul>
-
-<h2 id="reading-cards">Reading the Mode Cards</h2>
-<p>Each card is a one-glance summary. Top row:</p>
-<ul>
-  <li><strong>Color swatch</strong>: click to recolor. The color carries through to every ghost added from this mode, so ghosts from one mode visually group in playback.</li>
-  <li><strong>Mode N</strong> + percent + <strong>Δs</strong>: share of the corner's passes in this mode, plus the average corner-time delta vs the population. Green = faster, orange = slower.</li>
-  <li><strong>spinbox + ＋</strong>: add the top-N most-representative passes of this mode as ghosts.</li>
-  <li><strong>▶</strong>: play the canonical (most-representative) pass.</li>
-  <li><strong>✕</strong>: exclude every pass in this mode and re-cluster the rest. Use to weed out in/out laps, spins, and outlier groups; reset via the status-line link.</li>
-  <li><strong>›</strong>: open the drill-in view (next section).</li>
-</ul>
-<p>Stats line:</p>
-<ul>
-  <li><strong>σ</strong>: within-mode std-dev of corner duration. Lower = more repeatable driving (the strong coaching signal, consistency often matters more than peak speed).</li>
-  <li><strong>stint Lx–Ly</strong>: which laps within the segment this mode tends to occur in (early stint vs late stint).</li>
-  <li><strong>± ml</strong>: fuel-per-corner delta vs the population (visible when the difference is meaningful).</li>
-</ul>
-<p>Below the stats: a thin <strong>segment-distribution bar</strong> shows what fraction of the mode's passes came from each stint (S1 / S2 / …) when multiple segments exist. A mode dominated by one stint is a strong hint that the cause is between-stint, setup, tires, weather, driver fatigue. Above the bar: the panel header carries a <code>seg η²=…</code> chip showing the same effect at the whole-corner level.</p>
-<p>The <strong>auto-tags</strong> at the bottom of the card are the post-hoc explanation: "Higher entry Speed", "Later release Brake", "Wider range Steering", and so on. Each tag means the mode's mean scalar for that rule is at least 0.4 standard deviations from the population mean. Hover for the z-scores.</p>
-
-<h2 id="drill-view">The Drill-In View</h2>
-<p>Click <strong>›</strong> on any card (or anywhere on the card's open arrow) to open the drill view. Three panes, all draggable via the splitter handles:</p>
-<ul>
-  <li><strong>Channel-trace chart</strong> (top): per-channel mean trace for this mode (green) overlaid on the population mean (gray dashed). One sub-plot per channel; x-axes are linked. Lets you see <em>where in the corner</em> the mode differs from the population, earlier brake release, mid-corner throttle dip, exit-phase steering correction.</li>
-  <li><strong>Representation scatter</strong> (middle): every member of the mode plotted as a colored dot at (x = scalar, y = distance-to-centroid in PCA space). Lower y = more typical of the mode; higher y = an outlier within the mode.
-    <ul>
-      <li>The <strong>x-axis dropdown</strong> switches the scalar: <em>Section</em> (corner-slice duration), <em>Sector</em> (containing iRacing sector time), <em>Lap</em> (full lap time), then every label rule, pick "min Speed" to see how min-speed distributes within this mode, "release Brake" for release-frac distribution, etc. Each entry carries an <code>(r=0.NN)</code> fit-score (multi-R of the scalar against within-mode coords) so you can see at a glance which scalar best explains the mode's spread. The dashed best-fit line is colored by that score: red = noisy fit, green = clean linear relationship.</li>
-      <li><strong>Left-click a dot</strong> to toggle that pass as a ghost. A yellow ring marks every dot that's currently an active ghost across any open plot, same gesture in reverse to remove.</li>
-      <li><strong>Left-drag</strong> to draw a rectangle. On release, every point inside toggles: if any are already active ghosts, the active ones get removed; otherwise all points in the box get added. Lasso-add and lasso-deselect with one gesture.</li>
-      <li><strong>Right-click</strong> any dot for a context menu (Play / Add or Remove ghost).</li>
-    </ul>
-  </li>
-  <li><strong>Member list</strong> (bottom): every pass in the mode by segment + lap, with its full lap time. Double-click to seek the playhead; right-click for the same Play / Add-as-ghost menu.</li>
-</ul>
-
-<h2 id="canonical-workflow">The Canonical Workflow</h2>
-<p>This is the recommended flow for any post-session review:</p>
+<p>The circle on a stint row (<strong>Ghost the fastest lap in this stint</strong>) adds its ★ lap in one click. The Timing table has the same <strong>Add as ghost</strong> circle on every lap.</p>
+<h2 id="fastest">Add your fastest laps</h2>
+<p>The <strong>Ghosts</strong> panel, below the Playlist, can pick laps for you. With <strong>Compare</strong> set to <strong>Laps</strong>:</p>
 <ol>
-  <li><strong>Open your IBT files</strong> and run the standard workflow. (See <a href="docs-article.html?page=gs.first-workflow">Your First Workflow</a>.)</li>
-  <li><strong>Open Corner Modes</strong> on the right. Pick a corner you want to understand, start with one where lap-time spread is large.</li>
-  <li><strong>Read the cards.</strong> The shape of the modes tells the first story:
-    <ul>
-      <li><em>One dominant mode</em> (e.g. 80% of laps) and one or two stragglers → you're driving this corner consistently; the stragglers are usually outliers worth checking but not coaching signal.</li>
-      <li><em>Two or three roughly balanced modes</em> with meaningfully different Δs → you have multiple approaches competing; the tags tell you what they differ on.</li>
-      <li><em>Stint-purity in the segment bar</em> → the cause is between-stint (setup, tires, conditions, fatigue).</li>
-      <li><em>Time spread within a mode is small but Δ is non-zero</em> → that mode's a repeatable but not optimal approach; the gap to the fast mode is your coaching margin.</li>
-    </ul>
-  </li>
-  <li><strong>"+ all" + "Sync"</strong> (or turn on <strong>Auto</strong>) to drop the top-N pass of every mode into 3D playback. The panel handles the color grouping so each mode reads as one family.</li>
-  <li><strong>Open a 2D plot</strong> alongside (waterfall, normal traces, whatever's set up). The same ghosts appear there; the cursor stays synced. Look at <strong>Brake</strong>, <strong>Throttle</strong>, <strong>Steering</strong>, <strong>Speed</strong> traces lap-by-lap. The mode tags pointed you at what to look at, now confirm with the actual trace shape.</li>
-  <li><strong>Use the dashboard</strong> for a high-level instrument readout, or the <strong>scatter panel</strong> (G-G-V, pedal trace, handling envelope) to triangulate the same finding from a different angle.</li>
-  <li><strong>Drill into individual outliers.</strong> In the drill-in scatter, dots far from the cluster centroid are passes that didn't quite fit the mode. Click them as ghosts and compare, they're often the most instructive (a brake release that happened 0.3 s earlier than the rest of the mode, a slightly different line through the apex).</li>
-  <li><strong>Form a recommendation.</strong> A coaching call ("delay your brake release") or a setup change ("the front wing's pushing under load, try one tick less"). The atlas got you to the right corner of the map; the synced plots prove the hypothesis; the recommendation is yours.</li>
+  <li>Type how many laps you want in the <strong>Top</strong> field (5 to start with).</li>
+  <li>Click <strong>+</strong> next to it to add that many of your fastest laps.</li>
 </ol>
+<p>Laps are ranked by lap time across every loaded file. Out laps, in laps and pit laps never count, and laps that already have a ghost are skipped. To rank each file on its own, tick <strong>Per file</strong> in <strong>Options ▾</strong>.</p>
+<p><a href="docs-article.html?page=plugins.corners">Corner Analysis</a> can also add ghosts: the most typical laps of each driving style it finds.</p>
+<h2 id="rows">Manage your ghosts</h2>
+<p>Each ghost gets a row in the Ghosts panel. From left to right:</p>
+<ul>
+  <li><strong>Ghost color</strong>: the swatch. Click it to pick another color.</li>
+  <li>The label: the driver's initials when known, the stint and lap (<code>S1L5</code> is lap 5 of stint 1) and the lap time. Double-click it to make that lap the ego: the cursor jumps to the same spot on track in that lap.</li>
+  <li>The <strong>ego</strong> tag shows on an outing or stint row while the cursor is inside it. That one is your ego, so it isn't drawn as a second car.</li>
+  <li>The checkbox (<strong>Hide ghost</strong>) hides a ghost without losing it.</li>
+  <li><strong>Remove ghost</strong> (the bin) deletes it.</li>
+</ul>
+<p>To clear the whole list, click <strong>Remove all ghosts</strong> (the × next to the add button). The clock and ± buttons on a row control how a ghost lines up with you: see <a href="docs-article.html?page=ghosts.sync">Comparing outings and stints</a>.</p>
+<h2 id="options">Choose what ghosts show</h2>
+<p>Click <strong>Options ▾</strong> in the Ghosts panel. The ones you'll reach for most:</p>
+<ul>
+  <li><strong>Exclude incidents</strong>: skip laps that had an incident when adding your fastest laps.</li>
+  <li><strong>Opaque ghosts</strong>: draw ghost cars solid instead of see-through.</li>
+  <li><strong>Show labels</strong>: the floating tag above each ghost car, with its name and gap to you.</li>
+  <li><strong>Position table</strong>: a small table in the top-left corner of the 3D view. It has one row per ghost on track, with gear, pedals, steering and gap, and the car furthest ahead on top. Tick <strong>Static order</strong> to keep the order you added them in.</li>
+  <li><strong>Color by</strong>: how ghosts share colors (see below).</li>
+  <li><strong>Camera focus</strong>: point the 3D camera at one ghost instead of the ego. Only the camera moves: your lap, plots and readouts stay put. It appears once you have a ghost.</li>
+</ul>
+<p>A negative gap (green) means the ghost is ahead of you; a positive one (red) means it's behind. Slipstream remembers these options in your browser, except Camera focus.</p>
+<h2 id="colors">Pick ghost colors</h2>
+<p>Each new ghost takes the next color from a 16-color palette. <strong>Color by</strong> changes how colors are shared:</p>
+<ul>
+  <li><strong>Slot</strong>: every ghost keeps its own color.</li>
+  <li><strong>Driver</strong>: all ghosts of one driver share a color. Files with no driver name get one color per file.</li>
+  <li><strong>File</strong>: one color per source file.</li>
+  <li><strong>Stint</strong>: one color per stint.</li>
+</ul>
+<p>To choose group colors yourself, use the Colors tree at the bottom of the Playlist. It nests each driver, their files and each file's stints (<code>S1</code>, <code>S2</code>). Click a swatch to pick a color, or the ✕ beside it to clear it. A level you haven't colored inherits from the one above: a solid border means set here, a dashed border means inherited or automatic.</p>
 <div class="callout tip">
   <span class="ic">&#10003;</span>
   <div>
     <span class="lbl">Tip</span>
-    <p>The Auto checkbox makes corner-hopping nearly free. Set up your 3D + 2D plots once, toggle Auto on, then just change the corner dropdown: ghosts repaint, sync point + range jump to the new corner, and you're looking at it.</p>
+    <p>The Colors tree only colors ghosts when Color by is Driver, File or Stint. In those modes, picking a color from a ghost's own swatch sets it for the whole group, just like the tree. The 2D plots' <strong>Color by</strong> is the same setting.</p>
   </div>
 </div>
-
-<h2 id="going-deeper">Going Deeper</h2>
-<p>Two analysis dialogs in the <strong>Options ▾</strong> menu help when the per-mode tags don't quite explain what's happening:</p>
+<h2 id="related">Related</h2>
 <ul>
-  <li><strong>Fit-score matrix</strong>: a rule × mode heatmap. Rows are the time options plus every label rule; columns are the modes plus an <strong>All</strong> column (population-level fit). Each cell is a multi-R fit score: how much of the within-mode spread is explained by that scalar. Sorted by max-across-modes so the most-explanatory scalars float to the top. Click any mode cell to drill into that mode with the cell's x-axis already selected.
-    <ul>
-      <li>High in <strong>All</strong> AND high in some mode column → the scalar discriminates modes.</li>
-      <li>Low in <strong>All</strong> but high in one mode column → that scalar captures within-mode nuance the cluster boundary missed.</li>
-    </ul>
-  </li>
-  <li><strong>Scalar correlation matrix</strong>: a |Pearson r| heatmap between every scalar pair. Column headers run diagonally so wordy labels fit. The <strong>Subset</strong> dropdown switches between All passes and per-mode views; the heatmap tints in the mode's swatch color (red for All) for visual association. Click any off-diagonal cell to open a paired scatter + linear best-fit line for that pair. Useful for spotting redundant rules (two rules with |r| ≈ 1 measure the same thing, candidates for pruning) and for surfacing relationships that only exist within a driving style.</li>
+  <li><a href="docs-article.html?page=ghosts.sync">Comparing outings and stints</a></li>
+  <li><a href="docs-article.html?page=plugins.corners">Corner Analysis</a></li>
+  <li><a href="docs-article.html?page=play.range">Playback bar and range</a></li>
 </ul>
-<p>And one panel-level signal that doesn't need a dialog: the <code>seg η²=…</code> chip in the status line is the fraction of variation in how this corner is driven that's between-stint vs within-stint. Green at ≥ 0.15, different stints are driving this corner notably differently. Gray near zero, stint doesn't matter much for this corner.</p>
-`
+`,
 },
-
-'guide.training': {
-  section: 'Workflows & Guides',
-  tier: 'studio',
-  title: 'Building a Training Graph',
-  lede: 'End-to-end guide for training a neural network on telemetry data.',
-  prev: ['guide.corner-modes', 'Corner Modes: Find What to Investigate'],
-  next: ['guide.live-inference', 'Live Inference Setup'],
-  toc: ['overview', 'graph', 'training', 'evaluation'],
-  tocLabels: ['Overview', 'Graph Setup', 'Training', 'Evaluation'],
+'ghosts.sync': {
+  section: 'Ghosts',
+  title: 'Comparing outings and stints',
+  lede: 'Compare whole outings and stints, not just single laps, and control exactly how each ghost lines up with you.',
+  prev: ['ghosts.basics', 'Ego and ghosts'],
+  next: ['view3d.cameras', 'Cameras'],
+  toc: ['outings', 'stints', 'same-race', 'modes', 'offset', 'sync-point', 'related'],
+  tocLabels: ['Compare outings', 'Compare stints', 'Compare a race in one click', 'Choose Time or Lap-Dist', 'Offset a ghost in time', 'Move the sync point for lap ghosts', 'Related'],
   body: `
-<h2 id="overview">Overview</h2>
-<p>A typical training workflow: Load Data → Model → Output. The Model node trains on the training split and evaluates on the test split, then the Output node visualizes predictions vs ground truth.</p>
-
-<h2 id="graph">Graph Setup</h2>
+<p>A lap ghost replays one lap. The Ghosts panel can also replay an outing (pit exit to the next pit entry) or a stint (a whole loaded file). Pick one with the <strong>Compare</strong> buttons at the top of the panel: <strong>Laps</strong>, <strong>Outings</strong> or <strong>Stints</strong>. Ghosts you've already added stay when you switch.</p>
+<!-- SHOT ghosts.sync: Ghosts panel in Stints mode with Sync set to Session, a "Same race" offer line at the top, three stint rows (one tagged ego, one with its time offset row open), and the 3D view showing the other two cars on track -->
+<h2 id="outings">Compare outings</h2>
 <ol>
-  <li>Add a <strong>Load Data</strong> node. Point it at your IBT folder, select a stint, and set the train/test split.</li>
-  <li>Add a <strong>Model</strong> node. Connect Load Data → Model.</li>
-  <li>Configure the Model: choose architecture (MLP is a good start), set hidden width, layers, epochs.</li>
-  <li>Add an <strong>Output</strong> node. Connect Model → Output.</li>
+  <li>Click <strong>Outings</strong>.</li>
+  <li>Click <strong>+ This file (n)</strong> to add every outing in the file under the cursor, or <strong>+ All (n)</strong> for every outing in every loaded file.</li>
+  <li>Under <strong>Sync</strong>, pick where they line up. <strong>Start</strong> lines them up at pit exit. <strong>Lap + LDP</strong> lines them up at a lap within each outing (<strong>Lap</strong> 1 is the first full lap) and a track position (<strong>LDP</strong>, from 0 at the start/finish line up to 0.999).</li>
 </ol>
-
-<h2 id="training">Training</h2>
-<p>Press F5 to run. The Model node trains on TrainData and runs inference on both splits. Training loss is logged to the console. The model can be saved to the registry for live use.</p>
-
-<h2 id="evaluation">Evaluation</h2>
-<p>The Output node shows predictions (Pred branch) overlaid with raw data (Raw branch) on the 2D plot. Use the legend to compare channels. The 3D plot shows the predicted driving line vs actual.</p>
-<p>Use the <strong>Run Store</strong> (bottom-left panel) to save and compare multiple training runs with different hyperparameters.</p>
-`
-},
-
-'guide.live-inference': {
-  section: 'Workflows & Guides',
-  tier: 'studio',
-  title: 'Live Inference Setup',
-  lede: 'Run your trained model on live iRacing data.',
-  prev: ['guide.training', 'Building a Training Graph'],
-  next: ['guide.model-compare', 'Model Comparison'],
-  toc: ['overview', 'steps'],
-  tocLabels: ['Overview', 'Steps'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>Once you've trained a model offline, you can run it in real-time on live iRacing telemetry. The live graph streams data from iRSDK, builds features, runs inference, and displays results.</p>
-
-<h2 id="steps">Steps</h2>
+<p>Use Start to compare whole runs, out lap included. Use Lap + LDP to skip the out lap and start everyone together at the line. The outing the cursor is in is the ego. Outing ghosts wait while you're in the pit lane, and each disappears when its outing ends.</p>
+<h2 id="stints">Compare stints</h2>
 <ol>
-  <li>Train a model offline and save it to the model registry</li>
-  <li>Create a new graph with: <strong>Live Data → Live Model → Live Output</strong></li>
-  <li>In the Live Model node, select your saved model from the registry</li>
-  <li>Optionally add <strong>Live Filter</strong> or <strong>Live Aux Math</strong> nodes between Live Model and Live Output</li>
-  <li>Start iRacing and enter a session</li>
-  <li>Press <strong>F6</strong> to start the live graph</li>
-  <li>The Live Output plot shows predictions updating in real-time</li>
+  <li>Click <strong>Stints</strong>. Each loaded file is one stint.</li>
+  <li>Click <strong>+ All stints (n)</strong>.</li>
+  <li>Under <strong>Sync</strong>, pick <strong>Session</strong> or <strong>Lap + LDP</strong>.</li>
 </ol>
-
-<div class="callout tip">
-  <span class="ic">&#10003;</span>
+<p><strong>Session</strong> puts every file on the shared race clock: use it for drivers from the same race, to watch it unfold as it happened, with the real race gap. <strong>Lap + LDP</strong> lines the cars up at a lap on each car's own lap count and a track position: use it for files from different sessions, or to put everyone on the same piece of track. If files on the race clock come from different sessions, the panel warns you.</p>
+<p>The stint the cursor is in is the ego. Double-click another outing or stint row to jump into it and make it the ego.</p>
+<h2 id="same-race">Compare a race in one click</h2>
+<p>When two or more loaded files come from the same iRacing session (the same race instance and the same practice, qualifying or race), a line appears at the top of the Ghosts panel, such as <strong>Same race:</strong> followed by the drivers' initials. Click <strong>Compare</strong>: the panel switches to Stints, sets Sync to Session and adds those files.</p>
+<p>Files without session IDs, such as offline sessions, get <strong>Looks like the same session:</strong> instead when their clocks started together and the cars were on track at the same time. The line goes away once all its files are on the race clock.</p>
+<h2 id="modes">Choose Time or Lap-Dist</h2>
+<p>Each ghost row has a mode button: a clock for Time, a ruler for Lap-Dist. Click it to switch that ghost. The <strong>All:</strong> buttons switch every ghost at once (<strong>Set every ghost to Time mode</strong> and <strong>Set every ghost to Lap-Dist mode</strong>).</p>
+<ul>
+  <li><strong>Time</strong>: the ghost runs on its own clock from the sync point. It's wherever that car was after the same amount of time, so a faster ghost pulls ahead of you on track.</li>
+  <li><strong>Lap-Dist</strong>: the ghost is pinned to your track position. It stays beside you through every corner so you can compare lines and braking points, and the gap shows as time.</li>
+</ul>
+<p>The sync point is the start/finish line for laps (or your own, below), and the Sync setting for outings and stints. New lap and stint ghosts start in Time; new outing ghosts start in Lap-Dist.</p>
+<h2 id="offset">Offset a ghost in time</h2>
+<p>Outing and stint ghosts have a <strong>Time offset</strong> button (±). Use it when two files' clocks don't quite match.</p>
+<ol>
+  <li>Click ± on the ghost's row. A small offset row opens under it.</li>
+  <li>Click <strong>Move this ghost 0.1 s back</strong> or <strong>Move this ghost 0.1 s ahead</strong>, or type seconds in the field: a positive number moves the ghost ahead, a negative one (such as -0.5) moves it back.</li>
+  <li>Click <strong>No offset</strong> (the 0 button) to clear it.</li>
+</ol>
+<p>The ± changes color while an offset is set. In Lap-Dist mode the car stays pinned to you, so an offset only shifts the gap.</p>
+<h2 id="sync-point">Move the sync point for lap ghosts</h2>
+<p>Time-mode lap ghosts start their clock at the start/finish line, so that's where they meet you. To make them meet you elsewhere, such as a braking point you're working on:</p>
+<ol>
+  <li>Right-click the bottom lane of the playback bar at that spot.</li>
+  <li>Choose <strong>Set ghost sync point here</strong>.</li>
+</ol>
+<p>A dashed marker shows the point in every lap. Your lap and each Time-mode lap ghost now count time from where that lap passed it, so the gap reads zero there, in the 2D time deltas too. To go back, choose <strong>Reset sync point (lap start)</strong> from the same menu.</p>
+<div class="callout note">
+  <span class="ic">i</span>
   <div>
-    <span class="lbl">Tip</span>
-    <p>Add a <strong>Live Recorder</strong> node to capture the live session for later offline analysis.</p>
+    <span class="lbl">Note</span>
+    <p>The sync point is a track position shared by every lap, and it only moves lap ghosts. Outings and stints line up with their own <strong>Sync</strong> buttons and the ± offset.</p>
   </div>
 </div>
-`
-},
-
-'guide.model-compare': {
-  section: 'Workflows & Guides',
-  tier: 'studio',
-  title: 'Model Comparison',
-  lede: 'Compare multiple training runs using the Run Store.',
-  prev: ['guide.live-inference', 'Live Inference Setup'],
-  next: ['guide.custom-dash', 'Creating Custom Dashboards'],
-  toc: ['overview', 'workflow'],
-  tocLabels: ['Overview', 'Workflow'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The <strong>Run Store</strong> (bottom-left panel) keeps a history of offline graph executions. Each run stores its data, metadata, and results. You can switch between runs to compare different model configurations, hyperparameters, or data splits.</p>
-
-<h2 id="workflow">Workflow</h2>
-<ol>
-  <li>Run your graph with configuration A → results are saved as Run 1</li>
-  <li>Modify the Model node (e.g., change hidden width, add layers, adjust learning rate)</li>
-  <li>Run again → saved as Run 2</li>
-  <li>Click between runs in the Run Store widget to switch the dashboard and plots between results</li>
-  <li>Compare prediction accuracy, loss values, and visual fit across runs</li>
-</ol>
-`
-},
-
-'guide.custom-dash': {
-  section: 'Workflows & Guides',
-  tier: 'pro',
-  title: 'Creating Custom Dashboards',
-  lede: 'Design a custom instrument dashboard from scratch.',
-  prev: ['guide.model-compare', 'Model Comparison'],
-  next: ['guide.scatter', 'Telemetry Analysis'],
-  toc: ['overview', 'steps'],
-  tocLabels: ['Overview', 'Steps'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>Custom dashboards let you create personalized instrument layouts with exactly the gauges, meters, and displays you need for your analysis.</p>
-
-<h2 id="steps">Steps</h2>
-<ol>
-  <li>Open <strong>Tools > Dash Library</strong> to launch the Dashboard Designer</li>
-  <li>Drag elements from the palette: gauges for speed/RPM, bars for throttle/brake, a steering wheel, a minimap</li>
-  <li>Double-click each element to bind it to a telemetry variable and set its range</li>
-  <li>Arrange elements on the canvas: use snap-to-grid for alignment</li>
-  <li>Save the layout with a descriptive name</li>
-  <li>The layout appears in the Dashboard panel sidebar: click to load it</li>
-  <li>Run a graph or start a live session: the dashboard updates automatically</li>
-</ol>
-`
-},
-
-'guide.scatter': {
-  section: 'Workflows & Guides',
-  tier: 'pro',
-  title: 'Telemetry Analysis',
-  lede: 'Use the scatter panel to explore variable relationships.',
-  prev: ['guide.custom-dash', 'Creating Custom Dashboards'],
-  next: ['config.preferences', 'Preferences'],
-  toc: ['overview', 'examples'],
-  tocLabels: ['Overview', 'Example Analyses'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>The Scatter Panel (right column, below dashboard) plots variables against each other to reveal correlations, clusters, and outliers that aren't visible in time-series plots.</p>
-
-<h2 id="examples">Example Analyses</h2>
+<h2 id="related">Related</h2>
 <ul>
-  <li><strong>G-G-V Diagram:</strong> X=LatAccel, Y=LongAccel, Z=Speed, shows the friction circle at every speed. Reveals traction limits and driving style.</li>
-  <li><strong>Handling Envelope:</strong> X=Speed, Y=SteeringWheelAngle, Z=LatAccel, shows how much steering input produces how much lateral G at each speed.</li>
-  <li><strong>Pedal Trace:</strong> X=Throttle, Y=Brake, Z=Speed, reveals trail braking technique and throttle/brake overlap.</li>
-  <li><strong>Tire Performance:</strong> X=LFpressure, Y=LFtempM, Z=Speed, shows tire pressure vs temperature vs speed relationship.</li>
+  <li><a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a></li>
+  <li><a href="docs-article.html?page=play.range">Playback bar and range</a></li>
+  <li><a href="docs-article.html?page=plots.channels">Plots and channels</a></li>
 </ul>
-<p>Use the scale spinboxes to normalize axes with different units for better visual comparison.</p>
-`
+`,
 },
 
 // ─────────────────────────────────────────────────────────────────
-// 08: CONFIGURATION
+// 09: ASSISTANT
 // ─────────────────────────────────────────────────────────────────
 
-'config.preferences': {
-  section: 'Configuration',
-  title: 'Preferences',
-  lede: 'Global application settings and per-node defaults.',
-  prev: ['guide.scatter', 'Telemetry Analysis'],
-  next: ['config.paths', 'File Paths & Libraries'],
-  toc: ['overview', 'plot', 'units', 'nodes'],
-  tocLabels: ['Overview', 'Plot Settings', 'Units', 'Node Defaults'],
+'assistant.using': {
+  section: 'Assistant',
+  title: 'Using the Assistant',
+  lede: 'Ask questions about your run in plain language, and let an AI model set up plots, ghosts and views for you.',
+  prev: ['timeline.presentation', 'Building a presentation lap'],
+  next: ['share.sessions', 'Shared sessions'],
+  toc: ['connect', 'ask', 'drive', 'related'],
+  tocLabels: ['Connect a provider', 'Ask about your run', 'Let it drive the app', 'Related'],
   body: `
-<h2 id="overview">Overview</h2>
-<p>The Preferences dialog (Tools > Preferences) contains all global configuration organized in a tree-based multi-page layout. Each category has a "Reset to Default" button.</p>
-
-<h2 id="plot">Plot Settings</h2>
+<p>The Assistant is a chat with an AI model, using your own API key. It can read your loaded run and change what Slipstream shows. Open the <strong>Assistant</strong> tab in the right rail, between <strong>Timeline</strong> and <strong>Console</strong>. The <strong>experimental</strong> badge means answers can be wrong: check them against your plots.</p>
+<!-- SHOT assistant.using: Assistant tab in the right rail with the experimental badge, Settings and Clear in its toolbar, and a short conversation where a question comparing two laps shows the lines "→ summarize_run({})" and "→ compare_laps(...)" above the reply -->
+<h2 id="connect">Connect a provider</h2>
+<p>You pay the provider directly (Gemini's free tier costs nothing). LapLabs doesn't charge for it.</p>
+<ol>
+  <li>Until you save a key, the settings are already open. <strong>Connect a provider</strong> (later <strong>Settings</strong>) shows or hides them.</li>
+  <li>Pick a <strong>Provider</strong>. <strong>Gemini</strong> is free and needs no credit card. <strong>Anthropic</strong> is paid, billed per token.</li>
+  <li>Click <strong>Get a key ↗</strong>, create a key and paste it into the API key field.</li>
+  <li>Choose a <strong>Model</strong>. Both Gemini models are on the free tier. For Anthropic, Haiku 4.5 is the cheapest and fine for most questions. Pick <strong>Custom…</strong> to type any other model ID.</li>
+  <li>Anthropic only: if your key is identity-linked, paste your <strong>Workspace ID</strong> (it starts with <code>wrkspc_</code>). Otherwise leave it empty.</li>
+</ol>
+<p>A Claude Pro or Max subscription doesn't work here: Anthropic needs an API key. Switching provider starts a new chat.</p>
+<div class="callout note">
+  <span class="ic">i</span>
+  <div>
+    <span class="lbl">Note</span>
+    <p>Your key is saved, unencrypted, in this browser's local storage. Slipstream calls Google or Anthropic straight from your browser, not through LapLabs. It sends your messages plus whatever the tools read: lap times, channel statistics, sampled traces, your current view settings and, when the model asks, a screenshot of a plot. It doesn't send your telemetry files.</p>
+  </div>
+</div>
+<h2 id="ask">Ask about your run</h2>
+<p>Type in the box at the bottom and press <code>Enter</code> (<code>Shift</code>+<code>Enter</code> adds a line) or click <strong>Send</strong>. The Assistant can read:</p>
 <ul>
-  <li><strong>Z-axis smoothing window</strong>: smoothing applied to 3D plot elevation</li>
-  <li><strong>DLL usage</strong>: enable/disable ghost renderer and waterfall renderer DLLs</li>
-  <li><strong>Plot tab reuse</strong>: whether new plots reuse existing tabs or create new ones</li>
-  <li><strong>3D mouse button swap</strong>: swap left/right mouse button for 3D navigation</li>
+  <li>A run summary: lap and sector times, your best and ideal laps, outlier laps and the sector where you lose the most time.</li>
+  <li>A lap summary: top speed, peak g, throttle and brake use, fuel, tire temperatures and more.</li>
+  <li>Statistics or sampled values of any channel over a lap, part of a lap or the playback range.</li>
+  <li>Two laps compared, including where on track the time goes.</li>
+  <li>Corners (T1, T2 and so on) with entry, apex and exit speeds, and a Segment Eval summary of each stint.</li>
+  <li>A screenshot of the 2D plot, the 3D view or the Scatter plot.</li>
 </ul>
-
-<h2 id="units">Units</h2>
+<p>Try:</p>
 <ul>
-  <li><strong>Unit system</strong>: Imperial or Metric</li>
-  <li><strong>Per-dimension overrides</strong>: customize units for speed, temperature, pressure, etc.</li>
+  <li>"Summarize this run. Where am I losing the most time?"</li>
+  <li>"Compare lap 7 with my best clean lap. Where do I lose the time?"</li>
+  <li>"What were my entry and apex speeds in T3 on lap 4?"</li>
 </ul>
-
-<h2 id="nodes">Node Defaults</h2>
-<p>Default parameters for each node type, so new nodes start with your preferred configuration:</p>
+<p>Each step it takes shows as a line above its reply, such as <code>→ compare_laps({"lap_a":4,"lap_b":7})</code>. Hover over the line to see the result. Corner answers need the track's geometry. Provider errors (a wrong key or model, a rate limit) show in the chat.</p>
+<h2 id="drive">Let it drive the app</h2>
+<p>The Assistant can change playback and the cursor, the playback range, the 2D plot's channels, the 3D camera, track traces, the tire temperature overlay, the car model, ghosts, the ghost sync point, the rail tab, which plugins are on, and the Scatter, Corner Analysis, Segment Eval and Timing views. For example:</p>
 <ul>
-  <li><strong>Load Data:</strong> min laps, file conversion, segmentation, split mode/percentage</li>
-  <li><strong>Model:</strong> device (CPU/CUDA), config view (basic/advanced)</li>
-  <li><strong>Extract Set:</strong> default extraction template</li>
-  <li><strong>Aux Math:</strong> default branch mode, channel</li>
-  <li><strong>Filter:</strong> default method, window size</li>
-  <li><strong>Output:</strong> LED defaults (Plot 2D, Track 3D)</li>
+  <li>"Show brake, throttle and speed on the 2D plot and frame lap 6."</li>
+  <li>"Add my three fastest laps as ghosts and switch to the Chase camera."</li>
+  <li>"Color the racing line by throttle and open Corner Analysis on T8."</li>
 </ul>
-`
-},
-
-'config.paths': {
-  section: 'Configuration',
-  title: 'File Paths & Libraries',
-  lede: 'Configure where LapLabs stores and finds library files.',
-  prev: ['config.preferences', 'Preferences'],
-  next: ['config.account', 'License & Account'],
-  toc: ['overview', 'paths'],
-  tocLabels: ['Overview', 'Path Settings'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>LapLabs uses several folder paths for storing and loading library files. These are configurable in Preferences.</p>
-
-<h2 id="paths">Path Settings</h2>
+<p>If a reply ends with <em>(stopped: too many tool rounds)</em>, break the request into smaller steps. Click <strong>Clear</strong> to start over; the model forgets the conversation. A reload also starts a new chat.</p>
+<h2 id="related">Related</h2>
 <ul>
-  <li><strong>Vehicle Library Folder</strong>: where vehicle model JSON files are stored</li>
-  <li><strong>Track Library Folder</strong>: where track definition files are stored</li>
-  <li><strong>Scope Library Folder</strong>: where scope config JSON files are saved</li>
-  <li><strong>User Model Library</strong>: where Feature Wizard specs are saved</li>
-  <li><strong>Dash Library Folder</strong>: where dashboard layout JSON files are stored</li>
+  <li><a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a></li>
+  <li><a href="docs-article.html?page=plugins.corners">Corner Analysis</a></li>
+  <li><a href="docs-article.html?page=ref.troubleshooting">Troubleshooting</a></li>
 </ul>
-<p>All paths support <code>~</code> expansion for the user home directory.</p>
-`
-},
-
-'config.account': {
-  section: 'Configuration',
-  title: 'License & Account',
-  lede: 'Sign in, manage your license, and view account status.',
-  prev: ['config.paths', 'File Paths & Libraries'],
-  next: null,
-  toc: ['overview'],
-  tocLabels: ['Overview'],
-  body: `
-<h2 id="overview">Overview</h2>
-<p>LapLabs Studio uses Clerk-based authentication for license management. The Account menu in the menu bar provides:</p>
-<ul>
-  <li><strong>Sign In</strong>: opens the Clerk sign-in flow</li>
-  <li><strong>Sign Out</strong>: signs out of your account</li>
-  <li><strong>License Info</strong>: displays your current license status and tier</li>
-</ul>
-<p>License status determines which features are available (some features may be gated by license tier).</p>
-`
+`,
 },
 
 };
