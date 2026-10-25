@@ -1302,7 +1302,7 @@ window.DOCS_ARTICLES = {
 </ol>
 <p>Each dash on the canvas has a title bar with its name, and its values come from the laps you've loaded at the playback cursor. Hold <code>Ctrl</code> and scroll over the library to make the thumbnails bigger or smaller.</p>
 <h2 id="local">Use your own dash folder</h2>
-<p>Dashes you make or change live in a folder on your computer. This needs Chrome or Edge.</p>
+<p>Dashes you make or change live in a folder on your computer. This needs Chrome or Edge; in other browsers the library lists the cloud dashes only.</p>
 <ol>
   <li>Click <strong>Local</strong>, then <strong>Browse…</strong>.</li>
   <li>Pick a folder (an empty one is fine to start with) and let the browser give Slipstream access to it.</li>
@@ -1406,7 +1406,7 @@ window.DOCS_ARTICLES = {
 </ol>
 <p>A Led Array or Conditional uses rules instead: click <strong>+ Add LED</strong> or <strong>+ Add rule</strong>, then set each row's <strong>Variable</strong>, <strong>Op</strong>, <strong>Threshold</strong> and color. The Xy Plot takes <strong>Variable X</strong> and <strong>Variable Y</strong>. For a Steering Wheel, choose <strong>iRacing</strong> under <strong>Preset</strong>. Every element also has <strong>Position &amp; Size</strong> fields and a <strong>Style</strong> group for borders, colors and fonts.</p>
 <h2 id="save">Save your dash</h2>
-<p>Dashes save to your local dash folder, so saving needs Chrome or Edge.</p>
+<p>Dashes save to your local dash folder, which needs Chrome or Edge. In other browsers, <strong>Save</strong> downloads the dash as a <code>.json</code> file instead.</p>
 <ul>
   <li><strong>Save</strong> (<code>Ctrl</code>+<code>S</code>) writes over the dash you opened.</li>
   <li>For a new dash, or a copy of a cloud dash, <strong>Save</strong> works like <strong>Save As…</strong> (<code>Ctrl</code>+<code>Shift</code>+<code>S</code>): the browser asks for a file name, starting in your dash folder.</li>
@@ -1490,7 +1490,7 @@ window.DOCS_ARTICLES = {
   <li><code>[</code> and <code>]</code>: previous or next point, among the kinds you have ticked.</li>
   <li><code>Delete</code> or <code>Backspace</code>: remove the point at the cursor (the nearest shown point within 2% of a lap).</li>
 </ul>
-<p>They work from any tab, but not while a field or checkbox has focus.</p>
+<p>They work from any tab, but not while a field or checkbox has focus or a dialog is open.</p>
 <h2 id="save">Save and load points</h2>
 <p>Points aren't saved in your browser. They stay while you work on the same track layout, even across runs, but opening a different layout clears them and reloading the page loses them.</p>
 <ul>
@@ -1677,7 +1677,7 @@ window.DOCS_ARTICLES = {
   <li>Pick <strong>I present</strong> (the default) or <strong>Everyone drives</strong>.</li>
   <li>Click <strong>Create room</strong>. The popup now shows the room's six-digit code.</li>
 </ol>
-<p>Sharing works with cloud runs only; with a local file open, the popup says <strong>Open a cloud run to share a session.</strong> The room never sends telemetry, only what you do with it: each browser opens the run from the LapLabs cloud by itself, and nobody else can open a file on your computer. Outings and laps picked from cloud runs work too, unless a local file is mixed in. If you switch to a local file mid-session, the others stay on the last cloud run.</p>
+<p>Sharing works with cloud runs only; with a local file open, the popup says <strong>Open a cloud run to share a session.</strong> The room never sends telemetry, only what you do with it: each browser opens the run from the LapLabs cloud by itself, and nobody else can open a file on your computer. Outings and laps picked from cloud runs work too, unless a local file is mixed in. If you open a local file mid-session, the others pause on the last cloud run: their button reads <strong>Paused</strong> and their popup says why, and yours says the others are paused. They follow again as soon as you open a cloud run.</p>
 <h2 id="invite">Invite people</h2>
 <p>Click <strong>Copy invite link</strong> (it briefly reads <strong>Link copied!</strong>) and paste the link into a chat or email, or just read out the six-digit code. The popup counts who's connected, for example <strong>2 people in room</strong>.</p>
 <p>Anyone with the code or the link can join, so only send it to people you want in the room.</p>
@@ -1686,7 +1686,7 @@ window.DOCS_ARTICLES = {
   <li><strong>From a link:</strong> open it. If you aren't signed in, sign in first: the link survives sign-in and you land in the room.</li>
   <li><strong>From a code:</strong> click <strong>Share session</strong>, type the six digits under <strong>or join a code</strong>, then click <strong>Join</strong> or press <code>Enter</code>.</li>
 </ul>
-<p>You arrive on the room's run, at the room's cursor, with the same camera, plots and panels. Ghosts and play or pause catch up the next time someone changes them. If the count stays at 1 person, nobody else is in that room: check the code.</p>
+<p>You arrive on the room's run, at the room's cursor, with the same camera, plots and panels, and the popup says <strong>Waiting for the presenter…</strong> until the room's creator answers. Ghosts and play or pause catch up the next time someone changes them. If nobody is hosting the room, usually because a digit is wrong, the popup says <strong>No one is presenting in room</strong> followed by the code after a few seconds, and the button reads <strong>No presenter</strong>. Check the code, or ask for a new invite link.</p>
 <h2 id="control">Choose who is in control</h2>
 <ul>
   <li><strong>I present</strong>: only you, the room's creator, control the view. The others watch, read only, and their popup says so. Your button reads <strong>Presenting</strong>, theirs <strong>Watching</strong>.</li>
@@ -1760,7 +1760,7 @@ window.DOCS_ARTICLES = {
 <p>Viewers need only the code: no tray, and no LapLabs account.</p>
 <ul>
   <li><strong>Live Track</strong> (laplabs.net/live-track): your car moving on a 3D model of the track, with camera buttons (<strong>Free</strong>, <strong>Chase</strong>, <strong>Rig</strong>, <strong>Drone</strong>, <strong>TV</strong>, <strong>Cockpit</strong>), a trace colored by Speed, Throttle or Brake, and shift lights, pedals, speed, gear and steering. Type the code in the room box and click <strong>Connect</strong>; a link with the code connects by itself. Until you connect, it plays a demo lap at Spa.</li>
-  <li><strong>Live Dashboard</strong> (laplabs.net/dashboard): speed, gear, oil and water temperature and fuel, the pedals and steering angle, and lap-by-lap traces against lap distance. Enter the code under <strong>Room</strong> (a link fills it in) and click <strong>Connect →</strong>.</li>
+  <li><strong>Live Dashboard</strong> (laplabs.net/dashboard): speed, gear, oil and water temperature and fuel, the pedals and steering angle, and lap-by-lap traces against lap distance. Enter the code under <strong>Room</strong> and click <strong>Connect →</strong>. A link with the code, such as the one <strong>Open Dashboard</strong> opens, connects by itself.</li>
 </ul>
 <p>The dashboard page also offers the older Live Dash Sender; with LapLabs Tray you don't need it. The dashes inside Slipstream replay recorded laps rather than live data: see <a href="docs-article.html?page=plugins.dash">Dash</a>.</p>
 <h2 id="privacy">Know what Share Live sends</h2>
@@ -1916,13 +1916,6 @@ window.DOCS_ARTICLES = {
   <li>The list on the left shows the <strong>Public</strong> library: every published circuit.</li>
   <li>When you're done, click <strong>Close</strong> or press <code>Esc</code>.</li>
 </ol>
-<div class="callout note">
-  <span class="ic">i</span>
-  <div>
-    <span class="lbl">Note</span>
-    <p>The Track Library window needs Chrome or Edge. In other browsers it opens an empty settings window instead, but the 3D view still loads published tracks.</p>
-  </div>
-</div>
 <h2 id="browse">Browse the published circuits</h2>
 <ul>
   <li>Circuits come first, each with its name in bold and its number of layouts. Click one to open it (▸ turns to ▾) and list its layouts.</li>
@@ -2024,7 +2017,7 @@ window.DOCS_ARTICLES = {
   <li><code>[</code> and <code>]</code>: jump to the previous or next point, among the kinds you have ticked. They wrap around the lap.</li>
   <li><code>Delete</code> or <code>Backspace</code>: remove the shown point nearest the cursor, if it's within 2% of a lap.</li>
 </ul>
-<p>These work from any rail tab, but not while you hold <code>Ctrl</code> or <code>Alt</code>. See <a href="docs-article.html?page=timeline.points">Timeline points</a>.</p>
+<p>These work from any rail tab, but not while you hold <code>Ctrl</code> or <code>Alt</code>, or while a dialog is open. See <a href="docs-article.html?page=timeline.points">Timeline points</a>.</p>
 <h2 id="dash">Dash canvas and Dash Designer</h2>
 <p>On the Dash canvas:</p>
 <ul>
@@ -2081,8 +2074,8 @@ window.DOCS_ARTICLES = {
   lede: 'Quick fixes for the things that most often go wrong, starting from what you see on screen.',
   prev: ['ref.shortcuts', 'Keyboard and mouse'],
   next: null,
-  toc: ['grayed', 'empty-tree', 'red-file', 'reopen', 'space', 'ribbon', 'corners', 'sectors', 'derived', 'tires', 'share', 'slow', 'points', 'assistant', 'help'],
-  tocLabels: ['The iRacing Telemetry button is grayed out', 'The tree is empty after picking a folder', 'A file name is red, with !!! after it', 'Reopen unloaded my laps', 'Space unticked a lap instead of playing', 'The track is a plain ribbon, not a 3D model', 'Corner Analysis says "No track geometry yet"', 'Timing says "No sector data"', 'A derived channel\'s line is empty', 'The tires are solid blue', 'Share session says "Open a cloud run to share a session."', 'Slipstream feels slow', 'My timeline points disappeared', 'The Assistant shows an error', 'Get help'],
+  toc: ['grayed', 'empty-tree', 'red-file', 'reopen', 'space', 'ribbon', 'corners', 'sectors', 'derived', 'tires', 'share', 'no-presenter', 'slow', 'points', 'assistant', 'help'],
+  tocLabels: ['The iRacing Telemetry button is grayed out', 'The tree is empty after picking a folder', 'A file name is red, with !!! after it', 'Reopen unloaded my laps', 'Space unticked a lap instead of playing', 'The track is a plain ribbon, not a 3D model', 'Corner Analysis says "No track geometry yet"', 'Timing says "No sector data"', 'A derived channel\'s line is empty', 'The tires are solid blue', 'Share session says "Open a cloud run to share a session."', 'The popup says no one is presenting', 'Slipstream feels slow', 'My timeline points disappeared', 'The Assistant shows an error', 'Get help'],
   body: `
 <p>Each entry starts with what you see, then what to do about it. If your problem isn't here, ask on Discord (see the end of this page).</p>
 <!-- SHOT ref.troubleshooting: The Stint Folder with one file name in red followed by !!!, its hover tooltip showing the reason the file couldn't be read, and the warning banner about files that failed to parse above the tree -->
@@ -2108,6 +2101,8 @@ window.DOCS_ARTICLES = {
 <p>The tire temperature overlay reads three channels per tire (<code>LFtempL</code>, <code>LFtempM</code>, <code>LFtempR</code> and so on). A file without them leaves its tires blue, so solid blue can mean missing data rather than cold tires. If the channels are there, check <strong>Cold °C</strong> and <strong>Hot °C</strong> in the Vehicle panel. See <a href="docs-article.html?page=view3d.car">Car and overlays</a>.</p>
 <h2 id="share">Share session says "Open a cloud run to share a session."</h2>
 <p>Everyone in a room loads the same run from the cloud, so sharing only works when everything you've loaded is a cloud run. Untick your own files, then open <strong>Share session</strong> again. The <strong>or join a code</strong> box is hidden while this message shows, so to join a room, tick a cloud run first or open the invite link. See <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
+<h2 id="no-presenter">The popup says no one is presenting</h2>
+<p>Nobody is hosting the room you joined. Most often a digit of the code is wrong: Slipstream accepts any six digits, so a mistyped code opens an empty room. Click <strong>Leave session</strong> and join again with the right code, or ask for a new invite link. See <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
 <h2 id="slow">Slipstream feels slow</h2>
 <p>Switch off the plugins you aren't using with the power button on their panel headers; collapsing a panel leaves the plugin running. Start with Corner Analysis, which does the most work. To watch the frame rate, tick <strong>Show FPS counter in 3D plots</strong> in <strong>Tools</strong> &gt; <strong>Preferences...</strong>, or open <strong>Console</strong> &gt; <strong>Performance</strong> for frame times and memory use. See <a href="docs-article.html?page=plugins.rail">The plugin rail</a>.</p>
 <h2 id="points">My timeline points disappeared</h2>
