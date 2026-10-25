@@ -1302,7 +1302,7 @@ window.DOCS_ARTICLES = {
 </ol>
 <p>Each dash on the canvas has a title bar with its name, and its values come from the laps you've loaded at the playback cursor. Hold <code>Ctrl</code> and scroll over the library to make the thumbnails bigger or smaller.</p>
 <h2 id="local">Use your own dash folder</h2>
-<p>Dashes you make or change live in a folder on your computer. This needs Chrome or Edge.</p>
+<p>Dashes you make or change live in a folder on your computer. This needs Chrome or Edge; in other browsers the library lists the cloud dashes only.</p>
 <ol>
   <li>Click <strong>Local</strong>, then <strong>Browse…</strong>.</li>
   <li>Pick a folder (an empty one is fine to start with) and let the browser give Slipstream access to it.</li>
@@ -1406,7 +1406,7 @@ window.DOCS_ARTICLES = {
 </ol>
 <p>A Led Array or Conditional uses rules instead: click <strong>+ Add LED</strong> or <strong>+ Add rule</strong>, then set each row's <strong>Variable</strong>, <strong>Op</strong>, <strong>Threshold</strong> and color. The Xy Plot takes <strong>Variable X</strong> and <strong>Variable Y</strong>. For a Steering Wheel, choose <strong>iRacing</strong> under <strong>Preset</strong>. Every element also has <strong>Position &amp; Size</strong> fields and a <strong>Style</strong> group for borders, colors and fonts.</p>
 <h2 id="save">Save your dash</h2>
-<p>Dashes save to your local dash folder, so saving needs Chrome or Edge.</p>
+<p>Dashes save to your local dash folder, which needs Chrome or Edge. In other browsers, <strong>Save</strong> downloads the dash as a <code>.json</code> file instead.</p>
 <ul>
   <li><strong>Save</strong> (<code>Ctrl</code>+<code>S</code>) writes over the dash you opened.</li>
   <li>For a new dash, or a copy of a cloud dash, <strong>Save</strong> works like <strong>Save As…</strong> (<code>Ctrl</code>+<code>Shift</code>+<code>S</code>): the browser asks for a file name, starting in your dash folder.</li>
