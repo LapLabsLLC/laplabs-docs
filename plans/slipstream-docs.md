@@ -1,6 +1,6 @@
 # Plan: replace the docs with Slipstream docs
 
-**Status:** planned, 2026-10-23. Nothing written yet.
+**Status:** in progress. Sections 01 to 04 (Start here, Stint Folder, Playback, Ghosts) and 09 (Assistant) drafted on branch `docs/slipstream-docs`, 2026-10-24.
 
 The articles in `docs/docs-content.js` describe LapLabs Studio, the desktop node-graph app that is being phased out. This plan replaces all of them with documentation for **Slipstream**, the LapLabs web app. Nothing from the old articles is migrated. The old set went too deep: a reference page per node, per plot type, per dialog. The new set is shorter and organized around what you do on the screen.
 
@@ -19,12 +19,12 @@ The sections follow the screen, from left to right:
 
 - The **Stint Folder** on the left, and **Playback** under the 3D view.
 - The **3D view** and **2D plots** in the center.
-- The right-hand rail: **Plugins**, **Timeline**.
+- The right-hand rail: **Plugins**, **Timeline**, **Assistant**.
 - **Settings and libraries** under the Tools menu.
 
 **Ghosts** get their own section because they run through every view. **Sharing and live** and **Reference** sit at the end.
 
-About 30 pages in 11 sections:
+About 31 pages in 12 sections:
 
 | # | Section | Article ID | Title | Covers |
 |---|---|---|---|---|
@@ -33,7 +33,7 @@ About 30 pages in 11 sections:
 | 02 | Stint Folder | `folder.open` | Opening telemetry | Local folders, cloud runs, the Cloud / Local / Both filter, supported files (.ibt, .parquet, .csv) |
 | | | `folder.tree` | The tree and selecting laps | Track > Layout > Car > File > Stint > Outing > Lap, columns, best-lap markers, badges, the 3D column, ticking vs solo play |
 | 03 | Playback | `play.transport` | Transport and speed | Play, pause, rewind and fast-forward, lap jumps, same-position jumps |
-| | | `play.range` | Scrubber and range | Scrub, zoom, LapDist vs time axis, snapping, follow modes, linking 2D and 3D, stacked vs synced files |
+| | | `play.range` | Playback bar and range | Scrub, zoom, LapDist vs time axis, snapping, follow modes, linking 2D and 3D, stacked vs synced files |
 | 04 | Ghosts | `ghosts.basics` | Ego and ghosts | Adding ghosts (Playlist, top N, from Corner Analysis), options, colours, the position table |
 | | | `ghosts.sync` | Comparing outings and stints | Compare modes, sync points, offsets, laps from the same session |
 | 05 | 3D view | `view3d.cameras` | Cameras | The six camera modes, Level and Stabilize |
@@ -51,12 +51,13 @@ About 30 pages in 11 sections:
 | | | `plugins.dash-designer` | Dash Designer | Building and editing a dash, element types |
 | 08 | Timeline | `timeline.points` | Timeline points | The six point kinds, how they fire every lap, hotkeys, importing |
 | | | `timeline.presentation` | Building a presentation lap | A walkthrough that combines camera, speed and note points |
-| 09 | Sharing and live | `share.sessions` | Shared sessions | "Everyone drives" vs "I present", room codes, cloud runs, uploading to a test pool |
+| 09 | Assistant | `assistant.using` | Using the Assistant | Connecting a provider and API key, what to ask, letting it act on the app, remote control from an AI client |
+| 10 | Sharing and live | `share.sessions` | Shared sessions | "Everyone drives" vs "I present", room codes, cloud runs, uploading to a test pool |
 | | | `share.tray` | LapLabs Tray and live view | Installing the tray, Share Live, Watch Live, the live dashboard |
-| 10 | Settings and libraries | `settings.preferences` | Preferences | The Plot and Units pages |
+| 11 | Settings and libraries | `settings.preferences` | Preferences | The Plot and Units pages |
 | | | `settings.vehicles` | Vehicle library | Browsing models, assigning one per car |
 | | | `settings.tracks` | Track library | Published circuits, what the 3D column means |
-| 11 | Reference | `ref.shortcuts` | Keyboard and mouse | Every shortcut in one table |
+| 12 | Reference | `ref.shortcuts` | Keyboard and mouse | Every shortcut in one table |
 | | | `ref.troubleshooting` | Troubleshooting | No track mesh (GPS ribbon fallback), files that fail to parse, browser support, performance |
 
 The IDs use new prefixes so that none of them collides with an old Studio ID.
@@ -81,11 +82,41 @@ Aim for 600 to 800 words. Don't list every control. If a page needs more than th
    - the new sidebar groups for the IDs above;
    - new docs home copy (it currently says "LapLabs Studio Documentation");
    - remove the tier pill;
-   - send old article IDs to the docs home rather than a blank page.
-4. **Land both together.** Merge the site PR, then this one straight after. The deploy that this merge triggers carries both. Expect a minute or two where the sidebar and the content don't match, so pick a quiet time.
+   - send old article IDs to the docs home rather than a blank page, and make `start.welcome` the default article;
+   - have the fetch script copy `docs/images/` into the build as `docs-images/` (see Screenshots), and ignore that folder in git;
+   - styles for `figure` and `img` in article bodies, since the docs CSS doesn't style them yet.
+4. **Update this repo's README**, whose file structure section says `docs-content.js` is the only content file.
+5. **Land both together.** Merge the site PR, then this one straight after. The deploy that this merge triggers carries both. Expect a minute or two where the sidebar and the content don't match, so pick a quiet time.
+
+## Screenshots
+
+Screenshots live in this repo, in `docs/images/`, next to the text they illustrate. A PR that changes a page can then change its screenshot too, and review sees both. At build time the site copies the folder in, and pages load images from `docs-images/` on laplabs.net.
+
+**On the page.** One screenshot per page, placed right after the intro paragraph. Until it's captured, the page holds a placeholder comment that says what to show:
+
+```html
+<!-- SHOT start.welcome: the whole app just after first sign-in ... -->
+```
+
+Once it's captured, the comment becomes:
+
+```html
+<figure><img src="docs-images/start.welcome.png" alt="The whole app just after first sign-in ..." loading="lazy"></figure>
+```
+
+**Files.** Name each file after its article ID, for example `docs/images/start.welcome.png`. A second image on the same page adds a suffix: `start.welcome-2.png`. Use PNG, and keep each file under 500 KB.
+
+**Capturing.** Use the same setup every time, so screenshots look alike across pages:
+
+- Chrome at 100% zoom, with the DevTools device toolbar set to a 1600 x 1000 viewport at device pixel ratio 1. Take the image with DevTools' "Capture screenshot".
+- Sign in with an ordinary account, not one that is a track author, a reviewer or a test pool member, so no extra controls appear.
+- Use the public demo runs unless the page is about your own files.
+- Dismiss the **Try it** checklist, except on the Start here pages.
+- On Start here, show the whole window. On other pages, crop to the area the page covers, and keep enough around it to show where it sits.
+- No arrows or annotations. If something needs pointing out, say it in the text.
+- Use the placeholder's description as the alt text.
 
 ## Open questions
 
-- **Screenshots.** Where do images live? This repo holds no images today, and article bodies can only reference URLs.
 - **Changelog and API pages.** The site's docs changelog and Public API pages date from the Studio era. Rewrite them, retire them or leave them as they are?
 - **Order of writing.** Suggested order: Start here, Stint Folder, Playback, Ghosts, then the rest.
