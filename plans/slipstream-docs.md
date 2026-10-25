@@ -1,6 +1,6 @@
 # Plan: replace the docs with Slipstream docs
 
-**Status:** in progress. Sections 01 to 04 (Start here, Stint Folder, Playback, Ghosts) and 09 (Assistant) drafted on branch `docs/slipstream-docs`, 2026-10-24.
+**Status:** in progress. Live on laplabs.net since 2026-10-25: sections 01 to 04 and 09 (9 of 31 pages).
 
 The articles in `docs/docs-content.js` describe LapLabs Studio, the desktop node-graph app that is being phased out. This plan replaces all of them with documentation for **Slipstream**, the LapLabs web app. Nothing from the old articles is migrated. The old set went too deep: a reference page per node, per plot type, per dialog. The new set is shorter and organized around what you do on the screen.
 
@@ -74,23 +74,20 @@ Every page has the same shape. The point is to stay shallow:
 
 Aim for 600 to 800 words. Don't list every control. If a page needs more than that, split it or cut it.
 
-## Cutover
+## Publishing
 
-1. **Write** on a single long-lived branch here. Replace `docs/docs-content.js` wholesale, keep the current schema, and drop the `tier` field.
-2. **Preview locally** with the site's fetch script, pointed at your working copy (see "For maintainers" in the README).
-3. **Prepare the site side** in a companion PR in the site repo:
-   - the new sidebar groups for the IDs above;
-   - new docs home copy (it currently says "LapLabs Studio Documentation");
-   - remove the tier pill;
-   - send old article IDs to the docs home rather than a blank page, and make `start.welcome` the default article;
-   - have the fetch script copy `docs/images/` into the build as `docs-images/` (see Screenshots), and ignore that folder in git;
-   - styles for `figure` and `img` in article bodies, since the docs CSS doesn't style them yet.
-4. **Update this repo's README**, whose file structure section says `docs-content.js` is the only content file.
-5. **Land both together.** Merge the site PR, then this one straight after. The deploy that this merge triggers carries both. Expect a minute or two where the sidebar and the content don't match, so pick a quiet time.
+The Studio docs were replaced on 2026-10-25 (laplabs-docs #14, laplabs-site #83). Since then, the site builds its sidebar and docs home from `docs/docs-content.js`: one group per article `section`, in the order the articles appear.
+
+- **New sections go straight to `main`**, one PR per section as it's written. Merging deploys within about a minute.
+- **Pages can link ahead.** A link or a next / previous slot that points at a page not written yet shows as plain text or an empty slot until that page exists.
+- **Section numbers in the sidebar** count only the sections that exist so far, so they settle once every section is written.
+- **Old Studio links** (such as `?page=gs.install`) show "Page not found" with a link to the docs home.
+
+One site change is still needed before the first screenshot lands: the fetch script only downloads `docs-content.js` today, so it also has to copy `docs/images/` into the build as `docs-images/`. The image styles are already in place.
 
 ## Screenshots
 
-Screenshots live in this repo, in `docs/images/`, next to the text they illustrate. A PR that changes a page can then change its screenshot too, and review sees both. At build time the site copies the folder in, and pages load images from `docs-images/` on laplabs.net.
+Screenshots live in this repo, in `docs/images/`, next to the text they illustrate. A PR that changes a page can then change its screenshot too, and review sees both. At build time the site copies the folder in, and pages load images from `docs-images/` on laplabs.net (the copy step isn't wired up yet, see Publishing).
 
 **On the page.** One screenshot per page, placed right after the intro paragraph. Until it's captured, the page holds a placeholder comment that says what to show:
 

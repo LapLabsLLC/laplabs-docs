@@ -28,20 +28,21 @@ This isn't unique to this repo's flow — it's a property of how the site render
 
 ```js
 window.DOCS_ARTICLES = {
-  'gs.install': {
-    section: 'Getting Started',
-    title: 'Installation & Setup',
-    lede: 'Download LapLabs Studio, install dependencies, and launch your first session.',
-    prev: null,                              // or ['id', 'Display Title']
-    next: ['gs.ui-tour', 'UI Tour'],
-    toc: ['requirements', 'install', 'launch'],
-    tocLabels: ['System Requirements', 'Installation', 'First Launch'],
+  'folder.open': {
+    section: 'Stint Folder',
+    title: 'Opening telemetry',
+    lede: 'Get telemetry into Slipstream: open the iRacing folder on your computer, or stream runs from the cloud.',
+    prev: ['start.quick', 'Quick start'],    // or null
+    next: ['folder.tree', 'The tree and selecting laps'],
+    toc: ['local', 'reopen', 'related'],
+    tocLabels: ['Open your telemetry folder', 'Reopen it next time', 'Related'],
     body: `
-<h2 id="requirements">System Requirements</h2>
-<ul>
-  <li><strong>OS:</strong> Windows 10/11 (64-bit)</li>
-  ...
-</ul>
+<p>The Stint Folder panel on the left is where telemetry comes in.</p>
+<!-- SHOT folder.open: what the screenshot for this page should show -->
+<h2 id="local">Open your telemetry folder</h2>
+<ol>
+  <li>...</li>
+</ol>
 `,
   },
   // more articles...
@@ -49,7 +50,9 @@ window.DOCS_ARTICLES = {
 ```
 
 Notes:
-- Article IDs are referenced by the docs sidebar in the site repo. **Adding a new article ID requires a coordinated change in the site repo's sidebar configuration** — flag this in your PR and a maintainer will land both sides.
+- The site builds its sidebar and docs home from this file: one group per article `section`, in the order the articles appear. Adding, removing or reordering articles needs no change in the site repo.
+- Links to articles that don't exist yet are shown as plain text, so an article can link ahead to pages still being written.
+- See [`plans/slipstream-docs.md`](plans/slipstream-docs.md) for the page list, the page template and the screenshot conventions.
 - `toc` entries must match `id` attributes inside the body's `<h2>` / `<h3>` headings.
 - `prev`/`next` use the same article-ID format and drive the page-bottom pager.
 - HTML in `body` is rendered as-is. CSS classes that already exist in the docs stylesheet (`.callout`, `.callout.note`, `<code>`, `<pre>`, etc.) are available — copy patterns from existing articles rather than introducing new classes.
@@ -71,7 +74,9 @@ Pushes to `main` not touching `docs/**` (README edits, workflow tweaks) are filt
 
 ```
 docs/
-  docs-content.js              ← the only content file. Edit this.
+  docs-content.js              ← all article content. Edit this.
+plans/
+  slipstream-docs.md           ← the docs plan (not deployed)
 .github/
   workflows/
     trigger-site-deploy.yml    ← deploy trigger
@@ -107,3 +112,4 @@ The website is private, the docs are public. Splitting them out lets external co
 - **2026-03-27** — repo created as an MkDocs Material site with markdown sources.
 - **2026-04-24** — MkDocs sources removed; `docs-content.js` migrated in from the site repo. Repo declared canonical, but with no automation to enforce it.
 - **2026-05-09** — auto-deploy pipeline (this repo's GH Action + the site repo's `scripts/fetch-docs.sh`) wired up. Doc edits here actually update the live site.
+- **2026-10-25**: the LapLabs Studio articles replaced by the Slipstream docs (see `plans/slipstream-docs.md`). The site now generates its docs sidebar and home from `docs-content.js`.
