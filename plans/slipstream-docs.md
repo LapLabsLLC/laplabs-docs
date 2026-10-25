@@ -1,6 +1,6 @@
 # Plan: replace the docs with Slipstream docs
 
-**Status:** in progress. Live on laplabs.net since 2026-10-25: sections 01 to 04 and 09 (9 of 31 pages).
+**Status:** all 31 pages written (2026-10-25). Screenshots are still to come.
 
 The articles in `docs/docs-content.js` describe LapLabs Studio, the desktop node-graph app that is being phased out. This plan replaces all of them with documentation for **Slipstream**, the LapLabs web app. Nothing from the old articles is migrated. The old set went too deep: a reference page per node, per plot type, per dialog. The new set is shorter and organized around what you do on the screen.
 
@@ -116,4 +116,3 @@ Once it's captured, the comment becomes:
 ## Open questions
 
 - **Changelog and API pages.** The site's docs changelog and Public API pages date from the Studio era. Rewrite them, retire them or leave them as they are?
-- **Order of writing.** Suggested order: Start here, Stint Folder, Playback, Ghosts, then the rest.

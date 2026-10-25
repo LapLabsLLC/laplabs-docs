@@ -255,7 +255,7 @@ window.DOCS_ARTICLES = {
   <li><strong>Stints</strong>, <strong>Outings</strong>, <strong>Laps</strong>: how many the row contains.</li>
   <li><strong>Best</strong>: the fastest lap in the row. On a lap row, that lap's own time.</li>
   <li><strong>Time</strong>: the total time the row covers.</li>
-  <li><strong>3D</strong>: on track and layout rows, whether there's a 3D model of the track. A green &#10003; means LapLabs has published one. A blue &#10003; means it comes from your own track folder (see <a href="docs-article.html?page=settings.tracks">Track library</a>). &#10007; means there's no model, so the 3D view falls back to a ribbon built from the GPS trace. ~ on a track row means its layouts differ.</li>
+  <li><strong>3D</strong>: on track and layout rows, whether there's a 3D model of the track. A green &#10003; means LapLabs has published one (see <a href="docs-article.html?page=settings.tracks">Track library</a>). &#10007; means there's no model, so the 3D view falls back to a ribbon built from the GPS trace. ~ on a track row means its layouts differ.</li>
 </ul>
 <h3>Badges and markers</h3>
 <ul>
@@ -942,7 +942,7 @@ window.DOCS_ARTICLES = {
 </ol>
 <p>A dash in the Value column means the channel can't be worked out at that moment, usually because an input isn't loaded yet.</p>
 <h2 id="empty">Fix an empty line</h2>
-<p>A derived channel can only be drawn when its inputs are there. If its line stays empty, check its Inputs in the Derived table and add the missing ones to the same plot with <strong>Add variables…</strong>. For example, SteerDeg needs SteeringWheelAngle, and BodySlip needs VelocityX, VelocityY and VelocityZ. X, Y, TrackLatPos and TrackAngle need GPS (Lat and Lon), so they stay empty for a run without it.</p>
+<p>A derived channel can only be drawn when its inputs are there. If its line stays empty, check its Inputs in the Derived table and add the missing ones to the same plot with <strong>Add variables…</strong>. For example, SteerDeg needs SteeringWheelAngle, and BodySlip needs VelocityX, VelocityY and VelocityZ. X, Y and TrackLatPos need GPS (Lat and Lon), and TrackAngle needs YawNorth and LapDistPct. All four also need the track's shape, so they stay empty when Slipstream has none for the run.</p>
 <div class="callout note">
   <span class="ic">i</span>
   <div>
@@ -1652,6 +1652,470 @@ window.DOCS_ARTICLES = {
   <li><a href="docs-article.html?page=plugins.corners">Corner Analysis</a></li>
   <li><a href="docs-article.html?page=ref.troubleshooting">Troubleshooting</a></li>
 </ul>
+`,
+},
+
+// ─────────────────────────────────────────────────────────────────
+// 10: SHARE
+// ─────────────────────────────────────────────────────────────────
+
+'share.sessions': {
+  section: 'Sharing and live',
+  title: 'Shared sessions',
+  lede: 'Put teammates, a coach or an engineer on the same run as you, live, so everyone sees the same lap, ghosts and camera at the same moment.',
+  prev: ['assistant.using', 'Using the Assistant'],
+  next: ['share.tray', 'LapLabs Tray and live view'],
+  toc: ['start', 'invite', 'join', 'control', 'shared', 'pools', 'related'],
+  tocLabels: ['Start a room', 'Invite people', 'Join a room', 'Choose who is in control', 'See what the room shares', 'Upload a session to a test pool', 'Related'],
+  body: `
+<p>A shared session is a room that others join from their own browser, each signed in with their own LapLabs account. Everyone has the same run open and the view follows along: scrub to a corner, add a ghost or switch camera, and the others see it as you do it.</p>
+<!-- SHOT share.sessions: The Share session popup open under the Stint Folder title row, showing the large six-digit room code, the Copy invite link button, "2 people in room", the Everyone drives and I present buttons with I present selected, and Leave session at the bottom -->
+<h2 id="start">Start a room</h2>
+<ol>
+  <li>Open a cloud run.</li>
+  <li>Click <strong>Share session</strong> in the Stint Folder title row.</li>
+  <li>Pick <strong>I present</strong> (the default) or <strong>Everyone drives</strong>.</li>
+  <li>Click <strong>Create room</strong>. The popup now shows the room's six-digit code.</li>
+</ol>
+<p>Sharing works with cloud runs only; with a local file open, the popup says <strong>Open a cloud run to share a session.</strong> The room never sends telemetry, only what you do with it: each browser opens the run from the LapLabs cloud by itself, and nobody else can open a file on your computer. Outings and laps picked from cloud runs work too, unless a local file is mixed in. If you switch to a local file mid-session, the others stay on the last cloud run.</p>
+<h2 id="invite">Invite people</h2>
+<p>Click <strong>Copy invite link</strong> (it briefly reads <strong>Link copied!</strong>) and paste the link into a chat or email, or just read out the six-digit code. The popup counts who's connected, for example <strong>2 people in room</strong>.</p>
+<p>Anyone with the code or the link can join, so only send it to people you want in the room.</p>
+<h2 id="join">Join a room</h2>
+<ul>
+  <li><strong>From a link:</strong> open it. If you aren't signed in, sign in first: the link survives sign-in and you land in the room.</li>
+  <li><strong>From a code:</strong> click <strong>Share session</strong>, type the six digits under <strong>or join a code</strong>, then click <strong>Join</strong> or press <code>Enter</code>.</li>
+</ul>
+<p>You arrive on the room's run, at the room's cursor, with the same camera, plots and panels. Ghosts and play or pause catch up the next time someone changes them. If the count stays at 1 person, nobody else is in that room: check the code.</p>
+<h2 id="control">Choose who is in control</h2>
+<ul>
+  <li><strong>I present</strong>: only you, the room's creator, control the view. The others watch, read only, and their popup says so. Your button reads <strong>Presenting</strong>, theirs <strong>Watching</strong>.</li>
+  <li><strong>Everyone drives</strong>: anyone can scrub, play, add ghosts or change the camera. The button reads <strong>Live</strong> with the head count (<strong>Live · 3</strong>), <strong>Live · driving</strong> while you change something and <strong>Live · following</strong> while someone else does.</li>
+</ul>
+<p>The creator can switch modes at any time from the popup. Either way, only the creator picks the run and ticks laps: everyone else's Stint Folder tree is locked and follows. If two people grab the same control, whoever got there first keeps it until they've let go for half a second.</p>
+<p>A watcher's own clicks stay on their screen until the presenter's next change replaces them. To go, open the popup and click <strong>Leave session</strong>.</p>
+<h2 id="shared">See what the room shares</h2>
+<p>These follow whoever is in control:</p>
+<ul>
+  <li>The run, the Stint Folder ticks, the cursor and the range.</li>
+  <li>Play and pause, speed, and the playback bar's snapping, axis, link and follow mode.</li>
+  <li>Ghosts and the Ghosts panel options.</li>
+  <li>The camera you pick. Orbiting or zooming with the mouse stays your own.</li>
+  <li>Track trace settings.</li>
+  <li>The 2D plots: which are open, their channels and how each is drawn. Holding <code>Shift</code> for the value readout shows it for everyone.</li>
+  <li>Pen drawings and timeline points, so a lap you've prepared with camera cuts and notes plays the same for everyone.</li>
+  <li>The rail tab, which 3D sidebar and plugin panels are open, Multi-Lap Timing's lap windows, and the Dash canvas.</li>
+</ul>
+<p>Some things stay your own: which plugins are switched on, the rail columns, the 2D plot sidebar, your Preferences and your Assistant chat.</p>
+<h2 id="pools">Upload a session to a test pool</h2>
+<p>This is only for members of a private test pool (a set of cloud runs only its members can see) whose membership allows uploads. It turns one of your own .ibt files into a cloud run in the pool, ready to share.</p>
+<ol>
+  <li>Choose your pool in the drop-down next to <strong>Cloud</strong>, <strong>Local</strong> and <strong>Both</strong>. With your telemetry folder open, set the filter to Local or Both.</li>
+  <li>On a local file's row, click the upload button (☁↑, <strong>Build this session and upload it to</strong> your pool).</li>
+</ol>
+<p>The row shows <strong>Queued</strong>, <strong>Building…</strong>, a percentage, then <strong>Finishing…</strong>, one upload at a time. ☁✓ means done (<strong>Uploaded to</strong>) or already there (<strong>Already in</strong>). If it fails, the button turns into ☁!: hover it for the reason, click it to retry. The pool gets the built session and the original .ibt. In a room, people outside the pool can't open its runs.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=folder.open">Opening telemetry</a></li>
+  <li><a href="docs-article.html?page=timeline.presentation">Building a presentation lap</a></li>
+  <li><a href="docs-article.html?page=share.tray">LapLabs Tray and live view</a></li>
+</ul>
+`,
+},
+'share.tray': {
+  section: 'Sharing and live',
+  title: 'LapLabs Tray and live view',
+  lede: 'A small Windows app that reads iRacing while you drive and can share your car live on laplabs.net.',
+  prev: ['share.sessions', 'Shared sessions'],
+  next: ['settings.preferences', 'Preferences'],
+  toc: ['get', 'menu', 'share', 'watch', 'privacy', 'related'],
+  tocLabels: ['Get LapLabs Tray', 'Read the tray menu', 'Share your car live', 'Watch on laplabs.net', 'Know what Share Live sends', 'Related'],
+  body: `
+<p>LapLabs Tray sits in the Windows system tray, next to the clock. While iRacing runs, it reads your telemetry live. Turn on <strong>Share Live</strong> and it sends that telemetry to a room on laplabs.net, where anyone with the room code can follow your car on a live track map or a live dashboard. Slipstream itself works with recorded telemetry; the tray is for watching a session as it happens.</p>
+<!-- SHOT share.tray: The LapLabs Tray menu open from the Windows system tray, signed in, with Share Live ticked and the Room line showing a six-digit code marked (live), next to the laplabs.net Live Track page following the car -->
+<h2 id="get">Get LapLabs Tray</h2>
+<p>LapLabs Tray is available to testers only for now, and it isn't on the laplabs.net download pages yet. It runs on Windows only.</p>
+<p>Once it's running, its icon sits in the system tray (it may be tucked under the arrow beside the clock). Click the icon to open the menu, or hover over it to see what the tray is doing, such as the track it's reading.</p>
+<h2 id="menu">Read the tray menu</h2>
+<ul>
+  <li><strong>Source: iRacing</strong>: the tray is reading iRacing. It shows <strong>Source: waiting for iRacing</strong> until iRacing is running, and <strong>Source: telemetry paused</strong> if you paused it from Diagnostics.</li>
+  <li><strong>Track:</strong> the track iRacing reports.</li>
+  <li><strong>Account:</strong> who you're signed in as, with <strong>Sign in</strong> or <strong>Sign out</strong> below it. You need to sign in to share.</li>
+  <li><strong>Share Live</strong>, the <strong>Room:</strong> line, <strong>Watch Live</strong> and <strong>Open Dashboard</strong>: see the next section.</li>
+  <li><strong>Updates:</strong> whether a newer version is ready. <strong>Install update &amp; restart</strong> installs one that has downloaded; the tray never restarts during an iRacing session, and installs it by itself afterwards. <strong>Updates: off</strong> means this copy can't update itself.</li>
+  <li><strong>Start with Windows</strong>: start the tray when you sign in to Windows. Off until you tick it.</li>
+  <li><strong>Discord status</strong>: shows LapLabs in your Discord profile, with your track while you drive. On by default. It never shows telemetry.</li>
+  <li><strong>Diagnostics</strong>: connection details for support, plus <strong>Pause telemetry</strong> and <strong>Resume telemetry</strong>.</li>
+  <li><strong>Quit</strong>: closes the tray and stops any sharing.</li>
+</ul>
+<h2 id="share">Share your car live</h2>
+<ol>
+  <li>Click <strong>Sign in</strong>. Your browser opens laplabs.net: sign in with your LapLabs account, the same one you use for Slipstream. The menu then shows <strong>Account:</strong> with your name. Until then, <strong>Share Live</strong> is grayed out and the Room line reads <strong>Room: sign in first</strong>.</li>
+  <li>Click <strong>Share Live</strong> to tick it. The tray picks a new six-digit room code, and the Room line shows it as connecting, then as live (for example <strong>Room: 123456 (live)</strong>).</li>
+  <li>Click <strong>Watch Live</strong> to open the live track for your room, or <strong>Open Dashboard</strong> for the live dashboard. Both work only while you're sharing.</li>
+  <li>Send the code, or the address of either page, to whoever wants to watch.</li>
+</ol>
+<p>Click <strong>Share Live</strong> again to stop. It's off every time the tray starts, and signing out stops it too. You get a new code each time you turn it on, so send the new one.</p>
+<h2 id="watch">Watch on laplabs.net</h2>
+<p>Viewers need only the code: no tray, and no LapLabs account.</p>
+<ul>
+  <li><strong>Live Track</strong> (laplabs.net/live-track): your car moving on a 3D model of the track, with camera buttons (<strong>Free</strong>, <strong>Chase</strong>, <strong>Rig</strong>, <strong>Drone</strong>, <strong>TV</strong>, <strong>Cockpit</strong>), a trace colored by Speed, Throttle or Brake, and shift lights, pedals, speed, gear and steering. Type the code in the room box and click <strong>Connect</strong>; a link with the code connects by itself. Until you connect, it plays a demo lap at Spa.</li>
+  <li><strong>Live Dashboard</strong> (laplabs.net/dashboard): speed, gear, oil and water temperature and fuel, the pedals and steering angle, and lap-by-lap traces against lap distance. Enter the code under <strong>Room</strong> (a link fills it in) and click <strong>Connect →</strong>.</li>
+</ul>
+<p>The dashboard page also offers the older Live Dash Sender; with LapLabs Tray you don't need it. The dashes inside Slipstream replay recorded laps rather than live data: see <a href="docs-article.html?page=plugins.dash">Dash</a>.</p>
+<h2 id="privacy">Know what Share Live sends</h2>
+<p>With Share Live off, the tray doesn't send your telemetry anywhere. With it on, it sends, up to 60 times a second:</p>
+<ul>
+  <li>Your car's position and direction on track, its speed and how far around the lap you are.</li>
+  <li>Throttle, brake, clutch, steering, RPM, gear, the shift light, suspension travel, oil and water temperature and fuel level.</li>
+  <li>The track you're on, your LapLabs display name (your username, or the part of your email address before the @) and a car color, so viewers can tell cars apart.</li>
+</ul>
+<p>Anyone with the room code can watch. The code is the only key, so share it only with people you want watching, and turn Share Live off when you're done.</p>
+<div class="callout warn">
+  <span class="ic">!</span>
+  <div>
+    <span class="lbl">Heads up</span>
+    <p>With <strong>Discord status</strong> on, your Discord profile shows buttons that open your room while you share, so anyone who can see your Discord status can watch too. Untick Discord status if you don't want that.</p>
+  </div>
+</div>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=share.sessions">Shared sessions</a></li>
+  <li><a href="docs-article.html?page=plugins.dash">Dash</a></li>
+  <li><a href="docs-article.html?page=settings.preferences">Preferences</a></li>
+</ul>
+`,
+},
+
+// ─────────────────────────────────────────────────────────────────
+// 11: SETTINGS
+// ─────────────────────────────────────────────────────────────────
+
+'settings.preferences': {
+  section: 'Settings and libraries',
+  title: 'Preferences',
+  lede: 'Choose the units your numbers show in, where the plot sidebars sit, how the 3D view draws cars and track, and the paint on your car.',
+  prev: ['share.tray', 'LapLabs Tray and live view'],
+  next: ['settings.vehicles', 'Vehicle library'],
+  toc: ['open', 'units', 'sidebar', 'view3d', 'paint', 'save', 'related'],
+  tocLabels: ['Open Preferences', 'Choose Imperial or Metric', 'Move the plot sidebars', 'Adjust the 3D view', 'Paint your car', 'Save, cancel or reset', 'Related'],
+  body: `
+<p>Preferences hold the settings that apply across Slipstream: units, the side the plot sidebars sit on, a few 3D display options and the paint on your car. The window has two pages, <strong>Plot</strong> and <strong>Units</strong>, listed down its left side.</p>
+<!-- SHOT settings.preferences: Preferences window on the Plot page, showing the two shadow checkboxes, Show FPS counter, the car-surface blend checkbox and window, the rung spacing field, Plot sidebar side set to Left, and Ego paint color with the Ego metallic and Ego roughness sliders, with Reset to Default, Cancel and OK along the bottom -->
+<h2 id="open">Open Preferences</h2>
+<ol>
+  <li>Choose <strong>Tools</strong> &gt; <strong>Preferences...</strong>.</li>
+  <li>Click <strong>Plot</strong> or <strong>Units</strong> on the left to switch pages.</li>
+  <li>Make your changes, then click <strong>OK</strong>. Open plots and the 3D view update straight away, with no reload.</li>
+</ol>
+<p>Rows on the Plot page that aren't covered here have no effect in the browser.</p>
+<h2 id="units">Choose Imperial or Metric</h2>
+<p>On the <strong>Units</strong> page, set <strong>System</strong> to <strong>Imperial</strong> (the default) or <strong>Metric</strong>:</p>
+<ul>
+  <li>Speed: mph or km/h.</li>
+  <li>Temperatures, such as tires, track, oil and water: °F or °C.</li>
+  <li>Pressures, such as tires, brake lines and oil: psi or kPa.</li>
+  <li>Acceleration (LatAccel, LongAccel, VertAccel): g or m/s².</li>
+  <li>Distance and height (LapDist, Alt): ft or m.</li>
+  <li>Fuel level: gal or L.</li>
+  <li>Tire loads: lbs or kg. Steering torque: ft·lbf or Nm.</li>
+</ul>
+<p>Some units are the same in both systems: angles show in degrees, pedals and other 0 to 1 channels in percent, and times in seconds.</p>
+<p>Your choice applies to the 2D plots (the lines, the axis and the readout), the units in the channel lists of the 2D and 3D sidebars, the speed on ghost labels, the track temperature in Timing's weather band, and dash elements whose <strong>Units</strong> is set to <strong>Follow app preference</strong>. Derived channels keep their own unit, and so does any channel Slipstream doesn't recognize.</p>
+<div class="callout note">
+  <span class="ic">i</span>
+  <div>
+    <span class="lbl">Note</span>
+    <p>The colorbar in the 3D sidebar's <strong>Channels + Traces</strong> panel names the channel in your unit, such as Speed (mph), but its low and high numbers, like those on the trace badge, stay in the recorded unit: m/s for Speed, 0 to 1 for pedals. Type your own color range in those units too.</p>
+  </div>
+</div>
+<h2 id="sidebar">Move the plot sidebars</h2>
+<p>On the Plot page, <strong>Plot sidebar side</strong> puts the sidebar of the 2D plots and of the 3D view on the <strong>Left</strong> (the default) or the <strong>Right</strong>. They always move together.</p>
+<h2 id="view3d">Adjust the 3D view</h2>
+<ul>
+  <li><strong>Ego car casts a shadow in 3D plots</strong> and <strong>Ghost cars cast shadows in 3D plots</strong>: shadows under your car and the ghost cars, falling on the track. Both are on to start with. If the 3D view runs slowly, try turning both off.</li>
+  <li><strong>Show FPS counter in 3D plots</strong>: a small readout of the frame rate and the slowest recent frame in each 3D view. It's off to start with. Turn it on to check how smoothly your computer draws the view.</li>
+  <li><strong>Blend car Z onto track surface (3D)</strong>: a car's height comes from its GPS altitude, so on long climbs and descents it can sit a few centimeters off the track. Tick this to hold the car on the surface while keeping its own bumps and bounces. It's off to start with, and it only acts on tracks with a published 3D model (see <a href="docs-article.html?page=settings.tracks">Track library</a>).</li>
+  <li><strong>Car-surface blend window (s)</strong>: how slowly the blend corrects, from 0.5 to 30 seconds (5 to start with). Larger values only fix slow drift on long hills. Smaller values hold the car tighter to the surface but smooth away more of its own movement.</li>
+  <li><strong>LapDistPct rung spacing (%)</strong>: the thin lines across the track that mark distance around the lap. The default, 1, draws a line every 1% of the lap. Raise it for fewer lines: 10 draws one every tenth of a lap.</li>
+</ul>
+<h2 id="paint">Paint your car</h2>
+<ul>
+  <li><strong>Ego paint color</strong>: the body color of your car (the ego) in the 3D view, and of the cars in the Vehicle Library Viewer. It starts as red. Click the swatch to pick another. Your own racing line takes this color too while the traces are set to <strong>None (solid)</strong>.</li>
+  <li><strong>Ego metallic</strong>: from 0 (plain paint, the default) to 1 (fully metallic).</li>
+  <li><strong>Ego roughness</strong>: from 0 (glossy, with sharp reflections) to 1 (matte). It starts at 0.35.</li>
+</ul>
+<p>Metallic and roughness apply to the painted body of every car, ghosts included, but ghosts keep their own colors. If you've added the lap you're watching as a ghost, your car takes that ghost's color while you're on that lap.</p>
+<h2 id="save">Save, cancel or reset</h2>
+<ul>
+  <li><strong>OK</strong> saves your changes and applies them.</li>
+  <li><strong>Cancel</strong> closes the window without saving. So do <code>Esc</code> and the × in the corner.</li>
+  <li><strong>Reset to Default</strong> puts the page you're on back to its starting values. The other page isn't touched, and nothing is saved until you click OK.</li>
+</ul>
+<p>Preferences are saved in this browser. They don't travel with your LapLabs account, so set them again in another browser or on another computer.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=view3d.traces">Track traces</a></li>
+  <li><a href="docs-article.html?page=plots.channels">Plots and channels</a></li>
+  <li><a href="docs-article.html?page=view3d.car">Car and overlays</a></li>
+</ul>
+`,
+},
+'settings.vehicles': {
+  section: 'Settings and libraries',
+  title: 'Vehicle library',
+  lede: 'Browse the 3D car models Slipstream draws in the 3D view, and see how each car in a run gets its model.',
+  prev: ['settings.preferences', 'Preferences'],
+  next: ['settings.tracks', 'Track library'],
+  toc: ['open', 'browse', 'paint', 'assign', 'related'],
+  tocLabels: ['Open the Vehicle Library Viewer', 'Browse the models', 'See your paint on the models', 'Choose which model a car uses', 'Related'],
+  body: `
+<p>The vehicle library is the set of 3D car models that LapLabs publishes for Slipstream. They're LapLabs stand-ins for each kind of car (stock car, prototype, single-seater and GT) rather than copies of each iRacing car. The Vehicle Library Viewer shows them on a turntable. The library holds the published models only: you can't add a model of your own.</p>
+<!-- SHOT settings.vehicles: Vehicle Library Viewer with the ring of car models on a dark floor, the front car turning in the red default paint, its name between the left and right arrows below the ring, and the Reload button at the top -->
+<h2 id="open">Open the Vehicle Library Viewer</h2>
+<ol>
+  <li>Choose <strong>Tools</strong> &gt; <strong>Libraries</strong> &gt; <strong>Vehicle Library Viewer...</strong>.</li>
+  <li>Slipstream loads the published models and sets them out on a ring. Each car appears as soon as its model has loaded.</li>
+  <li>When you're done, click <strong>Close</strong> or press <code>Esc</code>.</li>
+</ol>
+<h2 id="browse">Browse the models</h2>
+<ul>
+  <li>The car at the front of the ring turns slowly, one full turn every 30 seconds, so you can see it from every side.</li>
+  <li>Click the ◀ or ▶ arrow under the ring to bring the previous or next model to the front. The ring wraps around at the end.</li>
+  <li>Or drag across the ring to spin it by hand. Let go and it settles on the nearest car.</li>
+  <li>The name between the arrows is the model at the front.</li>
+  <li><strong>Reload</strong> fetches the list again, to pick up models published since you opened the viewer.</li>
+</ul>
+<p>If the ring stays empty and shows <strong>No published cloud vehicles.</strong>, Slipstream couldn't load the list. Check your connection and click Reload.</p>
+<h2 id="paint">See your paint on the models</h2>
+<p>The models wear your car's paint: the color and finish you set with <strong>Ego paint color</strong>, <strong>Ego metallic</strong> and <strong>Ego roughness</strong> on the Plot page of <strong>Tools</strong> &gt; <strong>Preferences...</strong>. Change them there and the ring shows the new paint, so the viewer is a handy place to judge a color. See <a href="docs-article.html?page=settings.preferences">Preferences</a>.</p>
+<h2 id="assign">Choose which model a car uses</h2>
+<p>The viewer is only for looking: it doesn't change the model of any car. Slipstream gives each car in a run the model that matches its kind. Stock cars such as NASCAR and ARCA get the stock car, prototypes such as LMP and GTP cars get the prototype, formula cars, IndyCar and F4 get the single-seater, and everything else gets the GT. Files whose car Slipstream doesn't know use the <strong>Default</strong> model. To pick another model for a car or for a single file, or to change the Default, open the <strong>Vehicle</strong> panel in the 3D Track sidebar. See <a href="docs-article.html?page=view3d.car">Car and overlays</a>.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=view3d.car">Car and overlays</a></li>
+  <li><a href="docs-article.html?page=settings.preferences">Preferences</a></li>
+  <li><a href="docs-article.html?page=settings.tracks">Track library</a></li>
+</ul>
+`,
+},
+'settings.tracks': {
+  section: 'Settings and libraries',
+  title: 'Track library',
+  lede: 'See which circuits have a published 3D model, and what a model adds to the 3D view, Timing and Corner Analysis.',
+  prev: ['settings.vehicles', 'Vehicle library'],
+  next: ['ref.shortcuts', 'Keyboard and mouse'],
+  toc: ['open', 'browse', 'model', 'without', 'column', 'related'],
+  tocLabels: ['Open the Track Library', 'Browse the published circuits', 'What a 3D track model adds', 'When a track has no model', 'Check a track in the Stint Folder', 'Related'],
+  body: `
+<p>LapLabs publishes 3D models of circuits for everyone to use. When you open a run, Slipstream looks for a published model of its track and layout and loads it into the 3D view by itself, with nothing for you to set up. The Track Library lists the circuits that have one.</p>
+<!-- SHOT settings.tracks: Track Library window with Public selected, one circuit opened to show its layouts, a layout selected and its top-down outline previewed on the right, single tracks listed below the circuits, and Refresh and Close at the bottom -->
+<h2 id="open">Open the Track Library</h2>
+<ol>
+  <li>Choose <strong>Tools</strong> &gt; <strong>Libraries</strong> &gt; <strong>Track Library...</strong>.</li>
+  <li>The list on the left shows the <strong>Public</strong> library: every published circuit.</li>
+  <li>When you're done, click <strong>Close</strong> or press <code>Esc</code>.</li>
+</ol>
+<div class="callout note">
+  <span class="ic">i</span>
+  <div>
+    <span class="lbl">Note</span>
+    <p>The Track Library window needs Chrome or Edge. In other browsers it opens an empty settings window instead, but the 3D view still loads published tracks.</p>
+  </div>
+</div>
+<h2 id="browse">Browse the published circuits</h2>
+<ul>
+  <li>Circuits come first, each with its name in bold and its number of layouts. Click one to open it (▸ turns to ▾) and list its layouts.</li>
+  <li>Single tracks follow, one row each.</li>
+  <li>Click a layout or a track to preview it on the right: a top-down outline with north at the top, showing both edges, the center line and a tick at the start/finish line. Opening a circuit previews its first layout.</li>
+  <li><strong>Refresh</strong> loads the list again.</li>
+</ul>
+<p>The library is for looking: picking a track here doesn't load it or change your run. Slipstream chooses the track for each run itself.</p>
+<p>LapLabs publishes new circuits over time. Refresh shows them in the list straight away. Reload the page for the 3D view and the Stint Folder to start using them.</p>
+<h2 id="model">What a 3D track model adds</h2>
+<ul>
+  <li><strong>The real circuit in the 3D view.</strong> You get the track surface with its hills and banking, plus curbs, walls and other trackside detail where the model has them. The cars drive on it, with the lap-distance lines and sector lines drawn on the surface.</li>
+  <li><strong>Corner Analysis.</strong> It finds corners from the track model, so without one it shows <strong>No track geometry yet</strong>. The Assistant also needs the model to answer questions about corners.</li>
+  <li><strong>Sectors for every file.</strong> A model carries the track's sectors, so the sector lines on the playback bar and the 2D plots, and Timing's Sector Times, work even for a file that doesn't include iRacing's sector information.</li>
+  <li><strong>Car-surface blend.</strong> The Preferences option that holds the car on the track surface only works on a model. See <a href="docs-article.html?page=settings.preferences">Preferences</a>.</li>
+</ul>
+<h2 id="without">When a track has no model</h2>
+<p>If a track or layout has no published model, the 3D view draws a ribbon instead: a plain band of even width that follows the run's GPS trace, with lap-distance lines, sector lines and a start/finish line. Playback, ghosts, traces and plots all work as usual. Sectors then come from the file, when it has them. Corner Analysis is the one plugin that needs a model.</p>
+<p>Each layout needs its own model. A published Grand Prix layout doesn't cover a club or oval layout of the same circuit, so runs on those layouts get the ribbon.</p>
+<h2 id="column">Check a track in the Stint Folder</h2>
+<p>You don't need to open the Track Library to know whether a run has a model. The <strong>3D</strong> column of the Stint Folder tree shows it on every track and layout row:</p>
+<ul>
+  <li>Green ✓: LapLabs has published a model.</li>
+  <li>✗: there's no model, so the 3D view uses the GPS ribbon.</li>
+  <li>~ on a track row: its layouts differ. Open the track to see each one.</li>
+</ul>
+<p>Hover over a mark for a short explanation. Published circuits can also carry other names they're known by, and the tree's <strong>Filter track / layout&hellip;</strong> box matches those too. See <a href="docs-article.html?page=folder.tree">The tree and selecting laps</a>.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=folder.tree">The tree and selecting laps</a></li>
+  <li><a href="docs-article.html?page=plugins.corners">Corner Analysis</a></li>
+  <li><a href="docs-article.html?page=plugins.timing">Timing</a></li>
+</ul>
+`,
+},
+
+// ─────────────────────────────────────────────────────────────────
+// 12: REFERENCE
+// ─────────────────────────────────────────────────────────────────
+
+'ref.shortcuts': {
+  section: 'Reference',
+  title: 'Keyboard and mouse',
+  lede: 'Every keyboard shortcut and mouse control in Slipstream, grouped by the part of the app you use it in.',
+  prev: ['settings.tracks', 'Track library'],
+  next: ['ref.troubleshooting', 'Troubleshooting'],
+  toc: ['ignored', 'playback', 'view3d', 'plots', 'folder', 'timeline', 'dash', 'scatter', 'plugins', 'text', 'related'],
+  tocLabels: ['When keys are ignored', 'Playback', '3D view', '2D plots', 'Stint Folder', 'Timeline points', 'Dash canvas and Dash Designer', 'Scatter', 'Corner Analysis, Segment Eval and Timing', 'Text boxes and dialogs', 'Related'],
+  body: `
+<p>This page collects every key and mouse control in one place. Hover over a button to see its name, and its shortcut where it has one. Each group links to the page that explains it in full.</p>
+<!-- SHOT ref.shortcuts: The transport row under the 3D view with the mouse over the Prev lap, same LapDistPct button, its tooltip showing the Ctrl+, shortcut -->
+<h2 id="ignored">When keys are ignored</h2>
+<p>Shortcuts never get in the way of typing: they're ignored while a text box, number field, dropdown or checkbox has focus. A focused checkbox takes <code>Space</code> for itself, so right after you tick a lap in the Stint Folder, <code>Space</code> unticks it instead of playing. Click an empty part of the 3D view or a plot, and the keys work again.</p>
+<div class="callout note">
+  <span class="ic">i</span>
+  <div>
+    <span class="lbl">Note</span>
+    <p><code>F5</code> doesn't reload the page, because Slipstream uses it for something else. To reload, use the browser's reload button or <code>Ctrl</code>+<code>R</code>.</p>
+  </div>
+</div>
+<h2 id="playback">Playback</h2>
+<ul>
+  <li><code>Space</code>: play or pause. Play always starts forward at 1&times;.</li>
+  <li><code>.</code> (<strong>Fast-forward</strong>) and <code>,</code> (<strong>Rewind</strong>): push playback toward faster forward or faster reverse, in steps of two.</li>
+  <li><code>Shift</code>+<code>,</code> and <code>Shift</code>+<code>.</code>: previous or next lap. The first <code>Shift</code>+<code>,</code> restarts the lap you're in.</li>
+  <li><code>Ctrl</code>+<code>,</code> and <code>Ctrl</code>+<code>.</code>: previous or next lap at the same spot on track.</li>
+  <li><code>Ctrl</code>+<code>Space</code>: fit the playback range, and the 2D plots, to the lap at the cursor.</li>
+</ul>
+<p>On the playback bar: scroll to zoom the range, drag the bottom lane to scrub, drag the range window or its gold edges to move or resize it, and right-click the bottom lane for the ghost sync point. See <a href="docs-article.html?page=play.transport">Transport and speed</a> and <a href="docs-article.html?page=play.range">Playback bar and range</a>.</p>
+<h2 id="view3d">3D view</h2>
+<ul>
+  <li><strong>Chase</strong>, <strong>Orbit</strong> and <strong>Spectator</strong>: drag with the left mouse button to swing the camera around the car, and scroll to move closer or farther away.</li>
+  <li><strong>Cockpit</strong>: dragging and plain scrolling do nothing.</li>
+  <li><strong>Free</strong>: <code>W</code>, <code>A</code>, <code>S</code> and <code>D</code> to move, <code>Space</code> and <code>C</code> for up and down, and hold <code>Shift</code> to go faster. Drag to look around. <code>Space</code> also plays or pauses.</li>
+  <li><code>Ctrl</code>+scroll: zoom the lens (the field of view) in every mode except <strong>TV</strong>, where the mouse does nothing.</li>
+  <li>With the <strong>Pen</strong> on, dragging draws on the track and scrolling doesn't move the camera.</li>
+  <li>In the sidebar, double-click a stint or lap in the <strong>Playlist</strong> to jump to it, or a ghost's label in the <strong>Ghosts</strong> panel to make that lap the ego.</li>
+</ul>
+<p>See <a href="docs-article.html?page=view3d.cameras">Cameras</a>, <a href="docs-article.html?page=view3d.car">Car and overlays</a> and <a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a>.</p>
+<h2 id="plots">2D plots</h2>
+<ul>
+  <li>Scroll: zoom in or out around the mouse pointer. Only the horizontal axis zooms.</li>
+  <li>Drag: pan along the session. Double-click: show the whole session again.</li>
+  <li>Hold <code>Ctrl</code> and move the mouse: the playback cursor follows the pointer. <code>Ctrl</code>+click jumps it to that spot.</li>
+  <li>Hold <code>Shift</code>: show the readout box with each value at the cursor.</li>
+</ul>
+<p>See <a href="docs-article.html?page=plots.navigate">Navigating plots</a>.</p>
+<h2 id="folder">Stint Folder</h2>
+<ul>
+  <li><code>Ctrl</code>+scroll over the tree: make its text larger or smaller.</li>
+  <li>Click a column header to sort by it, and again to reverse. Drag the edge of a header to resize its column.</li>
+</ul>
+<p>See <a href="docs-article.html?page=folder.tree">The tree and selecting laps</a>.</p>
+<h2 id="timeline">Timeline points</h2>
+<ul>
+  <li><code>K</code>: add a Camera point with the current view pinned.</li>
+  <li><code>L</code>: add a Speed point at the current playback speed.</li>
+  <li><code>N</code>: add a Note point. <code>G</code>: add a Ghost point.</li>
+  <li><code>[</code> and <code>]</code>: jump to the previous or next point, among the kinds you have ticked. They wrap around the lap.</li>
+  <li><code>Delete</code> or <code>Backspace</code>: remove the shown point nearest the cursor, if it's within 2% of a lap.</li>
+</ul>
+<p>These work from any rail tab, but not while you hold <code>Ctrl</code> or <code>Alt</code>. See <a href="docs-article.html?page=timeline.points">Timeline points</a>.</p>
+<h2 id="dash">Dash canvas and Dash Designer</h2>
+<p>On the Dash canvas:</p>
+<ul>
+  <li>Drag a dash to move it, or the triangle at its bottom-right corner to scale it. Drag empty space to pan.</li>
+  <li><code>Ctrl</code>+scroll: zoom the canvas. Over the <strong>Dash Library</strong> pane, it makes the thumbnails bigger or smaller.</li>
+  <li><code>Delete</code> or <code>Backspace</code>: take the selected dash off the canvas. <code>Esc</code>: deselect it.</li>
+</ul>
+<p>In the Dash Designer:</p>
+<ul>
+  <li><code>Ctrl</code>+<code>S</code>: <strong>Save</strong>. <code>Ctrl</code>+<code>Shift</code>+<code>S</code>: <strong>Save As…</strong></li>
+  <li><code>Ctrl</code>+<code>Z</code>: <strong>Undo</strong>. <code>Ctrl</code>+<code>Y</code> or <code>Ctrl</code>+<code>Shift</code>+<code>Z</code>: <strong>Redo</strong>.</li>
+  <li><code>Ctrl</code>+<code>C</code>, <code>Ctrl</code>+<code>X</code> and <code>Ctrl</code>+<code>V</code>: copy, cut and paste. <code>Ctrl</code>+<code>A</code>: select all.</li>
+  <li><code>Ctrl</code>+<code>]</code>: <strong>Bring to Front</strong>. <code>Ctrl</code>+<code>[</code>: <strong>Send to Back</strong>.</li>
+  <li>Arrow keys: nudge the selection 1 pixel, or 10 pixels with <code>Shift</code>.</li>
+  <li><code>Delete</code> or <code>Backspace</code>: delete the selection. <code>Esc</code>: clear the selection.</li>
+  <li><code>G</code>: turn <strong>Snap to Grid</strong> on or off.</li>
+  <li><code>Shift</code>+click adds an element to the selection. Double-click an element to open its settings.</li>
+  <li>While drawing a <strong>Segment Border</strong>: <code>Enter</code> or a double-click finishes it, <code>Ctrl</code>+<code>Z</code> removes the last point and <code>Esc</code> cancels.</li>
+</ul>
+<p>See <a href="docs-article.html?page=plugins.dash">Dash</a> and <a href="docs-article.html?page=plugins.dash-designer">Dash Designer</a>.</p>
+<h2 id="scatter">Scatter</h2>
+<ul>
+  <li>Scroll: zoom around the pointer. Hold <code>Shift</code> to zoom only across, or <code>Alt</code> to zoom only up and down.</li>
+  <li>Drag: pan. Double-click: fit all the points again.</li>
+  <li>In <strong>Scatter 3D (X, Y, Z)</strong>: drag to orbit and scroll to zoom.</li>
+</ul>
+<p>See <a href="docs-article.html?page=plugins.scatter">Scatter</a>.</p>
+<h2 id="plugins">Corner Analysis, Segment Eval and Timing</h2>
+<ul>
+  <li>The Corner Analysis <strong>Lines</strong> and <strong>Track</strong> panes, and the Segment Eval <strong>Map</strong>: scroll to zoom, drag to pan, double-click to reset.</li>
+  <li>The Corner Analysis <strong>Style Map</strong>: click a dot to select it, or drag a box around several in the 2D view. Right-click a dot to add or remove that lap as a ghost. In 3D, drag to orbit.</li>
+  <li><strong>Sector Times</strong>: double-click a sector cell to jump to the start of that sector, or a lap's name or Total to jump to the start of the lap.</li>
+</ul>
+<p>See <a href="docs-article.html?page=plugins.corners">Corner Analysis</a>, <a href="docs-article.html?page=plugins.segments">Segment Eval</a> and <a href="docs-article.html?page=plugins.timing">Timing</a>.</p>
+<h2 id="text">Text boxes and dialogs</h2>
+<ul>
+  <li>A 2D plot's <strong>Add variables…</strong> box: <code>Enter</code> adds the ticked channels, or the only match when the filter leaves just one. <code>Esc</code> closes the list.</li>
+  <li>The Assistant: <code>Enter</code> sends your message, and <code>Shift</code>+<code>Enter</code> starts a new line.</li>
+  <li>The <strong>Share session</strong> code box: <code>Enter</code> joins once you've typed all six digits.</li>
+  <li><code>Esc</code>: close an open menu, right-click menu or dialog.</li>
+</ul>
+<p>See <a href="docs-article.html?page=plots.channels">Plots and channels</a>, <a href="docs-article.html?page=assistant.using">Using the Assistant</a> and <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=play.transport">Transport and speed</a></li>
+  <li><a href="docs-article.html?page=plots.navigate">Navigating plots</a></li>
+  <li><a href="docs-article.html?page=ref.troubleshooting">Troubleshooting</a></li>
+</ul>
+`,
+},
+'ref.troubleshooting': {
+  section: 'Reference',
+  title: 'Troubleshooting',
+  lede: 'Quick fixes for the things that most often go wrong, starting from what you see on screen.',
+  prev: ['ref.shortcuts', 'Keyboard and mouse'],
+  next: null,
+  toc: ['grayed', 'empty-tree', 'red-file', 'reopen', 'space', 'ribbon', 'corners', 'sectors', 'derived', 'tires', 'share', 'slow', 'points', 'assistant', 'help'],
+  tocLabels: ['The iRacing Telemetry button is grayed out', 'The tree is empty after picking a folder', 'A file name is red, with !!! after it', 'Reopen unloaded my laps', 'Space unticked a lap instead of playing', 'The track is a plain ribbon, not a 3D model', 'Corner Analysis says "No track geometry yet"', 'Timing says "No sector data"', 'A derived channel\'s line is empty', 'The tires are solid blue', 'Share session says "Open a cloud run to share a session."', 'Slipstream feels slow', 'My timeline points disappeared', 'The Assistant shows an error', 'Get help'],
+  body: `
+<p>Each entry starts with what you see, then what to do about it. If your problem isn't here, ask on Discord (see the end of this page).</p>
+<!-- SHOT ref.troubleshooting: The Stint Folder with one file name in red followed by !!!, its hover tooltip showing the reason the file couldn't be read, and the warning banner about files that failed to parse above the tree -->
+<h2 id="grayed">The iRacing Telemetry button is grayed out</h2>
+<p>Your browser can't open folders on your computer. Open Slipstream in Chrome or Edge. Cloud runs work in any browser; your own telemetry folder and a local dash folder need one of those two. See <a href="docs-article.html?page=folder.open">Opening telemetry</a>.</p>
+<h2 id="empty-tree">The tree is empty after picking a folder</h2>
+<p>If it says <strong>No telemetry files found.</strong>, you probably picked a folder above your telemetry. Slipstream only lists <code>.ibt</code> and <code>.parquet</code> files sitting directly in the folder you pick, not in its subfolders, so click <strong>Change…</strong> and pick <code>Documents&#92;iRacing&#92;telemetry</code> itself. If it says <strong>No matches for current filter.</strong>, clear the <strong>Filter track / layout…</strong> and <strong>Filter car…</strong> boxes.</p>
+<h2 id="red-file">A file name is red, with !!! after it</h2>
+<p>Slipstream couldn't read that file, but it keeps it in the list. Hover over the <strong>!!!</strong> to see why. The warning above the tree that says files failed to parse and to see the console means your browser's developer console (<code>Ctrl</code>+<code>Shift</code>+<code>J</code> in Chrome or Edge), not the <strong>Console</strong> tab in Slipstream's rail.</p>
+<h2 id="reopen">Reopen unloaded my laps</h2>
+<p>Opening, reopening or changing a folder clears every tick in the tree, cloud runs included, so whatever you had loaded is unloaded. Tick the laps again. Since <strong>Reopen</strong> is also how you pick up new sessions, expect to tick again after each refresh.</p>
+<h2 id="space">Space unticked a lap instead of playing</h2>
+<p>The checkbox you just clicked still has focus, and a focused checkbox takes <code>Space</code>. Click an empty part of the 3D view, then press <code>Space</code>. Text boxes, number fields and dropdowns hold on to the keys the same way. See <a href="docs-article.html?page=ref.shortcuts">Keyboard and mouse</a>.</p>
+<h2 id="ribbon">The track is a plain ribbon, not a 3D model</h2>
+<p>There's no 3D model for that layout yet, so the 3D view builds a ribbon from the car's GPS trace instead. Layouts without a model show &#10007; in the Stint Folder's <strong>3D</strong> column. See <a href="docs-article.html?page=settings.tracks">Track library</a>.</p>
+<h2 id="corners">Corner Analysis says "No track geometry yet"</h2>
+<p>Corner Analysis finds corners from the track's 3D model, so it only works on layouts with a &#10003; in the <strong>3D</strong> column. The message can also show for a moment while the model is still loading. See <a href="docs-article.html?page=plugins.corners">Corner Analysis</a>.</p>
+<h2 id="sectors">Timing says "No sector data"</h2>
+<p>Sector boundaries come from the track's 3D model or, when the track has none, from the file itself. A run with neither can't show sector times. See <a href="docs-article.html?page=plugins.timing">Timing</a>.</p>
+<h2 id="derived">A derived channel's line is empty</h2>
+<p>One of its inputs isn't loaded. Open the <strong>Console</strong> tab, click <strong>Derived</strong>, check that channel's <strong>Inputs</strong>, and add the missing ones to the same plot with <strong>Add variables…</strong>. Some need GPS or the track's shape, such as X, Y and TrackLatPos, so they stay empty on runs without them. See <a href="docs-article.html?page=plots.derived">Derived channels</a>.</p>
+<h2 id="tires">The tires are solid blue</h2>
+<p>The tire temperature overlay reads three channels per tire (<code>LFtempL</code>, <code>LFtempM</code>, <code>LFtempR</code> and so on). A file without them leaves its tires blue, so solid blue can mean missing data rather than cold tires. If the channels are there, check <strong>Cold °C</strong> and <strong>Hot °C</strong> in the Vehicle panel. See <a href="docs-article.html?page=view3d.car">Car and overlays</a>.</p>
+<h2 id="share">Share session says "Open a cloud run to share a session."</h2>
+<p>Everyone in a room loads the same run from the cloud, so sharing only works when everything you've loaded is a cloud run. Untick your own files, then open <strong>Share session</strong> again. The <strong>or join a code</strong> box is hidden while this message shows, so to join a room, tick a cloud run first or open the invite link. See <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
+<h2 id="slow">Slipstream feels slow</h2>
+<p>Switch off the plugins you aren't using with the power button on their panel headers; collapsing a panel leaves the plugin running. Start with Corner Analysis, which does the most work. To watch the frame rate, tick <strong>Show FPS counter in 3D plots</strong> in <strong>Tools</strong> &gt; <strong>Preferences...</strong>, or open <strong>Console</strong> &gt; <strong>Performance</strong> for frame times and memory use. See <a href="docs-article.html?page=plugins.rail">The plugin rail</a>.</p>
+<h2 id="points">My timeline points disappeared</h2>
+<p>Timeline points aren't saved in your browser. Reloading the page loses them, and opening a different track layout clears them. Click <strong>Export…</strong> in the Timeline Points panel to keep a copy, and <strong>Import…</strong> to bring it back. See <a href="docs-article.html?page=timeline.points">Timeline points</a>.</p>
+<h2 id="assistant">The Assistant shows an error</h2>
+<p>Provider errors appear in the chat as the provider's name and an error code, such as <code>Gemini API 429</code>, followed by the provider's own explanation, which usually says whether the key, the model or a rate limit is to blame. Paste the key again under <strong>Settings</strong>, pick a listed <strong>Model</strong> instead of <strong>Custom…</strong>, or, for 429, wait a minute or try another model. If the message box says <strong>Connect a provider first</strong>, no key is saved yet. See <a href="docs-article.html?page=assistant.using">Using the Assistant</a>.</p>
+<h2 id="help">Get help</h2>
+<p>Still stuck? Ask on the <a href="https://discord.gg/GcSQDYM93m" target="_blank" rel="noopener">LapLabs Discord</a>. Say what you clicked, what you expected and what happened, and which browser you use. Reports of anything in these docs that doesn't match the app are welcome there too.</p>
 `,
 },
 
