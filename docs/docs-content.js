@@ -157,7 +157,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Open your telemetry folder', 'Reopen it next time', 'Check which files are listed', 'Use cloud runs', 'Show cloud, local or both', 'Switch to a private test pool', 'Related'],
   body: `
 <p>The Stint Folder panel on the left is where telemetry comes in. It lists cloud runs published by LapLabs and the files in a telemetry folder on your computer, together in one tree.</p>
-<figure><img src="docs-images/folder.open.png" alt="The Stint Folder with Reopen telemetry and Change… on the top row, the Cloud / Local / Both filter set to Both, the Public demo source, and a tree of tracks with the Charlotte oval opened to its cars and files, mixing a cloud run (PQT and cloud badges) with local IBT files." width="1198" height="1308" loading="lazy"></figure>
+<figure><img src="docs-images/folder.open.png" alt="The Stint Folder with Reopen telemetry and Change… on the top row, the Cloud / Local / Both filter set to Both, the Public demo source, and a tree of tracks with the Charlotte oval opened to its cars and files, mixing a cloud run (PQT and cloud badges) with local IBT files." width="1198" height="1025" loading="lazy"></figure>
 <h2 id="local">Open your telemetry folder</h2>
 <ol>
   <li>In the Stint Folder panel, click <strong>iRacing Telemetry</strong>. A folder picker opens in your Documents folder.</li>
@@ -214,7 +214,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Read the tree', 'Tick what you want to load', 'Load just one row', 'Filter, sort and zoom', 'What the columns and symbols mean', 'Related'],
   body: `
 <p>Once your telemetry is listed, you choose what to load by ticking rows in the tree. Ticks take effect straight away, with no extra button to press.</p>
-<figure><img src="docs-images/folder.tree.png" alt="The Stint Folder tree opened from the Charlotte oval down to one outing's laps: the file and outing are tinted as part of the run, a ticked lap shows its S1 and S2 splits and the best-lap diamond, another lap is starred in amber, Out Lap and In Lap rows bracket the laps, and the Selected files table with its Totals line sits below." width="1195" height="1303" loading="lazy"></figure>
+<figure><img src="docs-images/folder.tree.png" alt="The Stint Folder tree opened from the Charlotte oval down to one outing's laps: the file and outing are tinted as part of the run, a ticked lap shows its S1 and S2 splits and the best-lap diamond, another lap is starred in amber, Out Lap and In Lap rows bracket the laps, and the Selected files table with its Totals line sits below." width="1195" height="922" loading="lazy"></figure>
 <h2 id="levels">Read the tree</h2>
 <p>The tree has seven levels: Track &gt; Layout &gt; Car &gt; File &gt; Stint &gt; Outing &gt; Lap. Everything starts collapsed. Click &#9656; to open a row.</p>
 <p>Layout rows show how many cars they hold in brackets, and car rows show how many files. File rows are named by session date, time and driver; hover over the name to see the original file name. Outings are the driving between pit visits, and their laps are listed in the order you drove them.</p>
