@@ -157,7 +157,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Open your telemetry folder', 'Reopen it next time', 'Check which files are listed', 'Use cloud runs', 'Show cloud, local or both', 'Switch to a private test pool', 'Related'],
   body: `
 <p>The Stint Folder panel on the left is where telemetry comes in. It lists cloud runs published by LapLabs and the files in a telemetry folder on your computer, together in one tree.</p>
-<figure><img src="docs-images/folder.open.png" alt="The Stint Folder with Reopen telemetry and Change… on the top row, the Cloud / Local / Both filter set to Both, the Public demo source, and a tree of tracks with the Charlotte oval opened to its cars and files, mixing a cloud run (PQT and cloud badges) with local IBT files." width="1198" height="1025" loading="lazy"></figure>
+<figure><img src="docs-images/folder.open.png" alt="The Stint Folder with Reopen telemetry and Change… on the top row, the Cloud / Local / Both filter set to Both, the Public demo source, and the tree with Charlotte Motor Speedway opened to its layouts, cars and files, mixing a cloud run (PQT and cloud badges) with local IBT files." width="1197" height="732" loading="lazy"></figure>
 <h2 id="local">Open your telemetry folder</h2>
 <ol>
   <li>In the Stint Folder panel, click <strong>iRacing Telemetry</strong>. A folder picker opens in your Documents folder.</li>
