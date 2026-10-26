@@ -187,7 +187,7 @@ window.DOCS_ARTICLES = {
 <p>Cloud runs are sessions LapLabs has published. They stream from the cloud, so you don't need a folder to use them. Slipstream loads the list when it starts (you'll see <strong>Loading cloud runs&hellip;</strong>), and a demo run opens straight away with its row already ticked.</p>
 <p>Cloud runs sit in the same tree as your own files, marked with a cloud badge (&#9729;) on their file rows. Like your own files, they're named by session date, time and driver. When a cloud run and one of your files come from the same track, they appear under the same track row. Tick both in the same layout to load them together.</p>
 <h2 id="filter">Show cloud, local or both</h2>
-<p>Three buttons next to the folder buttons choose what the tree lists:</p>
+<p>Three buttons under the folder buttons choose what the tree lists:</p>
 <ul>
   <li><strong>Cloud</strong>: only cloud runs.</li>
   <li><strong>Local</strong>: only files from your folder.</li>
@@ -195,7 +195,7 @@ window.DOCS_ARTICLES = {
 </ul>
 <p>Pick <strong>Local</strong> when you only want to see your own sessions. The filter only changes what the tree lists. It doesn't delete or upload anything.</p>
 <h2 id="pools">Switch to a private test pool</h2>
-<p>If you're a member of a private test pool, a drop-down appears next to the filter. Choose <strong>Public demo</strong> for the public cloud runs, or your pool's name to list that pool's runs instead. Slipstream remembers your choice in this browser. To add your own sessions to a pool, see <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
+<p>If you're a member of a private test pool, a drop-down appears under the filter. Choose <strong>Public demo</strong> for the public cloud runs, or your pool's name to list that pool's runs instead. Slipstream remembers your choice in this browser. To add your own sessions to a pool, see <a href="docs-article.html?page=share.sessions">Shared sessions</a>.</p>
 <h2 id="related">Related</h2>
 <ul>
   <li><a href="docs-article.html?page=folder.tree">The tree and selecting laps</a></li>
