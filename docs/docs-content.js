@@ -1732,7 +1732,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Get LapLabs Tray', 'Read the tray menu', 'Share your car live', 'Watch on laplabs.net', 'Know what Share Live sends', 'Related'],
   body: `
 <p>LapLabs Tray sits in the Windows system tray, next to the clock. While iRacing runs, it reads your telemetry live. Turn on <strong>Share Live</strong> and it sends that telemetry to a room on laplabs.net, where anyone with the room code can follow your car on a live track map or a live dashboard. Slipstream itself works with recorded telemetry; the tray is for watching a session as it happens.</p>
-<!-- SHOT share.tray: The LapLabs Tray menu open from the Windows system tray, signed in, with Share Live ticked and the Room line showing a six-digit code marked (live), next to the laplabs.net Live Track page following the car -->
+<figure><img src="docs-images/share.tray.png" alt="The LapLabs Tray menu: Source: iRacing and the track, the signed-in account with Sign out, Share Live ticked with the Room line reading 397155 (live), Watch Live and Open Dashboard, then the update, Start with Windows, Discord status and sim settings, Diagnostics and Quit." width="497" height="601" loading="lazy"></figure>
 <h2 id="get">Get LapLabs Tray</h2>
 <p>LapLabs Tray is available to testers only for now, and it isn't on the laplabs.net download pages yet. It runs on Windows only.</p>
 <p>Once it's running, its icon sits in the system tray (it may be tucked under the arrow beside the clock). Click the icon to open the menu, or hover over it to see what the tray is doing, such as the track it's reading.</p>
@@ -1769,6 +1769,8 @@ window.DOCS_ARTICLES = {
     <p>Live Track is an early preview. To place your car accurately it needs a precise calibration for each track, built from recorded live data, and only a handful of tracks have one so far. It also works only while you drive in an iRacing Test Drive session. The Live Dashboard has neither limit: it works on any track, in any session.</p>
   </div>
 </div>
+<figure><img src="docs-images/live.track.png" alt="The Live Track page in Drone view following a red car through La Source at Spa, with the camera buttons and the Track and Car pickers in the top-left corner, 58 km/h in gear 1 with the pedal bars and steering marker at the top, a trace colored by Speed behind the car, and room 397155 shown as live in the bottom-right corner." width="1600" height="1000" loading="lazy"></figure>
+<figure><img src="docs-images/live.dash.png" alt="The Live Dashboard streaming from room 397155: shift lights, 46 mph in gear 2 at 7,932 RPM, oil and water temperature and fuel level, the clutch, brake and throttle bars with the steering angle, and the lap-by-lap Speed and Throttle traces." width="1600" height="786" loading="lazy"></figure>
 <p>The dashboard page also offers the older Live Dash Sender; with LapLabs Tray you don't need it. The dashes inside Slipstream replay recorded laps rather than live data: see <a href="docs-article.html?page=plugins.dash">Dash</a>.</p>
 <h2 id="privacy">Know what Share Live sends</h2>
 <p>With Share Live off, the tray doesn't send your telemetry anywhere. With it on, it sends, up to 60 times a second:</p>
