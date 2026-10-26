@@ -1762,6 +1762,13 @@ window.DOCS_ARTICLES = {
   <li><strong>Live Track</strong> (laplabs.net/live-track): your car moving on a 3D model of the track, with camera buttons (<strong>Free</strong>, <strong>Chase</strong>, <strong>Rig</strong>, <strong>Drone</strong>, <strong>TV</strong>, <strong>Cockpit</strong>), a trace colored by Speed, Throttle or Brake, and shift lights, pedals, speed, gear and steering. Type the code in the room box and click <strong>Connect</strong>; a link with the code connects by itself. Until you connect, it plays a demo lap at Spa.</li>
   <li><strong>Live Dashboard</strong> (laplabs.net/dashboard): speed, gear, oil and water temperature and fuel, the pedals and steering angle, and lap-by-lap traces against lap distance. Enter the code under <strong>Room</strong> and click <strong>Connect →</strong>. A link with the code, such as the one <strong>Open Dashboard</strong> opens, connects by itself.</li>
 </ul>
+<div class="callout warn">
+  <span class="ic">!</span>
+  <div>
+    <span class="lbl">Early preview</span>
+    <p>Live Track is an early preview. To place your car accurately it needs a precise calibration for each track, built from recorded live data, and only a handful of tracks have one so far. It also works only while you drive in an iRacing Test Drive session. The Live Dashboard has neither limit: it works on any track, in any session.</p>
+  </div>
+</div>
 <p>The dashboard page also offers the older Live Dash Sender; with LapLabs Tray you don't need it. The dashes inside Slipstream replay recorded laps rather than live data: see <a href="docs-article.html?page=plugins.dash">Dash</a>.</p>
 <h2 id="privacy">Know what Share Live sends</h2>
 <p>With Share Live off, the tray doesn't send your telemetry anywhere. With it on, it sends, up to 60 times a second:</p>
