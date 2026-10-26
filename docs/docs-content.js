@@ -1603,7 +1603,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Connect a provider', 'Ask about your run', 'Let it drive the app', 'Related'],
   body: `
 <p>The Assistant is a chat with an AI model, using your own API key. It can read your loaded run and change what Slipstream shows. Open the <strong>Assistant</strong> tab in the right rail, between <strong>Timeline</strong> and <strong>Console</strong>. The <strong>experimental</strong> badge means answers can be wrong: check them against your plots.</p>
-<!-- SHOT assistant.using: Assistant tab in the right rail with the experimental badge, Settings and Clear in its toolbar, and a short conversation where a question comparing two laps shows the lines "→ summarize_run({})" and "→ compare_laps(...)" above the reply -->
+<figure><img src="docs-images/assistant.using.png" alt="The Slipstream window with the Assistant tab open in the right rail, marked experimental, with Settings and Clear in its toolbar. A question comparing two drivers' outings is followed by the tool calls it made, from summarize_run({}) to list_2d_plot_channels({}), and the start of the reply, covering pace and lap times, driving technique and setup. Two outings are ticked in the Stint Folder, and their laps show as ghosts in the 3D view and the 2D plot." width="1600" height="1000" loading="lazy"></figure>
 <h2 id="connect">Connect a provider</h2>
 <p>You pay the provider directly (Gemini's free tier costs nothing). LapLabs doesn't charge for it.</p>
 <ol>
@@ -1645,7 +1645,7 @@ window.DOCS_ARTICLES = {
   <li>"Add my three fastest laps as ghosts and switch to the Chase camera."</li>
   <li>"Color the racing line by throttle and open Corner Analysis on T8."</li>
 </ul>
-<p>If a reply ends with <em>(stopped: too many tool rounds)</em>, break the request into smaller steps. Click <strong>Clear</strong> to start over; the model forgets the conversation. A reload also starts a new chat.</p>
+<p>The Assistant takes a limited number of steps per question. If it runs out, it answers from what it has found so far and says what it didn't get to check; ask a narrower question to go further. Click <strong>Clear</strong> to start over; the model forgets the conversation. A reload also starts a new chat.</p>
 <h2 id="related">Related</h2>
 <ul>
   <li><a href="docs-article.html?page=ghosts.basics">Ego and ghosts</a></li>
