@@ -1,6 +1,6 @@
 # Plan: replace the docs with Slipstream docs
 
-**Status:** all 31 pages written (2026-10-25). Screenshots: 30 of 31 pages in (2026-10-26); only ref.troubleshooting is still to come.
+**Status:** all 31 pages written (2026-10-25). Screenshots: all 31 pages have one (2026-10-26).
 
 The articles in `docs/docs-content.js` describe LapLabs Studio, the desktop node-graph app that is being phased out. This plan replaces all of them with documentation for **Slipstream**, the LapLabs web app. Nothing from the old articles is migrated. The old set went too deep: a reference page per node, per plot type, per dialog. The new set is shorter and organized around what you do on the screen.
 
