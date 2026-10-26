@@ -16,7 +16,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Sign in with your LapLabs account', 'Use Chrome or Edge for local files', 'Find your way around the screen', 'Switch between the rail tabs', 'Use the menu bar', 'What you see the first time', 'Related'],
   body: `
 <p>Slipstream is the LapLabs web app for iRacing telemetry. It runs in your browser: open a run from the LapLabs cloud or from your own telemetry folder, replay it on a 3D track with 2D plots underneath, race it against ghost laps, and dig deeper with plugins such as Timing and Corner Analysis.</p>
-<!-- SHOT start.welcome: The whole app just after first sign-in: sample run loaded, Stint Folder on the left, 3D Track view with the transport buttons and playback bar under it, 2D Plot below, the rail on the right showing the Plugins tab, and the Try it checklist in the bottom-left corner -->
+<figure><img src="docs-images/start.welcome.png" alt="The whole Slipstream window with the Spa demo run loaded: the Stint Folder on the left with the run ticked, the 3D Track view with the Press play hint above the transport and playback bar, the 2D plot below, the plugin rail on the right with its panels collapsed, and the Try it checklist in the bottom-left corner." width="1600" height="1000" loading="lazy"></figure>
 <h2 id="sign-in">Sign in with your LapLabs account</h2>
 <p>Slipstream needs a LapLabs account, the same one you use on laplabs.net. Until you sign in, you only see the sign-in screen.</p>
 <ol>
@@ -83,7 +83,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Press play', 'Drag the playback bar to scrub', 'Add ghosts to race against', 'Color the traces by time gained and lost', 'Plot a lap-time delta in the 2D chart', 'Share a live session', 'Related'],
   body: `
 <p>This walk-through uses the sample run that opens when you first sign in, and follows the <strong>Try it</strong> checklist in the bottom-left corner. Each step ticks itself off as soon as you do it. If you dismissed the checklist, click the <strong>Tour</strong> pill in the same corner to bring it back.</p>
-<!-- SHOT start.quick: The Try it checklist expanded with the first two steps ticked, and the green marker pointing at the + button in the 3D sidebar's Ghosts panel -->
+<figure><img src="docs-images/start.quick.png" alt="The Slipstream window with the Try it checklist at 2 of 6, its first two steps ticked, and the green Add ghosts marker pointing at the + button in the 3D sidebar's Ghosts panel." width="1600" height="1000" loading="lazy"></figure>
 <h2 id="play">Press play</h2>
 <ol>
   <li>Find the transport buttons under the 3D Track view. On the sample run, a <strong>Press play</strong> hint points at the right one.</li>
@@ -157,7 +157,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Open your telemetry folder', 'Reopen it next time', 'Check which files are listed', 'Use cloud runs', 'Show cloud, local or both', 'Switch to a private test pool', 'Related'],
   body: `
 <p>The Stint Folder panel on the left is where telemetry comes in. It lists cloud runs published by LapLabs and the files in a telemetry folder on your computer, together in one tree.</p>
-<!-- SHOT folder.open: Stint Folder panel header with the "Reopen telemetry" and "Change…" buttons, the Cloud / Local / Both filter set to Both, and a tree below mixing cloud rows (cloud badge) and local rows (IBT badge) -->
+<figure><img src="docs-images/folder.open.png" alt="The Stint Folder with Reopen telemetry and Change… on the top row, the Cloud / Local / Both filter set to Both, the Public demo source, and a tree of tracks with the Charlotte oval opened to its cars and files, mixing a cloud run (PQT and cloud badges) with local IBT files." width="1198" height="1308" loading="lazy"></figure>
 <h2 id="local">Open your telemetry folder</h2>
 <ol>
   <li>In the Stint Folder panel, click <strong>iRacing Telemetry</strong>. A folder picker opens in your Documents folder.</li>
@@ -214,7 +214,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Read the tree', 'Tick what you want to load', 'Load just one row', 'Filter, sort and zoom', 'What the columns and symbols mean', 'Related'],
   body: `
 <p>Once your telemetry is listed, you choose what to load by ticking rows in the tree. Ticks take effect straight away, with no extra button to press.</p>
-<!-- SHOT folder.tree: Stint Folder tree expanded from a track down to lap rows, one outing ticked (green-tinted parent rows), a lap row showing S1/S2/S3 sector splits and a gold star marker, an Out Lap row in gray, and the Selected files table with its Totals line below the tree -->
+<figure><img src="docs-images/folder.tree.png" alt="The Stint Folder tree opened from the Charlotte oval down to one outing's laps: the file and outing are tinted as part of the run, a ticked lap shows its S1 and S2 splits and the best-lap diamond, another lap is starred in amber, Out Lap and In Lap rows bracket the laps, and the Selected files table with its Totals line sits below." width="1195" height="1303" loading="lazy"></figure>
 <h2 id="levels">Read the tree</h2>
 <p>The tree has seven levels: Track &gt; Layout &gt; Car &gt; File &gt; Stint &gt; Outing &gt; Lap. Everything starts collapsed. Click &#9656; to open a row.</p>
 <p>Layout rows show how many cars they hold in brackets, and car rows show how many files. File rows are named by session date, time and driver; hover over the name to see the original file name. Outings are the driving between pit visits, and their laps are listed in the order you drove them.</p>
@@ -292,7 +292,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Find the transport', 'Play and pause', 'Change speed and play in reverse', 'Jump between segments and laps', 'Read the status line', 'Let Speed points set the pace', 'Related'],
   body: `
 <p>Slipstream has one playback cursor. The car in the 3D view, the cursor line on the 2D plots, your dashes and the plugins all read the same position, so when you play, pause or jump to another lap, every view moves together. The transport is where you drive that cursor.</p>
-<!-- SHOT play.transport: bottom of the 3D Track view showing the transport row (play button, lap buttons, status line) above the playback bar, with a lap loaded and playback running at +2.0 -->
+<figure><img src="docs-images/play.transport.png" alt="The bottom of the 3D Track view in Chase mode, with the red car on track above the transport row (playback running at +2.0, Lap 292 at 35.3%) and the playback bar with its button grid below." width="660" height="467" loading="lazy"></figure>
 <h2 id="find">Find the transport</h2>
 <p>The transport is the row of buttons docked at the bottom of the <strong>3D Track</strong> view, just above the playback bar. The left group controls playback, the middle group moves between laps, and the status line sits on the right. Hover any button to see its name and, where it has one, its shortcut.</p>
 <p>The keyboard shortcuts work wherever you are in the app, unless a text box, number field, dropdown or checkbox has focus. Right after you tick a lap in the Stint Folder, click the 3D view before pressing <code>Space</code>, or <code>Space</code> will untick the box instead of playing.</p>
@@ -359,7 +359,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Scrub through the session', 'Zoom into a range', 'Read the markings', 'Set snapping, axis and links', 'Pick a follow mode', 'Related'],
   body: `
 <p>The playback bar sits under the transport at the bottom of the <strong>3D Track</strong> view. Its top lane is an overview of the whole session with a highlighted range window. Its bottom lane is a close-up of that window for precise scrubbing. The range window also sets what the 2D plot shows.</p>
-<!-- SHOT play.range: the playback bar zoomed to two or three laps, showing the range window with its gold edges, lap ticks with L labels, best-lap shading and time on the overview lane, and the button grid on the left -->
+<figure><img src="docs-images/play.range.png" alt="The playback bar enlarged and zoomed to about two and a half laps: the overview lane with its gold-edged range window and best-lap diamonds with times, the close-up lane with lap ticks L292 to L294 and the cursor, and the button grid on the left." width="660" height="255" loading="lazy"></figure>
 <h2 id="scrub">Scrub through the session</h2>
 <ol>
   <li>Drag along the bottom lane to move the cursor through the range window. The more you zoom in, the finer the control.</li>
@@ -431,7 +431,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Add ghosts from the Playlist', 'Add your fastest laps', 'Manage your ghosts', 'Choose what ghosts show', 'Pick ghost colors', 'Related'],
   body: `
 <p>The ego is the lap you're watching: whichever lap the playback cursor sits in as you play or scrub. Ghosts are other laps replayed alongside it, drawn as see-through cars in the 3D view. Ghosts reach beyond the 3D view too: the 2D plots can overlay their traces and gap curves, the Timing table colors ghosted laps, a dash can follow a ghost, and Corner Analysis can add ghosts for you.</p>
-<!-- SHOT ghosts.basics: 3D view with the ego car and three translucent ghost cars with floating labels, the position table in the top-left corner, and the sidebar showing the Playlist with ghosted laps tinted and the Ghosts panel listing three ghost rows -->
+<figure><img src="docs-images/ghosts.basics.png" alt="The 3D Track view in Chase mode on a straight at Spa, with the red ego car and three ghost cars ahead, each with a floating label showing its lap and gap; the position table sits in the top-left corner, and the sidebar shows the Playlist with laps 287 and 292 tinted in their ghosts' colors and the Ghosts panel listing three ghost rows." width="868" height="572" loading="lazy"></figure>
 <h2 id="playlist">Add ghosts from the Playlist</h2>
 <p>The <strong>Playlist</strong> panel in the 3D view's sidebar lists every stint and its complete laps.</p>
 <ol>
@@ -503,7 +503,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Compare outings', 'Compare stints', 'Compare a race in one click', 'Choose Time or Lap-Dist', 'Offset a ghost in time', 'Move the sync point for lap ghosts', 'Related'],
   body: `
 <p>A lap ghost replays one lap. The Ghosts panel can also replay an outing (pit exit to the next pit entry) or a stint (a whole loaded file). Pick one with the <strong>Compare</strong> buttons at the top of the panel: <strong>Laps</strong>, <strong>Outings</strong> or <strong>Stints</strong>. Ghosts you've already added stay when you switch.</p>
-<!-- SHOT ghosts.sync: Ghosts panel in Stints mode with Sync set to Session, a "Same race" offer line at the top, three stint rows (one tagged ego, one with its time offset row open), and the 3D view showing the other two cars on track -->
+<figure><img src="docs-images/ghosts.sync.png" alt="The Ghosts panel in Stints mode: a Same race line for three drivers with a Compare button, + All stints (3), Sync set to Lap + LDP at lap 1, and three stint rows, one marked EGO and one with its time offset row open at 0.2 s." width="205" height="388" loading="lazy"></figure>
 <h2 id="outings">Compare outings</h2>
 <ol>
   <li>Click <strong>Outings</strong>.</li>
@@ -574,7 +574,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Pick a camera mode', 'Move the Chase, Orbit and Spectator cameras', 'Ride in the cockpit', 'Fly the Free camera', 'Follow a ghost, or let the timeline drive', 'Change 3D settings in Preferences', 'Related'],
   body: `
 <p>The <strong>Camera</strong> panel sits at the top of the 3D Track sidebar. It starts collapsed, but its header still has a dropdown, so you can switch cameras without opening it. Open it for the <strong>Level</strong> and <strong>Stabilize</strong> settings, which shape the Cockpit view.</p>
-<!-- SHOT view3d.cameras: 3D view in Chase mode behind the ego car on a hill, with the Camera panel open at the top of the sidebar showing the Mode dropdown, the Level checkbox and the Stabilize slider -->
+<figure><img src="docs-images/view3d.cameras.png" alt="The 3D Track view in Chase mode behind the car at Eau Rouge, with the Camera panel open at the top of the sidebar showing the Mode dropdown, the Level checkbox and the Stabilize slider." width="870" height="572" loading="lazy"></figure>
 <h2 id="modes">Pick a camera mode</h2>
 <p>Choose a mode from <strong>Mode</strong> in the panel, or from the header dropdown while it's collapsed:</p>
 <ul>
@@ -638,7 +638,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Color the traces by a channel', 'Set the color range', 'Add more channels', 'Show time won and lost', 'Choose how much line to draw', 'Check what the traces show', 'Related'],
   body: `
 <p>Every car in the 3D view draws its racing line on the track: the ego in its own color, each ghost in its ghost color. The <strong>Channels + Traces</strong> panel, at the bottom of the 3D Track sidebar, decides what those lines show and how much of the run they cover.</p>
-<!-- SHOT view3d.traces: 3D view from above a corner with the ego line and two ghost lines shaded by Speed in the Jet colormap, the trace badge in the top-right corner, and the Channels + Traces panel open showing the channel list, Mode set to Channel, the colorbar with Auto ticked, and Scope and Style -->
+<figure><img src="docs-images/view3d.traces.png" alt="The 3D Track view from above La Source, with the ego line and two ghost lines shaded by Speed from yellow on the approach to blue through the hairpin, the Speed trace badge in the top-right corner, and the Channels + Traces panel showing the channel list with Speed selected, Mode set to Channel, the Jet colorbar with Auto ticked, and Scope and Style." width="868" height="633" loading="lazy"></figure>
 <h2 id="channel">Color the traces by a channel</h2>
 <ol>
   <li>Open the <strong>Channels + Traces</strong> panel. Under <strong>Trace options</strong>, check that <strong>Mode</strong> is <strong>Channel</strong>.</li>
@@ -699,7 +699,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Choose the car model', 'Color the tires by temperature', 'Draw on the track', 'Know the other overlays', 'Related'],
   body: `
 <p>The <strong>Vehicle</strong> and <strong>Pen</strong> panels in the 3D Track sidebar look after the cars and your own drawings on the track. Both start collapsed: click a header to open it. While collapsed, each header still has a dropdown for the default model or the pen mode.</p>
-<!-- SHOT view3d.car: Vehicle panel open with the Default model, Cars in this run listing one car on its Auto choice and two files on Same as car, Tire temp ticked with the Cold °C and Hot °C fields, and the ego car in Chase view with its tires shaded blue to red -->
+<figure><img src="docs-images/view3d.car.png" alt="The Vehicle panel open with the Default model, one car on its Auto choice and its file on Same as car, the Tuning fields, and Tire temp ticked with Blend on and Cold °C 30 and Hot °C 70, beside the 3D view showing the car with its tires tinted by temperature." width="868" height="633" loading="lazy"></figure>
 <h2 id="model">Choose the car model</h2>
 <p>Slipstream draws each car with a 3D model from the LapLabs vehicle library. Open the <strong>Vehicle</strong> panel:</p>
 <ol>
@@ -765,7 +765,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Add, close and resize plots', 'Set each plot\'s axes', 'Choose which channels to plot', 'Show, hide and color channels', 'Overlay ghost traces', 'See the difference to each ghost', 'Related'],
   body: `
 <p>The 2D plots under the 3D view draw your telemetry channels as lines. They share the playback cursor, so the red-orange line on every plot marks the same moment as the car in the 3D view. Each plot keeps its own channels, axes and ghost options.</p>
-<!-- SHOT plots.channels: two stacked 2D plots under the 3D view, the top one showing Speed with two ghost traces, the bottom one Throttle and Brake; the top plot's sidebar shows the Options panel (LapDist, Fit Y) and the Channels panel with the template picker, the Add variables box, the Ghosts and Color by controls, and channel rows with their Δ, S, eye and color buttons -->
+<figure><img src="docs-images/plots.channels.png" alt="Two stacked 2D plots: the top one shows Speed with two ghost traces, the bottom one Brake and Throttle; each plot's sidebar has the Options panel (LapDist, Fit Y) and the Channels panel with the channel set picker, the Add variables box, the Ghosts and Color by controls on the top plot, and channel rows with their Δ, S, eye and color buttons." width="928" height="662" loading="lazy"></figure>
 <h2 id="stack">Add, close and resize plots</h2>
 <ul>
   <li>Click <strong>Add a 2D plot</strong> (the + in a plot's <strong>2D Plot</strong> title bar) to add a plot at the bottom of the stack. You can have up to four.</li>
@@ -842,7 +842,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Zoom and pan', 'Move the cursor with Ctrl', 'Read values with Shift', 'Read the lines on a plot', 'Follow the playback range', 'Related'],
   body: `
 <p>A 2D plot has no zoom buttons and no help on screen: everything is done with the mouse and a few keys. This page lists what each one does and how a plot follows the playback range. It all works the same on every plot in the stack.</p>
-<!-- SHOT plots.navigate: a 2D plot zoomed into one braking zone with Shift held, showing the readout box beside the red-orange cursor line with a time header and rows for Speed, Brake and two ghosts, cursor dots on each line, and a green lap line and a dashed magenta sector line in view -->
+<figure><img src="docs-images/plots.navigate.png" alt="A 2D plot zoomed into the Bus Stop braking zone with Shift held: the readout box beside the cursor line shows the time and rows for Speed, Brake and two ghosts, with a dot on each line where it meets the cursor and the green lap line in view." width="928" height="662" loading="lazy"></figure>
 <h2 id="zoom">Zoom and pan</h2>
 <ul>
   <li><strong>Zoom:</strong> scroll the mouse wheel over the plot, up to zoom in and down to zoom out. Only the horizontal axis zooms, around the point under the mouse pointer. The vertical axis follows the plot's Fit Y or Full Y setting.</li>
@@ -906,7 +906,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Choose a derived channel', 'Compare every lap at once', 'Plot one from Add variables', 'Plot one from the Console', 'Fix an empty line', 'Plot your own formulas', 'Related'],
   body: `
 <p>Derived channels aren't recorded by iRacing. Slipstream works them out from other channels in your telemetry each time you plot or read them, so they're there for any run that has the right inputs. You plot them on a 2D plot like any other channel and read their live values in the Console.</p>
-<!-- SHOT plots.derived: the Console tab on the plugin rail with its Derived sub-tab open, showing the Var / Value / Unit / Inputs table with + plot buttons, beside a 2D plot showing DeltaTime with one curve per lap -->
+<figure><img src="docs-images/plots.derived.png" alt="A 2D plot showing DeltaTime over five laps with lap 292 as the flat reference, beside the Console tab's Derived sub-tab listing each derived channel with its Value, Unit, Inputs and a + plot button." width="1369" height="589" loading="lazy"></figure>
 <h2 id="list">Choose a derived channel</h2>
 <p>For handling and position on track:</p>
 <ul>
@@ -975,7 +975,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Find the plugins', 'Open, close and resize panels', 'Turn a plugin off', 'Put plugins side by side', 'What Slipstream remembers', 'Related'],
   body: `
 <p>The rail is the column on the right of the window. Tabs along its top switch between <strong>Plugins</strong>, <strong>Timeline</strong>, <strong>Assistant</strong> and <strong>Console</strong>. The Plugins tab holds the analysis tools, each in its own panel that you can open, close, resize, switch off or move into a column of its own.</p>
-<!-- SHOT plugins.rail: The rail's Plugins tab split into two columns: Timing and Segment Eval expanded on the left, Corner Analysis expanded on the right, Scatter and Dash collapsed to their headers, with the drag grip and power button visible on each panel header -->
+<figure><img src="docs-images/plugins.rail.png" alt="The rail's Plugins tab in two columns: Timing with Sector Times and Segment Eval with its Segments table and Map in the left column, Scatter and Dash collapsed to their headers between them, and Corner Analysis in the right column, each panel header showing its drag grip and power button." width="830" height="692" loading="lazy"></figure>
 <h2 id="find">Find the plugins</h2>
 <p>Click <strong>Plugins</strong> at the top of the rail. From top to bottom you'll find:</p>
 <ul>
@@ -1036,7 +1036,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Read the Sector Times table', 'Compare against your best', 'Jump to a lap and add ghosts', 'Compare pace across stints', 'Color laps by ghosts, mode or weather', 'Related'],
   body: `
 <p>The Timing panel has two sections. <strong>Sector Times</strong> splits every lap into sectors, so you can see where each lap was quick or slow. <strong>Multi-Lap Timing</strong> compares your pace over several laps in a row, stint against stint. Both cover every lap you've loaded and follow the playback cursor.</p>
-<!-- SHOT plugins.timing: Timing panel with Sector Times in Δ Sector mode showing green-to-red splits, a violet fastest split in each column, the current sector cell in magenta and the Best row at the bottom; Multi-Lap Timing expanded below with three stint heat bars, a 5-lap window on each and the Stint / Total / Delta table -->
+<figure><img src="docs-images/plugins.timing.png" alt="The Timing panel with Sector Times in Δ Sector mode showing green-to-red splits and the Best row at the bottom, and Multi-Lap Timing below with a 5-lap window on each stint's heat bar and the Stint / Total / Delta table." width="500" height="672" loading="lazy"></figure>
 <h2 id="sectors">Read the Sector Times table</h2>
 <p>Each row is a lap, numbered <code>Lap 1</code>, <code>Lap 2</code> and so on across everything you've loaded. When that differs from the sim's own lap number, the sim's number follows in parentheses, such as <code>(L21)</code>. The columns are the track's sectors (<strong>S1</strong>, <strong>S2</strong> and so on) and <strong>Total</strong>.</p>
 <ul>
@@ -1098,7 +1098,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Pick a corner', 'Read the modes', 'Explore the other panes', 'Add each mode as ghosts', 'Tune the analysis', 'Related'],
   body: `
 <p>Corner Analysis takes every pass you've made through one corner and sorts them into groups of similar driving, called modes. Each mode gets a color, its time through the corner against the average, and short tags that say what sets it apart, such as <code>Later release Brake</code> or <code>Higher entry Speed</code>. It finds corners from the track's 3D model, so it needs a track that has one: otherwise it shows <strong>No track geometry yet</strong>.</p>
-<!-- SHOT plugins.corners: Corner Analysis panel with a corner selected in the Corner menu and Sync on, the Passes / Dropped / K / Dim line, three mode cards with colored swatches, deltas, tags and composition bars, and the Style Map below with colored dots and two amber-ringed ghost laps -->
+<figure><img src="docs-images/plugins.corners.png" alt="The Corner Analysis panel on corner T1 with Sync on, the Passes 38, Dropped 2, K and Dim line, three mode cards with colored swatches, shares, deltas, tags and stint bars, and the Style Map below with colored dots and two amber-ringed ghost laps." width="494" height="682" loading="lazy"></figure>
 <h2 id="corner">Pick a corner</h2>
 <ol>
   <li>Choose a corner from the <strong>Corner</strong> menu. Corners are named <code>T1</code>, <code>T2</code> and so on, or by their real names on tracks that have them.</li>
@@ -1160,7 +1160,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Read the stats table', 'Choose the columns', 'Color the track by a stat', 'Compare tires', 'Filter the laps', 'Related'],
   body: `
 <p>Segment Eval sums up every stint and lap in one table, with a heatmap that picks out the best and worst at a glance. Its Tires tab lays out temperatures, pressures and wear for each corner of the car. Use it to spot the stint or lap that's different, then see where on track it happened.</p>
-<!-- SHOT plugins.segments: Segment Eval with the Stats tab on the Pace column group, two stints expanded into laps with green and red heatmap cells and one cell selected, and the Map pane below showing the track colored by Speed with its legend -->
+<figure><img src="docs-images/plugins.segments.png" alt="Segment Eval on the Stats tab with the Pace column group, Stint 2 expanded into laps with green and red heatmap cells and the Lap 301 Top Speed cell selected, and the Map pane below coloring the track by Top Speed for Lap 301 with its legend." width="494" height="626" loading="lazy"></figure>
 <h2 id="table">Read the stats table</h2>
 <p>The <strong>Segments</strong> pane opens on the <strong>Stats</strong> tab. Each top row is a stint with its lap count, such as <code>Stint 1 (12)</code>. Click the ▸ on a row to expand it: you'll see its laps or, when the run is split at pit stops, its outings and then their laps. A stint or outing row shows its laps taken together: the best lap, the mean lap, the top speed and so on.</p>
 <p>The heatmap compares each row only with the rows beside it at the same level: stints against stints, and the laps of one stint against each other. Green is the better end, red the worse, gray in between. For L/R Rake, closest to zero counts as best.</p>
@@ -1225,7 +1225,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Plot two channels', 'Write expressions', 'Scale, zoom and pan', 'Show or hide stints', 'Change the plot type and colors', 'Related'],
   body: `
 <p>Scatter draws one point for every moment of telemetry in the laps you've loaded, with one value across and another up. Patterns jump out that are hard to see in a trace over time: how much grip you use, where you lift, how speed and throttle relate. A dot for your position, and one for each ghost, moves through the cloud as you play.</p>
-<!-- SHOT plugins.scatter: Scatter panel in the plugin rail with X set to LatAccel / 9.81, Y set to LongAccel / 9.81 and Color set to Speed * 3.6, a round grip-circle cloud colored with the Jet colormap, the red ego cursor dot inside it, and the Segments list on the right with two stints ticked -->
+<figure><img src="docs-images/plugins.scatter.png" alt="The Scatter panel with X set to LatAccel / 9.81, Y to LongAccel / 9.81 and Color to Speed * 3.6, a dense cloud of points colored with the Jet colormap and the ego cursor dot inside it, the Segments list on the right with two stints ticked, and the point count below." width="653" height="642" loading="lazy"></figure>
 <h2 id="plot">Plot two channels</h2>
 <ol>
   <li>Open <strong>Scatter</strong> in the plugin rail.</li>
@@ -1293,7 +1293,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Add a dash to the canvas', 'Use your own dash folder', 'Arrange the canvas', 'Show a ghost on a dash', 'Pop a dash out', 'Manage dashes in the Dash Library', 'Related'],
   body: `
 <p>The <strong>Dash</strong> plugin shows dashboards that follow the playback cursor as you play or scrub. It has two panes: <strong>Dash Library</strong> lists the dashes you can use, and <strong>Dash Canvas</strong> is where you place them. You can have several dashes on the canvas at once, each showing your lap or a ghost's.</p>
-<!-- SHOT plugins.dash: Dash plugin open in the rail, the Dash Library pane showing cloud dash thumbnails with the Cloud and Local buttons in its header, and the Dash Canvas below with two dashes placed, one framed in a ghost's color with the ghost's label in its title bar -->
+<figure><img src="docs-images/plugins.dash.png" alt="The Dash plugin with the Dash Library pane showing cloud dash thumbnails and the Cloud and Local buttons in its header, and the Dash Canvas below with two dashes placed: Base showing the ego lap, and GG framed in a ghost's color with the ghost's label in its title bar." width="653" height="610" loading="lazy"></figure>
 <h2 id="add">Add a dash to the canvas</h2>
 <ol>
   <li>Open <strong>Dash</strong> in the plugin rail.</li>
@@ -1366,7 +1366,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Open the Designer', 'Add elements', 'Select, move and resize', 'Bind an element to a channel', 'Save your dash', 'Related'],
   body: `
 <p>The Dash Designer is where you build and edit dashes: place elements on a canvas, bind each one to a telemetry channel, and save the result to your dash folder, ready to drop onto the <a href="docs-article.html?page=plugins.dash">Dash</a> canvas.</p>
-<!-- SHOT plugins.dash-designer: Dash Designer window with the Elements palette on the left, a dark canvas holding a gauge, two vertical bars and a numeric readout with one bar selected and its four corner handles showing, and the Name, Canvas W, H, BG and Snap to Grid fields along the bottom -->
+<figure><img src="docs-images/plugins.dash-designer.png" alt="The Dash Designer window with the Elements palette on the left, a canvas holding a gauge, two vertical bars and a numeric readout with one bar selected and its four corner handles showing, and the Name, Canvas W, H, BG and Snap to Grid fields along the bottom." width="1099" height="701" loading="lazy"></figure>
 <h2 id="open">Open the Designer</h2>
 <ul>
   <li>Right-click a dash on the Dash Canvas, or a local thumbnail in the Dash Library pane, and choose <strong>Edit in Dash Designer</strong>.</li>
@@ -1442,7 +1442,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Add a point at the cursor', 'Know what each kind does', 'Edit, move and delete points', 'Filter kinds and switch points off', 'Use the keyboard', 'Save and load points', 'Related'],
   body: `
 <p>A timeline point sits at one spot on the lap and does something as playback passes it: cut the camera, change speed, show a note, or change what ghosts and traces show. Points are placed by lap position (LapDistPct), not time, so they fire on every lap. They live in the <strong>Timeline Points</strong> panel, in the right rail's <strong>Timeline</strong> tab. The demo run may already have a few: press play to see them.</p>
-<!-- SHOT timeline.points: The Timeline tab open in the right rail showing the Timeline Points panel: the row of add buttons, the kind filter checkboxes and Ticker dropdown, and a list of Camera, Speed and Note points with one row marked with the play arrow, plus the matching colored ticks on the playback bar under the 3D view -->
+<figure><img src="docs-images/timeline.points.png" alt="The Timeline tab in the rail showing the Timeline Points panel: the row of add buttons, the kind filter checkboxes and Ticker dropdown, and the list of Camera, Note and Ghost points, with the matching colored ticks on the playback bar." width="496" height="672" loading="lazy"></figure>
 <h2 id="add">Add a point at the cursor</h2>
 <ol>
   <li>Move the cursor to the spot you want. The hint under the filters shows its position as a percentage of the lap.</li>
@@ -1523,7 +1523,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Pick a lap and add ghosts', 'Set the opening shot', 'Slow down and pause into the braking zone', 'Add a billboard and a data plot', 'Show where time is lost', 'Play it back', 'Related'],
   body: `
 <p>This walkthrough builds a lap that plays itself: an opening shot, slow motion and a pause into the braking zone, a billboard with a brake plot at the key corner, ghost traces colored by time lost, and full speed down the straight. You work in the <strong>Timeline Points</strong> panel, in the rail's <strong>Timeline</strong> tab. For what each control does, see <a href="docs-article.html?page=timeline.points">Timeline points</a>.</p>
-<!-- SHOT timeline.presentation: The 3D view paused in a braking zone with the green countdown ring at the top, an on-track billboard note, an inset brake plot in the lower left showing the ego and two ghosts, ghost traces colored by time lost, and the Timeline Points list beside it showing camera, speed, note and trace points -->
+<figure><img src="docs-images/timeline.presentation.png" alt="The 3D view paused in the braking zone with the green countdown ring at the top, the Brake at the 100 m board billboard ahead, the ego car following two labeled ghosts and an inset Brake plot in the lower left, beside the Timeline Points list showing Camera, Ghost, Trace, Speed and Note points with the note's data plot settings open." width="1081" height="562" loading="lazy"></figure>
 <h2 id="setup">Pick a lap and add ghosts</h2>
 <ol>
   <li>Tick a lap in the Stint Folder, or use the demo run.</li>
@@ -1669,7 +1669,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Start a room', 'Invite people', 'Join a room', 'Choose who is in control', 'See what the room shares', 'Upload a session to a test pool', 'Related'],
   body: `
 <p>A shared session is a room that others join from their own browser, each signed in with their own LapLabs account. Everyone has the same run open and the view follows along: scrub to a corner, add a ghost or switch camera, and the others see it as you do it.</p>
-<!-- SHOT share.sessions: The Share session popup open under the Stint Folder title row, showing the large six-digit room code, the Copy invite link button, "2 people in room", the Everyone drives and I present buttons with I present selected, and Leave session at the bottom -->
+<figure><img src="docs-images/share.sessions.png" alt="The Share session popup open under the Stint Folder title row, showing the room code 638904, the Copy invite link button, 2 people in room, the Everyone drives and I present buttons with I present selected, and Leave session at the bottom." width="420" height="247" loading="lazy"></figure>
 <h2 id="start">Start a room</h2>
 <ol>
   <li>Open a cloud run.</li>
@@ -1801,7 +1801,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Open Preferences', 'Choose Imperial or Metric', 'Move the plot sidebars', 'Adjust the 3D view', 'Paint your car', 'Save, cancel or reset', 'Related'],
   body: `
 <p>Preferences hold the settings that apply across Slipstream: units, the side the plot sidebars sit on, a few 3D display options and the paint on your car. The window has two pages, <strong>Plot</strong> and <strong>Units</strong>, listed down its left side.</p>
-<!-- SHOT settings.preferences: Preferences window on the Plot page, showing the two shadow checkboxes, Show FPS counter, the car-surface blend checkbox and window, the rung spacing field, Plot sidebar side set to Left, and Ego paint color with the Ego metallic and Ego roughness sliders, with Reset to Default, Cancel and OK along the bottom -->
+<figure><img src="docs-images/settings.preferences.png" alt="The Preferences window on the Plot page, with the plot and 3D checkboxes, the car-surface blend window and rung spacing fields, Plot sidebar side set to Left, Ego paint color and the Ego metallic, roughness and fresnel sliders, and Reset to Default, Cancel and OK along the bottom." width="664" height="544" loading="lazy"></figure>
 <h2 id="open">Open Preferences</h2>
 <ol>
   <li>Choose <strong>Tools</strong> &gt; <strong>Preferences...</strong>.</li>
@@ -1871,7 +1871,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Open the Vehicle Library Viewer', 'Browse the models', 'See your paint on the models', 'Choose which model a car uses', 'Related'],
   body: `
 <p>The vehicle library is the set of 3D car models that LapLabs publishes for Slipstream. They're LapLabs stand-ins for each kind of car (stock car, prototype, single-seater and GT) rather than copies of each iRacing car. The Vehicle Library Viewer shows them on a turntable. The library holds the published models only: you can't add a model of your own.</p>
-<!-- SHOT settings.vehicles: Vehicle Library Viewer with the ring of car models on a dark floor, the front car turning in the red default paint, its name between the left and right arrows below the ring, and the Reload button at the top -->
+<figure><img src="docs-images/settings.vehicles.png" alt="The Vehicle Library Viewer with four red car models on a dark floor, the front car turned to the side, its name 2026 LLS GT-FE between the left and right arrows below, and the Reload button at the top." width="1232" height="692" loading="lazy"></figure>
 <h2 id="open">Open the Vehicle Library Viewer</h2>
 <ol>
   <li>Choose <strong>Tools</strong> &gt; <strong>Libraries</strong> &gt; <strong>Vehicle Library Viewer...</strong>.</li>
@@ -1909,7 +1909,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['Open the Track Library', 'Browse the published circuits', 'What a 3D track model adds', 'When a track has no model', 'Check a track in the Stint Folder', 'Related'],
   body: `
 <p>LapLabs publishes 3D models of circuits for everyone to use. When you open a run, Slipstream looks for a published model of its track and layout and loads it into the 3D view by itself, with nothing for you to set up. The Track Library lists the circuits that have one.</p>
-<!-- SHOT settings.tracks: Track Library window with Public selected, one circuit opened to show its layouts, a layout selected and its top-down outline previewed on the right, single tracks listed below the circuits, and Refresh and Close at the bottom -->
+<figure><img src="docs-images/settings.tracks.png" alt="The Track Library window with Public selected, three circuits opened to show their layouts, Road Atlanta's Full Course layout selected and its top-down outline previewed on the right, and Refresh and Close at the bottom." width="1100" height="632" loading="lazy"></figure>
 <h2 id="open">Open the Track Library</h2>
 <ol>
   <li>Choose <strong>Tools</strong> &gt; <strong>Libraries</strong> &gt; <strong>Track Library...</strong>.</li>
@@ -1966,7 +1966,7 @@ window.DOCS_ARTICLES = {
   tocLabels: ['When keys are ignored', 'Playback', '3D view', '2D plots', 'Stint Folder', 'Timeline points', 'Dash canvas and Dash Designer', 'Scatter', 'Corner Analysis, Segment Eval and Timing', 'Text boxes and dialogs', 'Related'],
   body: `
 <p>This page collects every key and mouse control in one place. Hover over a button to see its name, and its shortcut where it has one. Each group links to the page that explains it in full.</p>
-<!-- SHOT ref.shortcuts: The transport row under the 3D view with the mouse over the Prev lap, same LapDistPct button, its tooltip showing the Ctrl+, shortcut -->
+<figure><img src="docs-images/ref.shortcuts.png" alt="The transport row under the 3D view, with the mouse over the Prev lap, same LapDistPct button, above the playback bar." width="723" height="150" loading="lazy"></figure>
 <h2 id="ignored">When keys are ignored</h2>
 <p>Shortcuts never get in the way of typing: they're ignored while a text box, number field, dropdown or checkbox has focus. A focused checkbox takes <code>Space</code> for itself, so right after you tick a lap in the Stint Folder, <code>Space</code> unticks it instead of playing. Click an empty part of the 3D view or a plot, and the keys work again.</p>
 <div class="callout note">

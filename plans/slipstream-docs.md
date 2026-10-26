@@ -1,6 +1,6 @@
 # Plan: replace the docs with Slipstream docs
 
-**Status:** all 31 pages written (2026-10-25). Screenshots are still to come.
+**Status:** all 31 pages written (2026-10-25). Screenshots: 28 of 31 in (2026-10-26); share.tray, assistant.using and ref.troubleshooting are still to come.
 
 The articles in `docs/docs-content.js` describe LapLabs Studio, the desktop node-graph app that is being phased out. This plan replaces all of them with documentation for **Slipstream**, the LapLabs web app. Nothing from the old articles is migrated. The old set went too deep: a reference page per node, per plot type, per dialog. The new set is shorter and organized around what you do on the screen.
 
@@ -83,11 +83,11 @@ The Studio docs were replaced on 2026-10-25 (laplabs-docs #14, laplabs-site #83)
 - **Section numbers in the sidebar** count only the sections that exist so far, so they settle once every section is written.
 - **Old Studio links** (such as `?page=gs.install`) show "Page not found" with a link to the docs home.
 
-One site change is still needed before the first screenshot lands: the fetch script only downloads `docs-content.js` today, so it also has to copy `docs/images/` into the build as `docs-images/`. The image styles are already in place.
+Screenshots need one more step on the site side: after it downloads `docs-content.js`, the fetch script downloads every image the content references from `docs/images/` and saves it in the build as `docs-images/`. A referenced image that is missing fails the build, so a broken image never ships.
 
 ## Screenshots
 
-Screenshots live in this repo, in `docs/images/`, next to the text they illustrate. A PR that changes a page can then change its screenshot too, and review sees both. At build time the site copies the folder in, and pages load images from `docs-images/` on laplabs.net (the copy step isn't wired up yet, see Publishing).
+Screenshots live in this repo, in `docs/images/`, next to the text they illustrate. A PR that changes a page can then change its screenshot too, and review sees both. At build time the site copies the folder in, and pages load images from `docs-images/` on laplabs.net.
 
 **On the page.** One screenshot per page, placed right after the intro paragraph. Until it's captured, the page holds a placeholder comment that says what to show:
 
@@ -95,10 +95,10 @@ Screenshots live in this repo, in `docs/images/`, next to the text they illustra
 <!-- SHOT start.welcome: the whole app just after first sign-in ... -->
 ```
 
-Once it's captured, the comment becomes:
+Once it's captured, the comment becomes a figure. Write the alt text from what the image actually shows, not from the placeholder, and give the image's real width and height:
 
 ```html
-<figure><img src="docs-images/start.welcome.png" alt="The whole app just after first sign-in ..." loading="lazy"></figure>
+<figure><img src="docs-images/start.welcome.png" alt="The whole Slipstream window with the Spa demo run loaded ..." width="1600" height="1000" loading="lazy"></figure>
 ```
 
 **Files.** Name each file after its article ID, for example `docs/images/start.welcome.png`. A second image on the same page adds a suffix: `start.welcome-2.png`. Use PNG, and keep each file under 500 KB.
