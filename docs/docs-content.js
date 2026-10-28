@@ -1337,7 +1337,7 @@ window.DOCS_ARTICLES = {
 <p>For a bigger view, choose Tools &gt; Libraries &gt; <strong>Dash Library...</strong>. It has the same <strong>Cloud</strong> and <strong>Local</strong> choice as the pane (switching one switches both) and, for Local, a <strong>Folder:</strong> box with <strong>Browse…</strong> and <strong>Reopen</strong>.</p>
 <ul>
   <li>Click a dash to select it and see it full size. Double-click it to open it in the Designer.</li>
-  <li><strong>New</strong> starts an empty dash in the <a href="docs-article.html?page=plugins.dash-designer">Dash Designer</a>, and <strong>Edit</strong> opens the selected one. Editing a cloud dash opens an unsaved local copy; the cloud version never changes.</li>
+  <li><strong>New</strong> starts an empty dash in the <a href="docs-article.html?page=plugins.dash-designer">Dash Designer</a>, and <strong>Edit</strong> opens the selected one. Editing a cloud dash opens an unsaved local copy; the cloud version never changes. To bring in a dash made in SimHub, see <a href="docs-article.html?page=plugins.dash-simhub">Import SimHub dashes</a>.</li>
   <li><strong>Duplicate</strong>, <strong>Rename…</strong> and <strong>Delete</strong> work on local dashes only.</li>
   <li><strong>Refresh</strong> lists the folder again, and <strong>Close</strong> closes the dialog.</li>
 </ul>
@@ -1359,20 +1359,20 @@ window.DOCS_ARTICLES = {
 'plugins.dash-designer': {
   section: 'Plugins',
   title: 'Dash Designer',
-  lede: 'Build your own dashboards from bars, gauges, lights and readouts, and bind each one to a telemetry channel.',
+  lede: 'Build your own dashboards from bars, dials, lights, readouts, text, shapes and images, and bind each one to a telemetry channel.',
   prev: ['plugins.dash', 'Dash'],
-  next: ['timeline.points', 'Timeline points'],
-  toc: ['open', 'elements', 'arrange', 'bind', 'save', 'related'],
-  tocLabels: ['Open the Designer', 'Add elements', 'Select, move and resize', 'Bind an element to a channel', 'Save your dash', 'Related'],
+  next: ['plugins.dash-formulas', 'Dash formulas'],
+  toc: ['open', 'elements', 'arrange', 'bind', 'assets', 'save', 'related'],
+  tocLabels: ['Open the Designer', 'Add elements', 'Select, move, resize and zoom', 'Bind an element to a channel', 'Add images and fonts', 'Save your dash', 'Related'],
   body: `
 <p>The Dash Designer is where you build and edit dashes: place elements on a canvas, bind each one to a telemetry channel, and save the result to your dash folder, ready to drop onto the <a href="docs-article.html?page=plugins.dash">Dash</a> canvas.</p>
-<figure><img src="docs-images/plugins.dash-designer.png" alt="The Dash Designer window with the Elements palette on the left, a canvas holding a gauge, two vertical bars and a numeric readout with one bar selected and its four corner handles showing, and the Name, Canvas W, H, BG and Snap to Grid fields along the bottom." width="1099" height="701" loading="lazy"></figure>
+<figure><img src="docs-images/plugins.dash-designer.png" alt="The Dash Designer with SimHub's GaugeLand dash imported: the Elements palette on the left running from Vbar down to Text, Shape, Level, Image and Dial, the canvas with a speedometer, a rev counter showing gear 4, a small gauge and lap-time readouts, the Pos readout selected with its four corner handles, and the Name, Canvas W, H, BG, Snap to Grid and zoom controls along the bottom." width="1068" height="675" loading="lazy"></figure>
 <h2 id="open">Open the Designer</h2>
 <ul>
   <li>Right-click a dash on the Dash Canvas, or a local thumbnail in the Dash Library pane, and choose <strong>Edit in Dash Designer</strong>.</li>
   <li>In Tools &gt; Libraries &gt; <strong>Dash Library...</strong>, click <strong>New</strong> for an empty dash, or select one and click <strong>Edit</strong>.</li>
 </ul>
-<p>The title shows the dash's name, with an asterisk while you have unsaved changes. The <strong>File</strong> menu has <strong>Save</strong>, <strong>Save As…</strong> and <strong>Close</strong>; the <strong>Edit</strong> menu starts with <strong>Undo</strong> (<code>Ctrl</code>+<code>Z</code>) and <strong>Redo</strong> (<code>Ctrl</code>+<code>Y</code>). Along the bottom, set the <strong>Name:</strong>, the size in pixels (<strong>Canvas W:</strong> and <strong>H:</strong>, 800 by 400 to start) and the background color (<strong>BG:</strong>).</p>
+<p>The title shows the dash's name, with an asterisk while you have unsaved changes. The <strong>File</strong> menu has <strong>Save</strong>, <strong>Save As…</strong>, the two SimHub import items (see <a href="docs-article.html?page=plugins.dash-simhub">Import SimHub dashes</a>) and <strong>Close</strong>; the <strong>Edit</strong> menu starts with <strong>Undo</strong> (<code>Ctrl</code>+<code>Z</code>) and <strong>Redo</strong> (<code>Ctrl</code>+<code>Y</code>). Along the bottom, set the <strong>Name:</strong>, the size in pixels (<strong>Canvas W:</strong> and <strong>H:</strong>, 800 by 400 to start) and the background color (<strong>BG:</strong>).</p>
 <h2 id="elements">Add elements</h2>
 <p>Click an element in the <strong>Elements</strong> palette on the left. It lands in the middle of the canvas, selected. Elements show real values at the playback cursor, so you can check them as you build.</p>
 <ul>
@@ -1380,22 +1380,28 @@ window.DOCS_ARTICLES = {
   <li><strong>Led Array</strong>: a row of lights, each lit when its channel passes a threshold, such as shift lights.</li>
   <li><strong>Conditional</strong>: text and a color chosen by rules; the first rule that matches wins.</li>
   <li><strong>Numeric</strong>: a number readout, as a decimal or a time (mm:ss).</li>
-  <li><strong>Gauge</strong>: a round dial with a needle.</li>
+  <li><strong>Gauge</strong>: a simple round gauge with a needle.</li>
   <li><strong>Xy Plot</strong>: a dot inside a circle, driven by two channels, like a g-meter.</li>
   <li><strong>Steering Wheel</strong>: a wheel that turns with your steering.</li>
   <li><strong>Segment Border</strong>: a line or outline you draw to frame a group of elements.</li>
   <li><strong>Minimap</strong>: a map of the track with a dot for the car.</li>
   <li><strong>Track Position</strong>: a slice across the track showing where the car sits between the edges, and its angle to the track.</li>
   <li><strong>Slip Gauge</strong>: the car's slip angle (where it points against where it's going), or an understeer and oversteer reading.</li>
+  <li><strong>Text</strong>: text in any font. Add a formula to make it show a value.</li>
+  <li><strong>Shape</strong>: a filled rectangle or ellipse, for backgrounds and panels.</li>
+  <li><strong>Level</strong>: a bar or an arc that fills between a low and a high value, smoothly or in steps.</li>
+  <li><strong>Image</strong>: a picture, such as a logo.</li>
+  <li><strong>Dial</strong>: a detailed round gauge with ticks, labels, colored ranges and a needle.</li>
 </ul>
 <p>To draw a Segment Border, click it in the palette, then click on the canvas to add points. Double-click or press <code>Enter</code> to finish, or click the first point to close the shape. <code>Esc</code> cancels.</p>
-<h2 id="arrange">Select, move and resize</h2>
+<h2 id="arrange">Select, move, resize and zoom</h2>
 <ul>
   <li>Click an element to select it. <code>Shift</code>+click adds to the selection, and dragging across empty canvas selects everything the box touches. Select a Segment Border by clicking its line.</li>
   <li>Drag the selection to move it, or nudge it with the arrow keys (hold <code>Shift</code> for 10 pixels).</li>
   <li>Drag one of the four corner handles to resize an element.</li>
   <li><strong>Snap to Grid</strong> (on to start with; <code>G</code> toggles it) lines elements up on a 20-pixel grid when you let go.</li>
   <li><code>Delete</code> removes the selection. The <strong>Edit</strong> menu also has <strong>Copy</strong>, <strong>Paste</strong>, <strong>Bring to Front</strong> and <strong>Send to Back</strong>.</li>
+  <li>To zoom, use the buttons after <strong>Snap to Grid</strong> in the bottom bar: <strong>−</strong> and <strong>+</strong>, <strong>Fit</strong> to see the whole dash, and <strong>100%</strong> for actual size. <code>Ctrl</code>+scroll zooms around the pointer.</li>
 </ul>
 <h2 id="bind">Bind an element to a channel</h2>
 <p>Double-click an element to open its settings. Click <strong>Apply</strong> to keep your changes or <strong>Cancel</strong> to drop them.</p>
@@ -1404,7 +1410,15 @@ window.DOCS_ARTICLES = {
   <li>Give it a <strong>Label</strong>. For bars and gauges, set <strong>Low</strong> and <strong>High</strong> to the range to cover (iRacing's pedals run from 0 to 1).</li>
   <li>To convert the value, pick one under <strong>Conversion</strong>, such as <strong>m/s → km/h</strong> for <code>Speed</code>. Or set <strong>Units</strong> to <strong>Follow app preference</strong> to use the units you chose in <a href="docs-article.html?page=settings.preferences">Preferences</a>.</li>
 </ol>
-<p>A Led Array or Conditional uses rules instead: click <strong>+ Add LED</strong> or <strong>+ Add rule</strong>, then set each row's <strong>Variable</strong>, <strong>Op</strong>, <strong>Threshold</strong> and color. The Xy Plot takes <strong>Variable X</strong> and <strong>Variable Y</strong>. For a Steering Wheel, choose <strong>iRacing</strong> under <strong>Preset</strong>. Every element also has <strong>Position &amp; Size</strong> fields and a <strong>Style</strong> group for borders, colors and fonts.</p>
+<p>A Led Array or Conditional uses rules instead: click <strong>+ Add LED</strong> or <strong>+ Add rule</strong>, then set each row's <strong>Variable</strong>, <strong>Op</strong>, <strong>Threshold</strong> and color. The Xy Plot takes <strong>Variable X</strong> and <strong>Variable Y</strong>. For a Steering Wheel, choose <strong>iRacing</strong> under <strong>Preset</strong>. Every element also has <strong>Position &amp; Size</strong> fields and a <strong>Style</strong> group for borders, colors, corners, opacity and rotation.</p>
+<p>To drive anything else, such as a Text element's words or a color, add a row under <strong>Formulas</strong>: see <a href="docs-article.html?page=plugins.dash-formulas">Dash formulas</a>.</p>
+<h2 id="assets">Add images and fonts</h2>
+<p>Images and fonts are saved inside the dash file, so the dash looks the same wherever it opens.</p>
+<ul>
+  <li><strong>Images:</strong> in an image field, such as an Image element's <strong>Image</strong>, click <strong>Choose…</strong> and pick a PNG, JPEG, GIF, WebP or BMP file, up to 4 MB.</li>
+  <li><strong>Fonts:</strong> in a font field, such as a Text element's <strong>Font</strong>, type the name of an installed font, or click <strong>Embed font…</strong> to add a <code>.ttf</code> or <code>.otf</code> file of up to 2 MB.</li>
+</ul>
+<p>One dash holds up to 16 MB of images and fonts. A dashed gray box with an X marks an image not chosen yet (<strong>no image</strong>) or not in the dash (<strong>missing image</strong>).</p>
 <h2 id="save">Save your dash</h2>
 <p>Dashes save to your local dash folder, which needs Chrome or Edge. In other browsers, <strong>Save</strong> downloads the dash as a <code>.json</code> file instead.</p>
 <ul>
@@ -1422,8 +1436,148 @@ window.DOCS_ARTICLES = {
 <h2 id="related">Related</h2>
 <ul>
   <li><a href="docs-article.html?page=plugins.dash">Dash</a></li>
-  <li><a href="docs-article.html?page=settings.preferences">Preferences</a></li>
+  <li><a href="docs-article.html?page=plugins.dash-formulas">Dash formulas</a></li>
+  <li><a href="docs-article.html?page=plugins.dash-simhub">Import SimHub dashes</a></li>
+</ul>
+`,
+},
+'plugins.dash-formulas': {
+  section: 'Plugins',
+  title: 'Dash formulas',
+  lede: 'Drive any part of a dash element, such as its text, color, visibility or size, with a formula worked out at the playback cursor.',
+  prev: ['plugins.dash-designer', 'Dash Designer'],
+  next: ['plugins.dash-simhub', 'Import SimHub dashes'],
+  toc: ['add', 'write', 'read', 'format', 'markers', 'related'],
+  tocLabels: ['Add a formula to an element', 'Write a formula', 'Read telemetry in a formula', 'Format the result', 'Spot a formula that is not running', 'Related'],
+  body: `
+<p>A formula is a short expression that Slipstream works out each time the dash draws, from the telemetry at the playback cursor. Any element can have formulas, and each one drives one setting: the words in a Text element, a color, whether the element shows, its size and more. Formulas are written in NCalc, the same language SimHub uses, so dashes you import from SimHub keep theirs.</p>
+<figure><img src="docs-images/plugins.dash-formulas.png" alt="The Text Config dialog scrolled down to its Style group and, below it, the Formulas group: one row with Drives set to Text, the formula isnull([Position], '1') and the Format 0, the + Add formula button above the row, and Cancel and Apply at the bottom." width="640" height="640" loading="lazy"></figure>
+<h2 id="add">Add a formula to an element</h2>
+<ol>
+  <li>In the <a href="docs-article.html?page=plugins.dash-designer">Dash Designer</a>, double-click the element to open its settings.</li>
+  <li>At the bottom of the dialog, under <strong>Formulas</strong>, click <strong>+ Add formula</strong>.</li>
+  <li>Under <strong>Drives</strong>, pick the setting the formula controls.</li>
+  <li>Type the expression under <strong>Formula</strong>. For text, add a <strong>Format</strong> if you want one.</li>
+  <li>Click <strong>Apply</strong>. The element shows the result straight away.</li>
+</ol>
+<p>The × at the end of a row removes it. A formula overrides the setting it drives, as long as the element has that setting:</p>
+<ul>
+  <li><strong>Text</strong>: the words of a Text element.</li>
+  <li><strong>Visible</strong>: shows the element while the result is true. With several Visible rows, all of them must be true.</li>
+  <li><strong>Opacity</strong>: from 0 (invisible) to 1 (solid).</li>
+  <li><strong>Value</strong>, <strong>Low</strong> and <strong>High</strong>: the value and range of a Level or Dial. Value takes effect only while the element's <strong>Variable</strong> is empty.</li>
+  <li>The colors, such as <strong>Text Color</strong>, <strong>Background</strong>, <strong>Fill Color</strong> and <strong>Needle Color (dial)</strong>: a color in quotes, such as <code>'#ff0000'</code>, or <code>'#ff000080'</code> to make it half see-through.</li>
+  <li><strong>Range Start (dial)</strong> and <strong>Range End (dial)</strong>: where a dial's colored range begins and ends.</li>
+  <li><strong>Rotation</strong> in degrees, <strong>Font Size</strong>, and <strong>X</strong>, <strong>Y</strong>, <strong>Width</strong> and <strong>Height</strong> in canvas pixels.</li>
+</ul>
+<p><strong>Image</strong> switches pictures only on elements imported from SimHub that came with a set of them.</p>
+<h2 id="write">Write a formula</h2>
+<p>A formula can use numbers, text in single quotes, the arithmetic signs <code>+ - * / %</code>, comparisons (<code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code> and <code>&lt;&gt;</code>), the words <code>and</code>, <code>or</code> and <code>not</code>, and functions such as <code>if</code>, <code>isnull</code>, <code>round</code>, <code>abs</code>, <code>min</code>, <code>max</code> and <code>format</code>. Some examples:</p>
+<ul>
+  <li><code>[RPM] &gt; 7000</code> on <strong>Visible</strong> shows a shift warning only above 7,000 RPM.</li>
+  <li><code>if([FuelLevel] &lt; 5, '#ff3030', '#ffffff')</code> on <strong>Text Color</strong> turns a fuel readout red below 5 liters.</li>
+  <li><code>round([Speed] * 3.6)</code> on <strong>Text</strong> shows the speed in km/h as a whole number.</li>
+  <li><code>[Gear]</code> on <strong>Text</strong> shows the gear as SimHub writes it: <code>R</code>, <code>N</code> or a number.</li>
+</ul>
+<h2 id="read">Read telemetry in a formula</h2>
+<p>Put a name in square brackets to read its value at the cursor. Two kinds of name work:</p>
+<ul>
+  <li><strong>iRacing channels</strong>, by the names the <strong>Variable</strong> field suggests, such as <code>[RPM]</code>, <code>[Speed]</code> or <code>[LFtempCM]</code>. They come in iRacing's units: speed in meters per second, pedals from 0 to 1.</li>
+  <li><strong>SimHub property names</strong>, such as <code>[SpeedKmh]</code>, <code>[Rpms]</code> or <code>[DataCorePlugin.GameData.NewData.Gear]</code>. Case doesn't matter, and you can leave out <code>DataCorePlugin.</code> and <code>GameData.NewData.</code>.</li>
+</ul>
+<p>A few names exist in both, and then SimHub's meaning wins: <code>[Throttle]</code>, <code>[Brake]</code> and <code>[Clutch]</code> run from 0 to 100, and <code>[Gear]</code> is text. For iRacing's own channel, write <code>[GameRawData.Telemetry.Throttle]</code>.</p>
+<p>A name Slipstream doesn't know reads as empty. <code>isnull([Name], 0)</code> gives a fallback, here 0, while it's empty. Some SimHub values, such as previous lap times and fuel per lap, are worked out from your laps: see <a href="docs-article.html?page=plugins.dash-simhub">Import SimHub dashes</a>.</p>
+<h2 id="format">Format the result</h2>
+<p>For a Text row, the <strong>Format</strong> box takes a pattern, written the way SimHub writes them:</p>
+<ul>
+  <li><code>0</code> for a whole number, <code>0.0</code> or <code>0.00</code> for one or two decimals, and <code>#,##0</code> for a thousands separator.</li>
+  <li><code>m\\:ss\\.fff</code> for a lap time: <code>[LapLastLapTime]</code> shows as <code>1:42.315</code>.</li>
+  <li>Other characters are kept as they are: <code>0.0 L</code> shows <code>42.0 L</code>.</li>
+</ul>
+<p>The same patterns work inside a formula, as in <code>format([FuelLevel], '0.0')</code>.</p>
+<h2 id="markers">Spot a formula that is not running</h2>
+<p>A small marker in an element's top-right corner means one of its formulas isn't running. The element keeps its own settings in the meantime.</p>
+<ul>
+  <li><strong>JS</strong> (amber): a JavaScript formula from an imported SimHub dash. Slipstream doesn't run JavaScript formulas yet, so the element keeps the value it had in SimHub.</li>
+  <li><strong>ƒ!</strong> (red): a formula Slipstream can't read, often because of a missing bracket or quote. Open the element and check the expression.</li>
+</ul>
+<p>On a very small element the marker is just a dot.</p>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=plugins.dash-designer">Dash Designer</a></li>
+  <li><a href="docs-article.html?page=plugins.dash-simhub">Import SimHub dashes</a></li>
   <li><a href="docs-article.html?page=plots.channels">Plots and channels</a></li>
+</ul>
+`,
+},
+'plugins.dash-simhub': {
+  section: 'Plugins',
+  title: 'Import SimHub dashes',
+  lede: 'Bring a dash made in SimHub Dash Studio into Slipstream, with its images, fonts and formulas, and replay your laps through it.',
+  prev: ['plugins.dash-formulas', 'Dash formulas'],
+  next: ['timeline.points', 'Timeline points'],
+  toc: ['find', 'import', 'fonts', 'report', 'carries', 'save', 'related'],
+  tocLabels: ['Find the dash files', 'Import a dash', 'Include the fonts', 'Read the import report', 'Know what carries over', 'Save the imported dash', 'Related'],
+  body: `
+<p>Dashes made in SimHub's Dash Studio import straight into the <a href="docs-article.html?page=plugins.dash-designer">Dash Designer</a>. Slipstream rebuilds each SimHub item from its own elements, so the dash looks close to the original rather than identical, and its formulas keep running against your laps. Once imported, it's a dash like any other: edit it, save it and put it on the Dash canvas.</p>
+<figure><img src="docs-images/plugins.dash-simhub.png" alt="The SimHub Import Report over the imported GaugeLand dash. It starts with Imported screen Screen1 from GaugeLand.djson: 22 elements, then two Approximated lines (dial gauges redrawn by Slipstream, and one SimHub property Slipstream can't supply yet) and two Note lines (values driven by SimHub formulas, and built-in readouts recreated as live formulas), each naming its items, with Copy Report and OK at the bottom." width="740" height="640" loading="lazy"></figure>
+<h2 id="find">Find the dash files</h2>
+<p>You can import either of these:</p>
+<ul>
+  <li><strong>A dash folder.</strong> SimHub keeps each installed dash in its own folder under <code>DashTemplates</code>, usually <code>C:\\Program Files (x86)\\SimHub\\DashTemplates</code>. The folder holds the dash's <code>.djson</code> file and a <code>.djson.ressources</code> file with its images. Pick the whole folder, not just the <code>.djson</code>, so the images come too.</li>
+  <li><strong>A package.</strong> A <code>.simhubdash</code> file, the way dashes are usually shared online, or a downloaded <code>.zip</code> with one inside.</li>
+</ul>
+<h2 id="import">Import a dash</h2>
+<ol>
+  <li>Open the Dash Designer, for example with Tools &gt; Libraries &gt; <strong>Dash Library...</strong> and then <strong>New</strong>.</li>
+  <li>Choose File &gt; <strong>Import SimHub Dash Folder…</strong> and pick the dash's folder, or File &gt; <strong>Import SimHub Package…</strong> and pick the <code>.simhubdash</code> or <code>.zip</code> file.</li>
+  <li>The <strong>Import SimHub Dash</strong> dialog shows the dash's file, its size in pixels and how many screens it has. If the folder holds more than one dash, choose one under <strong>Dashboard file</strong>.</li>
+  <li>Pick the screen to import. Each one lists how many items it has and when SimHub shows it, such as <strong>in game</strong>, <strong>idle</strong> or <strong>pit</strong>.</li>
+  <li>Click <strong>Import</strong>. If the Designer has unsaved changes, it asks before replacing them.</li>
+</ol>
+<p>Screens come in one at a time. To bring in another screen of the same dash, import it again.</p>
+<div class="callout tip">
+  <span class="ic">&#10003;</span>
+  <div>
+    <span class="lbl">Tip</span>
+    <p>When you pick a folder, the browser may ask whether to upload its files to the site. Slipstream reads them inside your browser, and nothing is sent anywhere.</p>
+  </div>
+</div>
+<h2 id="fonts">Include the fonts</h2>
+<p>SimHub keeps dash fonts in a folder of their own, so most dashes arrive without them. The dialog says how many font files it found. To add them:</p>
+<ol>
+  <li>Click <strong>Add Font Files…</strong>.</li>
+  <li>Open SimHub's <code>DashFonts</code> folder, usually <code>C:\\Program Files (x86)\\SimHub\\DashFonts</code>, and pick the fonts. Picking all of them is fine: Slipstream keeps only the ones the dash uses.</li>
+</ol>
+<p>Text in a font that's neither added nor installed on your computer uses a fallback font. Fonts that come with Windows, such as Arial or Segoe UI, don't need adding.</p>
+<h2 id="report">Read the import report</h2>
+<p>When the import finishes, the <strong>SimHub Import Report</strong> lists everything that didn't carry over exactly, each line with a badge:</p>
+<ul>
+  <li><strong>Problem</strong>: something missing or broken in the files, such as an image that isn't there or a formula that can't be read.</li>
+  <li><strong>Not supported</strong>: SimHub items with no Slipstream equivalent yet. Each one shows as a dashed amber box marked ⚠︎ with its SimHub type, so the layout stays intact. JavaScript formulas are listed here too.</li>
+  <li><strong>Approximated</strong>: things drawn close to SimHub but not the same, such as fonts that weren't included, dials redrawn by Slipstream, or a track map shown as the Slipstream minimap.</li>
+  <li><strong>Note</strong>: things worth knowing, such as values worked out from your laps, or items that stay hidden until SimHub would show them.</li>
+</ul>
+<p>Each line names up to 12 of the items it's about. <strong>Copy Report</strong> copies the report as text, and <strong>OK</strong> closes it. If it says <strong>Everything carried over.</strong>, there's nothing to report.</p>
+<h2 id="carries">Know what carries over</h2>
+<ul>
+  <li><strong>Layout:</strong> text, rectangles, ellipses, gradients, images, bars, round gauges and dials become Text, Shape, Image, Level and Dial elements. Layers, groups and widgets become plain elements. Hidden items show faded in the Designer. A dash larger than 4000 by 2000 pixels is scaled down to fit.</li>
+  <li><strong>Formulas:</strong> NCalc formulas keep running, and SimHub's built-in readouts become formulas too. See <a href="docs-article.html?page=plugins.dash-formulas">Dash formulas</a>. JavaScript formulas aren't run yet: their elements keep the value they had in SimHub and show a <strong>JS</strong> marker.</li>
+  <li><strong>Values from your laps:</strong> previous lap times and their gap to your best, fuel used last lap and per lap, laps and time of fuel left, and the first three sector times. Slipstream works these out from the finished laps before the playback cursor, in the same file, so they stay empty until a lap has finished.</li>
+  <li><strong>Shift lights</strong> light from the run's own RPM range, not from each car's shift points as SimHub knows them.</li>
+  <li><strong>Not available:</strong> anything about other cars (gaps, names and positions of the cars around you), computer readings such as CPU temperature, properties you defined in your own SimHub settings, and SimHub's notifications. These read as empty or keep their design-time text.</li>
+</ul>
+<h2 id="save">Save the imported dash</h2>
+<p>The import opens as an unsaved dash, named after the SimHub file, with the screen's name added when the dash has several screens. To keep it:</p>
+<ol>
+  <li>Choose File &gt; <strong>Save As…</strong> and save it into your dash folder (Chrome or Edge). Its images and fonts go inside the dash file.</li>
+  <li>In the Dash Library, click <strong>Local</strong> to find it, and drag it onto the <a href="docs-article.html?page=plugins.dash">Dash</a> canvas.</li>
+</ol>
+<h2 id="related">Related</h2>
+<ul>
+  <li><a href="docs-article.html?page=plugins.dash-designer">Dash Designer</a></li>
+  <li><a href="docs-article.html?page=plugins.dash-formulas">Dash formulas</a></li>
+  <li><a href="docs-article.html?page=plugins.dash">Dash</a></li>
 </ul>
 `,
 },
@@ -1436,7 +1590,7 @@ window.DOCS_ARTICLES = {
   section: 'Timeline',
   title: 'Timeline points',
   lede: 'Markers on the lap that cut the camera, change playback speed, show notes or switch what ghosts and traces show, every time playback passes them.',
-  prev: ['plugins.dash-designer', 'Dash Designer'],
+  prev: ['plugins.dash-simhub', 'Import SimHub dashes'],
   next: ['timeline.presentation', 'Building a presentation lap'],
   toc: ['add', 'kinds', 'edit', 'filter', 'keys', 'save', 'related'],
   tocLabels: ['Add a point at the cursor', 'Know what each kind does', 'Edit, move and delete points', 'Filter kinds and switch points off', 'Use the keyboard', 'Save and load points', 'Related'],
@@ -1707,6 +1861,7 @@ window.DOCS_ARTICLES = {
   <li>The rail tab, which 3D sidebar and plugin panels are open, Multi-Lap Timing's lap windows, and the Dash canvas.</li>
 </ul>
 <p>Some things stay your own: which plugins are switched on, the rail columns, the 2D plot sidebar, your Preferences and your Assistant chat.</p>
+<p>Dashes on the Dash canvas come across without their embedded images and fonts, so other people see <strong>missing image</strong> boxes and a fallback font where your dash has its own.</p>
 <h2 id="pools">Upload a session to a test pool</h2>
 <p>This is only for members of a private test pool (a set of cloud runs only its members can see) whose membership allows uploads. It turns one of your own .ibt files into a cloud run in the pool, ready to share.</p>
 <ol>
@@ -2043,6 +2198,7 @@ window.DOCS_ARTICLES = {
   <li>Arrow keys: nudge the selection 1 pixel, or 10 pixels with <code>Shift</code>.</li>
   <li><code>Delete</code> or <code>Backspace</code>: delete the selection. <code>Esc</code>: clear the selection.</li>
   <li><code>G</code>: turn <strong>Snap to Grid</strong> on or off.</li>
+  <li><code>Ctrl</code>+<code>=</code> and <code>Ctrl</code>+<code>-</code>: zoom in and out. <code>Ctrl</code>+<code>0</code>: <strong>Fit</strong>. <code>Ctrl</code>+<code>1</code>: <strong>100%</strong>. <code>Ctrl</code>+scroll zooms around the pointer.</li>
   <li><code>Shift</code>+click adds an element to the selection. Double-click an element to open its settings.</li>
   <li>While drawing a <strong>Segment Border</strong>: <code>Enter</code> or a double-click finishes it, <code>Ctrl</code>+<code>Z</code> removes the last point and <code>Esc</code> cancels.</li>
 </ul>

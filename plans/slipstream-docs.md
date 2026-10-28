@@ -1,6 +1,6 @@
 # Plan: replace the docs with Slipstream docs
 
-**Status:** all 31 pages written (2026-10-25). Screenshots: all 31 pages have one (2026-10-26).
+**Status:** all 31 pages written (2026-10-25), plus Dash formulas and Import SimHub dashes (2026-10-27): 33 pages. Screenshots: every page has one (the two new pages and a Dash Designer retake, 2026-10-27).
 
 The articles in `docs/docs-content.js` describe LapLabs Studio, the desktop node-graph app that is being phased out. This plan replaces all of them with documentation for **Slipstream**, the LapLabs web app. Nothing from the old articles is migrated. The old set went too deep: a reference page per node, per plot type, per dialog. The new set is shorter and organized around what you do on the screen.
 
@@ -24,7 +24,7 @@ The sections follow the screen, from left to right:
 
 **Ghosts** get their own section because they run through every view. **Sharing and live** and **Reference** sit at the end.
 
-About 31 pages in 12 sections:
+About 33 pages in 12 sections:
 
 | # | Section | Article ID | Title | Covers |
 |---|---|---|---|---|
@@ -49,6 +49,8 @@ About 31 pages in 12 sections:
 | | | `plugins.scatter` | Scatter | 2D and 3D scatter, expressions, colour |
 | | | `plugins.dash` | Dash | The canvas, the dash library, data sources, pop-out |
 | | | `plugins.dash-designer` | Dash Designer | Building and editing a dash, element types |
+| | | `plugins.dash-formulas` | Dash formulas | Formula rows on any element, what a formula can read, formats, the JS and error markers |
+| | | `plugins.dash-simhub` | Import SimHub dashes | Dash folders and packages, fonts, the import report, what carries over |
 | 08 | Timeline | `timeline.points` | Timeline points | The six point kinds, how they fire every lap, hotkeys, importing |
 | | | `timeline.presentation` | Building a presentation lap | A walkthrough that combines camera, speed and note points |
 | 09 | Assistant | `assistant.using` | Using the Assistant | Connecting a provider and API key, what to ask, letting it act on the app, remote control from an AI client |
